@@ -1,17 +1,29 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
-  return (
-    <nav>
-      <ul>
+  const sessionUser = useSelector(state => state.session.user);
+
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <div>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to='/profile' exact={true} activeClassName='active'>
+            Profile
           </NavLink>
         </li>
+        <li>
+          <LogoutButton />
+        </li>
+      </div>
+    )
+  } else {
+    sessionLinks = (
+      <div>
         <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
@@ -22,13 +34,18 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li>
+      </div>
+    )
+  }
+
+  return (
+    <nav>
+      <ul>
         <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
+          <NavLink to='/' exact={true} activeClassName='active'>
+            Home
           </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
+          {sessionLinks}
         </li>
       </ul>
     </nav>
