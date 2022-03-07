@@ -10,3 +10,11 @@ class Shopping_Cart(db.Model):
     buyer = db.relationship('User', back_populates='shopping_cart')
     products = db.relationship('Product', secondary=cart_products, back_populates='shopping_cart')
     order = db.relationship('Order', back_populates='shopping_cart')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'buyer_id': self.buyer_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }

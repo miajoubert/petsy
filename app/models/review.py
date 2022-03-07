@@ -12,3 +12,14 @@ class Review(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False)
     buyer = db.relationship('User', back_populates='review')
     product = db.relationship('Product', back_populates='review')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'buyer_id': self.buyer_id,
+            'product_id': self.product_id,
+            'review': self.review,
+            'rating': self.rating,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
