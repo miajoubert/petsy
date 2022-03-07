@@ -3,6 +3,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
+import LoginFormModal from './auth/LoginModal';
+import SignupFormModal from './auth/SignupModal';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -25,14 +27,10 @@ const NavBar = () => {
     sessionLinks = (
       <div>
         <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
+          <LoginFormModal />
         </li>
         <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
+          <SignupFormModal />
         </li>
       </div>
     )
@@ -43,10 +41,10 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            Petsy
           </NavLink>
-          {sessionLinks}
         </li>
+        {sessionLinks}
       </ul>
     </nav>
   );
