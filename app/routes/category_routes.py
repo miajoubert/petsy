@@ -7,5 +7,5 @@ def get_category_by_id(id):
 
     category = Category.query.get(id)
     products = Product.query.filter(Product.category_id == category.id).all()
-    print("-------------------------------", {"products": [product.to_dict() for product in products]})
+    # print("-------------------------------", {"products": [product.to_dict() for product in products]})
     return {"products": [product.to_dict() for product in products]}
