@@ -9,5 +9,7 @@ from sqlalchemy import func
 
 result_routes = Blueprint("results", __name__)
 
-# @result_routes.route("", methods=["GET", "POST"])
-# def search():
+@result_routes.route("")
+def search():
+    term = 'frisco'
+    products = Product.query.filter(Product.name.ilike(f'%{term}%')).all()
