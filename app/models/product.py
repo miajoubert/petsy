@@ -14,3 +14,4 @@ class Product(db.Model):
   updated_at = db.Column(db.Datetime, nullable=False)
   seller = db.relationship("User", back_populates="product")
   category = db.relationship("Category", back_populates="product")
+  review = db.relationship("Review", back_populates="product")
