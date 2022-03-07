@@ -16,7 +16,7 @@ def seed_products():
     category_id=#,
     created_at=#,
     updated_at=#
-)
+  )
 
   pedigree = Product(
     seller_id=1,
