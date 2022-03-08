@@ -29,7 +29,6 @@ def add_product():
             image = form.data['image'],
             description = form.data['description'],
             price = form.data['price'],
-            category = form.data['category'],
             categoryId = int(form.data['categoryId']),
             userId = int(current_user.id)
         )
