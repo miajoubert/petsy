@@ -18,8 +18,8 @@ def get_product_by_id(id):
     product = Product.query.get(id)
     return product.to_dict()
 
-@product_routes.route('/new/', methods=['POST'])
-@login_required
+@product_routes.route('/', methods=['POST'])
+# @login_required
 def add_product():
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -37,15 +37,14 @@ def add_product():
         return new_product.to_dict()
 
 @product_routes.route('/edit/<int:id>', methods=['PUT'])
-@login_required
+# @login_required
 def edit_product(id):
     return None
 
 @product_routes.route('/delete/<int:id>', methods=['DELETE'])
-@login_required
+# @login_required
 def delete_product(id):
-
     product_delete = Product.query.get(id)
     db.session.delete(product_delete)
     db.session.commit()
-    return ('Product has been deleted successfully!!!')
+    return {'message': "Success"}
