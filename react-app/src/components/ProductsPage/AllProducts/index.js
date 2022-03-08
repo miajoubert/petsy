@@ -13,7 +13,6 @@ const AllProducts = () => {
 
   useEffect(() => {
     if (products) {
-      console.log("products", products);
       setProductList(Object.values(products))
     }
   }, [products]);
@@ -40,7 +39,7 @@ const AllProducts = () => {
 
 
             // <p>{product.name}</p>
- 
+
         ))}
     </div>
   );
