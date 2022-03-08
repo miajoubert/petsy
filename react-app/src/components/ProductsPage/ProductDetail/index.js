@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import productsReducer, { getSingleProduct } from "../../../store/products";
+import { Link, useParams, useHistory } from "react-router-dom";
+import productsReducer, { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const { id } = useParams();
 
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
+  const redirect = () => history.replace("/products")
+
+  
 
 
   useEffect(() => {
@@ -17,6 +21,12 @@ const SingleProduct = () => {
 
   if (!product) {
     return null;
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault()
+    dispatch(deleteSingleProduct(id, product))
+    redirect()
   }
 
   return (
@@ -42,6 +52,7 @@ const SingleProduct = () => {
       <div>
           {product.description}
       </div>
+      <button className="delete_btn" onClick={handleDelete}>DELETE</button>
       <h2> User Reviews </h2>
     </div>
   );

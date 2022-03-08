@@ -18,6 +18,14 @@ const getProduct = (product) => {
   }
 }
 
+const deleteProduct = (product) => {
+  return {
+    type: DELETE_PRODUCT,
+    product
+  }
+}
+
+
 export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
   if (response.ok) {
@@ -36,6 +44,18 @@ export const getSingleProduct = (id) => async (dispatch) => {
   }
 }
 
+export const deleteSingleProduct = (id) => async (dispatch) => {
+  const response = await fetch(`/products/${id}`, {
+    method: "DELETE",
+  })
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(deleteProduct(data))
+    return data
+  }
+  
+}
+
 
 const productsReducer = (state = {}, action) => {
 
@@ -50,6 +70,10 @@ const productsReducer = (state = {}, action) => {
       const singleState = { ...state }
       singleState[action.product.id] = action.product
       return singleState
+    case DELETE_PRODUCT:
+      const deleteState = { ...state }
+      delete deleteState[action.product]
+      return deleteState
     default:
       return { ...state };
   }
