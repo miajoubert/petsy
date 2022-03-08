@@ -1,35 +1,54 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
+import LoginFormModal from './auth/LoginModal';
+import SignupFormModal from './auth/SignupModal';
+import SearchBar from './SearchBar';
 
 const NavBar = () => {
-  return (
-    <nav>
-      <ul>
+  const sessionUser = useSelector(state => state.session.user);
+
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <div>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
+          <NavLink to='/profile' exact={true} activeClassName='active'>
+            Profile
           </NavLink>
         </li>
         <li>
           <LogoutButton />
         </li>
+      </div>
+    )
+  } else {
+    sessionLinks = (
+      <div>
+        <li>
+          <LoginFormModal />
+        </li>
+        <li>
+          <SignupFormModal />
+        </li>
+      </div>
+    )
+  }
+
+  return (
+    <nav>
+      <ul>
+        <li>
+          <NavLink to='/' exact={true} activeClassName='active'>
+            Petsy
+          </NavLink>
+        </li>
+        <li>
+          <SearchBar />
+        </li>
+        {sessionLinks}
       </ul>
     </nav>
   );
