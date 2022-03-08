@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getSingleProduct } from "../../../store/products";
+import productsReducer, { getSingleProduct } from "../../../store/products";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const product = useSelector((state) => state.productsReducer);
+  const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
 
-  console.log('5555555555555555', product)
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -22,6 +21,7 @@ const SingleProduct = () => {
 
   return (
     <div className="product_detail-container">
+        <p>{product.name}</p>
       <div className="product_image">
         <img
           width={300}

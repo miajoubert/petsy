@@ -30,11 +30,9 @@ export const getAllProducts = () => async (dispatch) => {
 export const getSingleProduct = (id) => async (dispatch) => {
   const response = await fetch(`/products/${id}`)
   if (response.ok) {
-    console.log('11111111111111111', response)
-    const data = await response.json()
-    console.log('77777777777777777', data)
-    dispatch(getProduct(data))
-    return data
+    const product = await response.json()
+    dispatch(getProduct(product))
+    return product
   }
 }
 
