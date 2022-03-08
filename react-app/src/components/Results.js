@@ -4,24 +4,33 @@ import { listResults } from '../store/results';
 
 const Results = () => {
     const dispatch = useDispatch();
-    const results = useSelector(state => state.results)
-    console.log('comp results', results)
-    const resultsArr = Object.values(results)
+    let res = useSelector(state => state.results)
+    let results = Object.values(res)
 
     useEffect(() => {
         dispatch(listResults())
     }, [dispatch])
 
-    return (
-        <main>
-            <div>
-                {/* Hellooooooooooooooooooooooooooooooooooooo */}
-                {resultsArr.map((result) => {
-                    return result
-                })}
-            </div>
-        </main>
-    )
+    if (!results.length) {
+        return (
+            <div> No results found!</div>
+        )
+    } else if (results) {
+        return (
+            <main>
+                <div>
+                    {results?.map((result) => {
+                        return (
+                            <div>
+                                <div> {result?.name} </div>
+                                <div> {result?.description} </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </main>
+        )
+    }
 }
 
 export default Results;

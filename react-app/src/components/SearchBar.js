@@ -11,20 +11,21 @@ const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        dispatch(findResults(searchTerm))
+
         history.push('/results');
     }
 
     return (
-        <form action='/results' method='POST'>
+        <form onSubmit={handleSubmit}>
             <input type='text'
                 placeholder='Search Products'
                 name='search'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                onSubmit={dispatch(findResults())}
                 required
-                />
-            <button onClick={handleSubmit}>Search</button>
+            />
+            <button>Search</button>
         </form>
     )
 }
