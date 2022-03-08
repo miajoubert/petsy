@@ -27,13 +27,14 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
-export const getSingleProduct = (productId) => async (dispatch) => {
-  const response = await fetch(`/products/${productId}`)
+export const getSingleProduct = (id) => async (dispatch) => {
+  const response = await fetch(`/products/${id}`)
   if (response.ok) {
     console.log('11111111111111111', response)
     const data = await response.json()
-    dispatch(getProduct(data.product))
-    return data.product
+    console.log('77777777777777777', data)
+    dispatch(getProduct(data))
+    return data
   }
 }
 
