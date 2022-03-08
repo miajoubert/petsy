@@ -7,9 +7,9 @@ const Results = () => {
     let res = useSelector(state => state.results)
     let results = Object.values(res)
 
-    useEffect(() => {
-        dispatch(listResults())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(listResults())
+    // }, [dispatch])
 
     if (!results.length) {
         return (
