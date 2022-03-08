@@ -11,9 +11,15 @@ const getProducts = (products) => {
   };
 };
 
+const getProduct = (product) => {
+  return {
+    type: GET_PRODUCT,
+    product,
+  }
+}
+
 export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
-  console.log("%%%%%%%%%%%%%%", response);
   if (response.ok) {
     const data = await response.json();
     dispatch(getProducts(data.products));
@@ -21,14 +27,30 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
+export const getSingleProduct = (productId) => async (dispatch) => {
+  const response = await fetch(`/products/${productId}`)
+  if (response.ok) {
+    console.log('11111111111111111', response)
+    const data = await response.json()
+    dispatch(getProduct(data.product))
+    return data.product
+  }
+}
+
+
 const productsReducer = (state = {}, action) => {
+
   switch (action.type) {
     case GET_PRODUCTS:
-      const newState = {};
+      const newState = {}
       action.products.forEach((product) => {
         newState[product.id] = product;
       });
       return newState;
+    case GET_PRODUCT:
+      const singleState = { ...state }
+      singleState[action.product.id] = action.product
+      return singleState
     default:
       return { ...state };
   }
