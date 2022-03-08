@@ -7,12 +7,14 @@ from sqlalchemy import func
 
 result_routes = Blueprint("results", __name__)
 
-@result_routes.route("")
+@result_routes.route("", methods=['GET', 'POST'])
 def search():
     search_form = SearchForm()
+
     search_form['csrf_token'].data = request.cookies['csrf_token']
-    term = search_form.search.data
-    print("TERM!!!!!!!!!!!!!!!!!!!!", term)
+    term = search_form.data.search
+    print('term!!!!!!!!!!!!!!!!!', search_form.search)
     products = Product.query.filter(Product.name.ilike(f'%{term}%')).all()
-    results = {"products": [product.to_dict() for product in products]}
-    return results
+    rslts = {"products": [product.to_dict() for product in products]}
+    # print('results!!!!!!!!!!!!!!!!!!!!!!!!!!', rslts)
+    return rslts
