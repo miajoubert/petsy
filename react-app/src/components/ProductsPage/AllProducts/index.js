@@ -14,7 +14,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     if (products) {
-      setProductList(Object.values(products));
+      setProductList(Object.values(products))
     }
   }, [products]);
 
