@@ -12,11 +12,12 @@ const getProducts = (products) => {
 };
 
 export const getAllProducts = () => async (dispatch) => {
-  const response = await "/products";
+  const response = await fetch("/products");
+  console.log("%%%%%%%%%%%%%%", response);
   if (response.ok) {
-    const products = await response.json();
-    dispatch(getProducts(products));
-    return products;
+    const data = await response.json();
+    dispatch(getProducts(data.products));
+    return data.products;
   }
 };
 
@@ -32,5 +33,21 @@ const productsReducer = (state = {}, action) => {
       return { ...state };
   }
 };
+
+// const initialState = {};
+
+// const productsReducer = (state = initialState, action) => {
+//   let newState;
+//   switch (action.type) {
+//     case GET_PRODUCTS:
+//       newState = { ...state };
+//       const entries = {};
+//       action.products.forEach((product) => (entries[product.id] = product));
+//       newState.entries = entries;
+//       return newState;
+//     default:
+//       return state;
+//   }
+// };
 
 export default productsReducer;
