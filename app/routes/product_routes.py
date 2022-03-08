@@ -18,8 +18,8 @@ def get_product_by_id(id):
     product = Product.query.get(id)
     return product.to_dict()
 
-@product_routes.route('/new/', methods=['POST'])
-@login_required
+@product_routes.route('/', methods=['POST'])
+# @login_required
 def add_product():
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']

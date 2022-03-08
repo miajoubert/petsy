@@ -18,6 +18,13 @@ const getProduct = (product) => {
   };
 };
 
+const addProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    product,
+  }
+}
+
 const deleteProduct = (id) => {
   return {
     type: DELETE_PRODUCT,
@@ -43,6 +50,22 @@ export const getSingleProduct = (id) => async (dispatch) => {
   }
 };
 
+export const addAProduct = (product) => async (dispatch) => {
+  const response = await fetch('/products/new', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(product)
+  })
+  console.log('1111111111111', response)
+  if(response.ok) {
+    const product = await response.json()
+    dispatch(addProduct(product))
+    return product
+  }
+}
+
 export const deleteSingleProduct = (id) => async (dispatch) => {
   const response = await fetch(`/products/delete/${id}`, {
     method: "DELETE",
@@ -66,6 +89,10 @@ const productsReducer = (state = {}, action) => {
       newState = { ...state };
       newState[action.product.id] = action.product;
       return newState;
+    case ADD_PRODUCT:
+      newState = { ...state }
+      newState[action.product.id] = action.product
+      return newState
     case DELETE_PRODUCT:
       newState = { ...state };
       delete newState[action.id];
