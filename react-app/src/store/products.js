@@ -15,16 +15,15 @@ const getProduct = (product) => {
   return {
     type: GET_PRODUCT,
     product,
-  }
-}
+  };
+};
 
-const deleteProduct = (product) => {
+const deleteProduct = (id) => {
   return {
     type: DELETE_PRODUCT,
-    product
-  }
-}
-
+    id,
+  };
+};
 
 export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
@@ -36,63 +35,44 @@ export const getAllProducts = () => async (dispatch) => {
 };
 
 export const getSingleProduct = (id) => async (dispatch) => {
-  const response = await fetch(`/products/${id}`)
+  const response = await fetch(`/products/${id}`);
   if (response.ok) {
-    const product = await response.json()
-    dispatch(getProduct(product))
-    return product
+    const product = await response.json();
+    dispatch(getProduct(product));
+    return product;
   }
-}
+};
 
 export const deleteSingleProduct = (id) => async (dispatch) => {
-  const response = await fetch(`/products/${id}`, {
+  const response = await fetch(`/products/delete/${id}`, {
     method: "DELETE",
-  })
-  if(response.ok) {
-    const data = await response.json();
-    dispatch(deleteProduct(data))
-    return data
+  });
+  if (response.ok) {
+    await dispatch(deleteProduct(id));
+    return response;
   }
-  
-}
-
+};
 
 const productsReducer = (state = {}, action) => {
-
+  let newState;
   switch (action.type) {
     case GET_PRODUCTS:
-      const newState = {}
+      newState = { ...state };
       action.products.forEach((product) => {
         newState[product.id] = product;
       });
       return newState;
     case GET_PRODUCT:
-      const singleState = { ...state }
-      singleState[action.product.id] = action.product
-      return singleState
+      newState = { ...state };
+      newState[action.product.id] = action.product;
+      return newState;
     case DELETE_PRODUCT:
-      const deleteState = { ...state }
-      delete deleteState[action.product]
-      return deleteState
+      newState = { ...state };
+      delete newState[action.id];
+      return newState;
     default:
-      return { ...state };
+      return state;
   }
 };
-
-// const initialState = {};
-
-// const productsReducer = (state = initialState, action) => {
-//   let newState;
-//   switch (action.type) {
-//     case GET_PRODUCTS:
-//       newState = { ...state };
-//       const entries = {};
-//       action.products.forEach((product) => (entries[product.id] = product));
-//       newState.entries = entries;
-//       return newState;
-//     default:
-//       return state;
-//   }
-// };
 
 export default productsReducer;

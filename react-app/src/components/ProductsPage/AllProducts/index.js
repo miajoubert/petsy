@@ -6,7 +6,7 @@ import { getAllProducts } from "../../../store/products";
 const AllProducts = () => {
   const [productList, setProductList] = useState([]);
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productsReducer);
+  const products = useSelector(state => state.productsReducer);
 
   useEffect(() => {
     dispatch(getAllProducts());

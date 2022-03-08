@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams, useHistory } from "react-router-dom";
-import productsReducer, { getSingleProduct, deleteSingleProduct } from "../../../store/products";
+import { useParams, useHistory } from "react-router-dom";
+import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const { id } = useParams();
 
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
-  const redirect = () => history.replace("/products")
-
-  
-
+  const redirect = () => history.replace("/products");
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -23,15 +20,14 @@ const SingleProduct = () => {
     return null;
   }
 
-  const handleDelete = (e) => {
-    e.preventDefault()
-    dispatch(deleteSingleProduct(id, product))
-    redirect()
-  }
+  async function handleDelete () {
+    await dispatch(deleteSingleProduct(id));
+    redirect();
+  };
 
   return (
     <div className="product_detail-container">
-        <p>{product.name}</p>
+      <p>{product.name}</p>
       <div className="product_image">
         <img
           width={300}
@@ -45,14 +41,12 @@ const SingleProduct = () => {
         />
       </div>
       <div className="product_price">${product.price}</div>
-      <div>
-          Quantity
-      </div>
+      <div>Quantity</div>
       <h2> Description </h2>
-      <div>
-          {product.description}
-      </div>
-      <button className="delete_btn" onClick={handleDelete}>DELETE</button>
+      <div>{product.description}</div>
+      <button className="delete_btn" onClick={handleDelete}>
+        DELETE
+      </button>
       <h2> User Reviews </h2>
     </div>
   );
