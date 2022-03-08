@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../../../store/product";
-import "./Product.css";
-
+import { getAllProducts} from "../../../store/products";
 const AllProducts = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state?.products);
+  const products = useSelector((state) => {
+    return state.products;
+  });
   const productsObj = Object.values(products);
 
   useEffect(() => {
@@ -15,10 +15,8 @@ const AllProducts = () => {
 
   return (
     <div className="all-products-container">
-      <div className="all-products">
         {productsObj.map((product) => (
-          <div key={product?.id}>
-            <Link to={`/products/${product?.id}`}>
+            <Link key={product?.id} to={`/products/${product?.id}`}>
               <img
                 width={"auto"}
                 height={500}
@@ -30,12 +28,7 @@ const AllProducts = () => {
                 }
               />
             </Link>
-            <div>
-                {product?.name}
-            </div>
-          </div>
         ))}
-      </div>
     </div>
   );
 };
