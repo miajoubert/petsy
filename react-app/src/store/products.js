@@ -61,6 +61,7 @@ export const addAProduct = (product) => async (dispatch) => {
   console.log('1111111111111', response)
   if(response.ok) {
     const product = await response.json()
+    console.log('222222222', product)
     dispatch(addProduct(product))
     return product
   }
