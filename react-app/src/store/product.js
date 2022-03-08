@@ -13,6 +13,7 @@ const getProducts = (products) => {
 
 export const getAllProducts = () => async (dispatch) => {
     const res = await fetch ('/products')
+    console.log('****************', res)
     if(res.ok) {
         const products = await Response.json();
         dispatch(getProducts(products))
@@ -35,5 +36,3 @@ const productsReducer = (state = {}, action) => {
 }
 
 export default productsReducer;
-
-

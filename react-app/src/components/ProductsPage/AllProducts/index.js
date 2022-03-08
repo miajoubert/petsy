@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../store/product";
-import "./Product.css";
+import "./Products.css";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state?.products);
-  const productsObj = Object.values(products);
+  const products = useSelector(state => state?.product?.products)
+  const productsObj = Object.values(products)
+
 
   useEffect(() => {
     dispatch(getAllProducts);

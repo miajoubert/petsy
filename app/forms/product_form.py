@@ -9,5 +9,5 @@ class ProductForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()], message='Description cannot be blank')
     price = IntegerField('Price', validators=[DataRequired()], message='Price cannot be blank')
     category = SelectField('Category', choices=[('Dog Food', 'Dog Food'), ('Dog Toys', 'Dog Toys'), ('Cat Food', 'Cat Food'), ('Cat Toys', 'Cat Toys'), ('Cat Litter', 'Cat Litter'), ('Bowls and Feeders', 'Bowls and Feeders'), ('Grooming', 'Grooming'), ('Clothing and Accessories', 'Clothing and Accessories')], validators=[DataRequired()], message='Must select a category')
-    categoryId = IntegerField('Category Id', validators=[DataRequired])
+    categoryId = IntegerField('Category Id', validators=[DataRequired()])
     submit = SubmitField('Submit')
