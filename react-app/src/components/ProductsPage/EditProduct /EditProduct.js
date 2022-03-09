@@ -10,13 +10,21 @@ const EditProduct = ({ hideForm }) => {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
-  console.log("11111111111111", product);
+  const [name, setName] = useState(product?.name || "");
+  const [image_url, setImageUrl] = useState(product?.image_url || "");
+  const [description, setDescription] = useState(product?.description || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [category_id, setCategoryId] = useState(product?.category_id || "");
 
-  const [name, setName] = useState("");
-  const [image_url, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category_id, setCategoryId] = useState("");
+  useEffect(() => {
+    if (product) {
+      setName(product.name)
+      setImageUrl(product.image_url)
+      setDescription(product.description)
+      setPrice(product.price)
+      setCategoryId(product.category_id)
+    }
+  }, [product])
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -27,13 +35,15 @@ const EditProduct = ({ hideForm }) => {
       description,
       price,
       category_id,
+      user,
     };
-    console.log('222222222222222', payload)
     const updatedProduct = await dispatch(editOneProduct(payload));
     if (updatedProduct) {
-      hideForm();
+      history.push(`/products/${product}`)
     }
+
   };
+
 
   return (
     <div className="edit-product-container">

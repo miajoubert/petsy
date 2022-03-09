@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import Product, db
-from app.forms import ProductForm
+from app.forms import ProductForm, EditProductForm
 from datetime import datetime
 
 product_routes = Blueprint("products", __name__)
@@ -43,7 +43,23 @@ def add_product():
 @product_routes.route('/edit/<int:id>', methods=['PUT'])
 # @login_required
 def edit_product(id):
-    return None
+    form = EditProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        edit = Product(
+            seller_id = current_user.id,
+            name = form.data['name'],
+            image_url = form.data['image_url'],
+            description = form.data['description'],
+            price = form.data['price'],
+            category_id = int(form.data['category_id']),
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
+        )
+        db.session.add(edit)
+        db.session.commit()
+        return edit.to_dict()
+    return {'message': "Success"}
 
 @product_routes.route('/delete/<int:id>', methods=['DELETE'])
 # @login_required

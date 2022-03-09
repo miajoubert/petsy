@@ -25,10 +25,10 @@ const addProduct = (product) => {
   };
 };
 
-const editProduct = (product) => {
+const editProduct = (id) => {
   return {
     type: EDIT_PRODUCT,
-    product,
+    id,
   };
 };
 
@@ -72,16 +72,19 @@ export const addAProduct = (product) => async (dispatch) => {
   }
 };
 
-export const editOneProduct = (product) => async (dispatch) => {
-  const response = await fetch(`/products/edit/${product}`, {
+export const editOneProduct = (id) => async (dispatch) => {
+  const response = await fetch(`/products/edit/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(product),
+    body: JSON.stringify(id),
   });
   if (response.ok) {
     const data = await response.json();
+    console.log('111111111111111', response)
     dispatch(editProduct(data));
     return data;
+  } else {
+    return ['Error Occured']
   }
 };
 
