@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { populateCart } from "../../../store/cart";
 import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
 
@@ -42,12 +43,12 @@ const SingleProduct = () => {
         />
       </div>
       <div className="product_price">${product.price}</div>
-      <div>
-        <button onClick={() => dispatch()}>Add to Cart</button>
+      <div className="cart-item-functions">
+        <button onClick={() => dispatch(populateCart(product.id))}>Add to Cart</button>
       </div>
       <h2> Description </h2>
       <div>{product.description}</div>
-      <EditProductModal/>
+      <EditProductModal />
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>

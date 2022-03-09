@@ -1,12 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
+import CartItem from "./CartItem";
 
 const Cart = () => {
     const cart = useSelector(state => state.cart);
     const products = useSelector(state => state.productsReducer)
     const dispatch = useDispatch();
 
-    const cartItems = Object.values(cart);
-
+    const cartItems = Object.values(cart)
+        .map(item => {
+            return {
+                ...item,
+                ...products[item.id]
+            }
+        });
 
     if (!cartItems.length) return (
         <div>
@@ -22,7 +28,7 @@ const Cart = () => {
     return (
         <div>
             <ul>
-                {cartItems.map(item => <div key={item.id} item={item}>{item.name}</div>)}
+                {cartItems.map(item => <CartItem key={item.id} item={item} />)}
             </ul>
             <form onSubmit={handleSubmit}>
                 <button type="submit">Submit Order</button>

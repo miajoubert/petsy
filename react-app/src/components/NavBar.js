@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
@@ -9,6 +9,7 @@ import Cart from './Cart/Cart';
 import './NavBar.css';
 
 const NavBar = () => {
+  const [showCart, setShowCart] = useState(true);
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
@@ -19,9 +20,12 @@ const NavBar = () => {
           <NavLink to='/profile' exact={true}>
             Profile
           </NavLink>
-          <button>
+          <button type="button" onClick={() => setShowCart(!showCart)}>
             <i className="fas fa-shopping-cart"></i>
           </button>
+          <div style={showCart ? { transform: 'translateX(-100%)' } : {}} className="sidebar">
+            <Cart />
+          </div>
           <LogoutButton />
         </div>
       </li>
