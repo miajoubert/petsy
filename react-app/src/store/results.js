@@ -21,7 +21,6 @@ const resultsReducer = (state = {}, action) => {
         case FIND_RESULTS:
             let newState = {}
             action.results.forEach(result => newState[result.id] = result)
-            console.log("THIS IS MY NEW STATE!!!!!!!!!", newState)
             return newState
         default:
             return state;

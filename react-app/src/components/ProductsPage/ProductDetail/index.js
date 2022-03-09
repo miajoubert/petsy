@@ -22,10 +22,10 @@ const SingleProduct = () => {
     return null;
   }
 
-  async function handleDelete () {
+  async function handleDelete() {
     await dispatch(deleteSingleProduct(id));
     redirect();
-  };
+  }
 
   return (
     <div className="product_detail-container">
@@ -46,13 +46,12 @@ const SingleProduct = () => {
       <div>Quantity</div>
       <h2> Description </h2>
       <div>{product.description}</div>
-      <EditProductModal/>
+      <EditProductModal />
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>
-      <h2> User Reviews </h2>
-    
-      <AllReviews />
+        <h2> User Reviews </h2>
+        <AllReviews/>
     </div>
   );
 };
