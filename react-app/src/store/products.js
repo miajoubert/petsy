@@ -114,7 +114,6 @@ const productsReducer = (state = {}, action) => {
       return newState;
     case EDIT_PRODUCT:
       newState = { ...state };
-      console.log('%%%%%%', action)
       newState[action.product.id] = action.product;
       return newState;
     case DELETE_PRODUCT:

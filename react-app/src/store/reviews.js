@@ -13,9 +13,9 @@ const getReviews = (reviews) => {
 const addReview = (review) => {
   return {
     type: ADD_REVIEW,
-    review
-  }
-}
+    review,
+  };
+};
 
 export const getAllReviews = () => async (dispatch) => {
   const response = await fetch("/api/reviews");
@@ -26,23 +26,22 @@ export const getAllReviews = () => async (dispatch) => {
   }
 };
 
-export const addAReview = (review) => async (dispatch) => {
-  console.log('111111111', review)
-  const response = await fetch('/api/reviews/new', {
-    method: 'POST',
+export const addAReview = (reviewDetails) => async (dispatch) => {
+  console.log("111111111", reviewDetails);
+  const response = await fetch("/api/reviews/new", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(review)
-  })
+    body: JSON.stringify(reviewDetails),
+  });
   if (response.ok) {
-    console.log('4444444444', response)
-    const data = await response.json()
-    console.log('2222222222', data)
-    dispatch(addReview(data))
-    return data
+    const data = await response.json();
+    console.log("2222222222", data);
+    dispatch(addReview(data));
+    return data;
   }
-}
+};
 
 const reviewsReducer = (state = {}, action) => {
   let newState;
@@ -52,6 +51,11 @@ const reviewsReducer = (state = {}, action) => {
       action.reviews.forEach((review) => {
         newState[review.id] = review;
       });
+      return newState;
+    case ADD_REVIEW:
+      newState = { ...state };
+      console.log('55555555', action)
+      newState[action.review.id] = action.review;
       return newState;
     default:
       return state;

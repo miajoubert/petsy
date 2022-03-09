@@ -13,12 +13,14 @@ const CreateReview = ({ onClose }) => {
 
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  console.log('!!!!!!',product)
+  console.log('??????',user)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      user,
-      product,
+      buyer_id: user.id,
+      product_id: product.id,
       review,
       rating,
     };
