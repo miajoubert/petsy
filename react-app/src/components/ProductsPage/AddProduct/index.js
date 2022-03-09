@@ -14,7 +14,7 @@ const AddProductModal = () => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddProduct />
+          <AddProduct onClose={() => setShowModal(false)}/>
         </Modal>
       )}
     </>

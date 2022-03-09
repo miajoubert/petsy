@@ -111,8 +111,11 @@ const EditProduct = ({ onClose }) => {
         <div className="created-at-input">
           <input type="hidden" value={created_at} />
         </div>
-        <button className="add-product-button" type="submit">
+        <button className="edit-product-button" type="submit">
           Submit
+        </button>
+        <button className="cancel-edit-button" onClick={onClose}>
+          Cancel
         </button>
       </form>
     </div>

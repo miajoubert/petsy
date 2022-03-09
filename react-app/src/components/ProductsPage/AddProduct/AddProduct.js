@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addAProduct } from "../../../store/products";
 
-const AddProduct = () => {
+const AddProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -16,10 +16,10 @@ const AddProduct = () => {
   const [errors, setErrors] = useState("");
 
   useEffect(() => {
-      if (!user) {
-          history.push('/')
-      }
-  }, [user, history])
+    if (!user) {
+      history.push("/");
+    }
+  }, [user, history]);
 
   const newProductSubmit = async (e) => {
     e.preventDefault();
@@ -31,13 +31,12 @@ const AddProduct = () => {
       price,
       category_id,
     };
-    console.log('2222222222',payload)
+    console.log("2222222222", payload);
     const newProduct = await dispatch(addAProduct(payload));
     if (newProduct) {
       history.push(`/products/${newProduct.id}`);
     }
   };
-
 
   return (
     <div>
@@ -45,7 +44,8 @@ const AddProduct = () => {
         <div className="new-product-title"> List Your Product</div>
         <div className="name-input">
           <label> Name </label>
-          <input id='form-label-name'
+          <input
+            id="form-label-name"
             placeholder="Name"
             required
             value={name}
@@ -54,7 +54,8 @@ const AddProduct = () => {
         </div>
         <div className="image-input">
           <label> Image </label>
-          <input id='form-label-image'
+          <input
+            id="form-label-image"
             type="text"
             placeholder="Image"
             required
@@ -64,7 +65,8 @@ const AddProduct = () => {
         </div>
         <div className="description-input">
           <label> Description </label>
-          <textarea id='form-label-description'
+          <textarea
+            id="form-label-description"
             placeholder="Description"
             required
             value={description}
@@ -73,7 +75,8 @@ const AddProduct = () => {
         </div>
         <div className="price-input">
           <label> Price </label>
-          <input id='form-label-price'
+          <input
+            id="form-label-price"
             type="number"
             placeholder="Price"
             required
@@ -83,7 +86,8 @@ const AddProduct = () => {
         </div>
         <div className="price-input">
           <label> Category Id </label>
-          <input id='form-label-price'
+          <input
+            id="form-label-price"
             type="number"
             placeholder="Category Id"
             required
@@ -94,7 +98,9 @@ const AddProduct = () => {
         <button className="add-product-button" type="submit">
           Submit
         </button>
-        {/* <button onClick={() => setShowModal(false)}>Cancel</button> */}
+        <button className="cancel-add-button" type="true" onClick={onClose}>
+          Cancel
+        </button>
       </form>
     </div>
   );
