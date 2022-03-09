@@ -7,6 +7,7 @@ const AllReviews = () => {
     const dispatch = useDispatch();
     const reviews = useSelector(state => state.reviewsReducer);
 
+    console.log('3333333333', reviews)
     useEffect(() => {
         dispatch(getAllReviews());
     }, [dispatch]);

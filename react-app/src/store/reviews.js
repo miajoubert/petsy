@@ -4,6 +4,7 @@ const EDIT_REVIEW = "reviews/EDIT_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 const getReviews = (reviews) => {
+  console.log('111111111', reviews)
     return {
         type: GET_REVIEWS,
         reviews,
@@ -11,12 +12,11 @@ const getReviews = (reviews) => {
 }
 
 export const getAllReviews = () => async (dispatch) => {
-    const response = await fetch("/reviews");
+    const response = await fetch("/api/reviews");
     if(response.ok) {
         const data = await response.json();
-        console.log('%%%%%%%%%%%%%%%%%%%%', data)
-        dispatch(getReviews(data))
-        return data
+        dispatch(getReviews(data.reviews))
+        return data.reviews
     }
 
 }
