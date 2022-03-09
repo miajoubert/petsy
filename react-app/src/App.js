@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import HomePage from './components/HomePage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/user/UsersList';
 import User from './components/user/User';
@@ -12,18 +13,21 @@ import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
 import { authenticate } from './store/session';
-import EditProduct from './components/ProductsPage/EditProduct /EditProduct';
+import { findResults } from './store/results'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  let term = ""
+  if (localStorage.search) term = localStorage.search
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(authenticate())
+      await dispatch(findResults(term))
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, term]);
 
   if (!loaded) {
     return null;
@@ -43,7 +47,7 @@ function App() {
           <AllProducts />
         </Route>
         <Route path='/products/:id' exact={true}>
-          <SingleProduct/>
+          <SingleProduct />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
@@ -51,9 +55,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <HomePage />
+        </Route>
         <Route path='/results' exact={true} >
           <Results />
         </Route>

@@ -1,0 +1,38 @@
+.nav-top {
+    display: grid;
+    grid-template-columns: auto 5fr auto;
+    list-style-type: none;
+    padding-right: 40px;
+}
+
+.nav-top a {
+    text-decoration: none;
+}
+
+.nav-home {}
+
+.nav-logo {
+    color: #f1651f;
+}
+
+.nav-search {
+    padding: 0 40px;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 4fr auto;
+}
+
+.nav-session-links {}
+
+.nav-bottom {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-bottom a {
+    text-decoration: none;
+}
