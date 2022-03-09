@@ -5,6 +5,7 @@ import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
 import AllReviews from "../../Reviews/GetReviews";
 import Reviews from "../../Reviews/CreateReview";
+import { deleteAReview } from "../../../store/reviews";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,7 @@ const SingleProduct = () => {
 
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
-  const reviews = useSelector(state => state.reviewsReducer);
-  const redirect = () => history.replace("/products");
+  const review = useSelector(state => state.reviewsReducer[id]);
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -26,7 +26,12 @@ const SingleProduct = () => {
 
   async function handleDelete() {
     await dispatch(deleteSingleProduct(id));
-    redirect();
+    history.push('/products')
+  }
+
+  async function handleReviewDelete() {
+    await dispatch(deleteAReview(review))
+    history.push(`/products/${product.id}`)
   }
 
   return (
@@ -56,6 +61,9 @@ const SingleProduct = () => {
         <h2> User Reviews </h2>
         <AllReviews/>
         <Reviews/>
+        <button className="delete-review-button" onClick={handleReviewDelete}>
+          Delete
+          </button>
         </div>
     </div>
   );

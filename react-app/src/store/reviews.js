@@ -17,6 +17,14 @@ const addReview = (review) => {
   };
 };
 
+const deleteReview = (id) => {
+  console.log('1111111111'. id)
+  return {
+    type: DELETE_REVIEW,
+    id,
+  };
+};
+
 export const getAllReviews = () => async (dispatch) => {
   const response = await fetch("/api/reviews");
   if (response.ok) {
@@ -41,6 +49,16 @@ export const addAReview = (reviewDetails) => async (dispatch) => {
   }
 };
 
+export const deleteAReview = (id) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    await dispatch(deleteReview(id));
+    return response;
+  }
+};
+
 const reviewsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
@@ -53,6 +71,10 @@ const reviewsReducer = (state = {}, action) => {
     case ADD_REVIEW:
       newState = { ...state };
       newState[action.review.id] = action.review;
+      return newState;
+    case DELETE_REVIEW:
+      newState = { ...state };
+      delete newState[action.id];
       return newState;
     default:
       return state;

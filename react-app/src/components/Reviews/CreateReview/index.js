@@ -8,7 +8,7 @@ const AddReviewModal = () => {
   return (
     <>
       <button className="create-review-modal" onClick={() => setShowModal(true)}>
-        Add Your Review!
+        Add Your Review
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

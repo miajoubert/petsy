@@ -22,7 +22,7 @@ const CreateReview = ({ onClose }) => {
       review,
       rating,
     };
-    
+
     const newReview = await dispatch(addAReview(payload));
     if (newReview) {
       history.push(`/products/${product.id}`);
@@ -33,7 +33,6 @@ const CreateReview = ({ onClose }) => {
   return (
     <div>
       <form className="new-review-form" onSubmit={handleSubmit}>
-        <div className="new-review-title">Add Your Review!!!</div>
         <div className="review">
           <label> Review </label>
           <input
