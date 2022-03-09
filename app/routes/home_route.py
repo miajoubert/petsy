@@ -1,7 +1,6 @@
 import imp
 from flask import Blueprint, jsonify, request
 from app.models import Product, Category
-from app.forms import search_form
 
 home_route = Blueprint("home", __name__)
 
