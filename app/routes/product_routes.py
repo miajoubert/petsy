@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import Product, db
 from app.forms import ProductForm
+from datetime import datetime
 
 product_routes = Blueprint("products", __name__)
 
@@ -18,23 +19,27 @@ def get_product_by_id(id):
     product = Product.query.get(id)
     return product.to_dict()
 
-@product_routes.route('/', methods=['POST'])
+@product_routes.route('/new', methods=['POST'])
 # @login_required
 def add_product():
     form = ProductForm()
+    print('5555555555', form)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_product = Product(
+            seller_id = current_user.id,
             name = form.data['name'],
-            image = form.data['image'],
+            image_url = form.data['image_url'],
             description = form.data['description'],
             price = form.data['price'],
-            categoryId = int(form.data['categoryId']),
-            userId = int(current_user.id)
+            category_id = int(form.data['category_id']),
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
         )
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict()
+    return {'message': "Success"}
 
 @product_routes.route('/edit/<int:id>', methods=['PUT'])
 # @login_required

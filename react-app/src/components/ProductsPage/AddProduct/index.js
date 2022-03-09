@@ -9,10 +9,10 @@ const AddProduct = () => {
   const user = useSelector((state) => state.session.user);
 
   const [name, setName] = useState("");
-  const [image, setImageUrl] = useState("");
+  const [image_url, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [category_id, setCategoryId] = useState("");
   const [errors, setErrors] = useState("");
 
   // useEffect(() => {
@@ -26,14 +26,15 @@ const AddProduct = () => {
     const payload = {
       userId: user.id,
       name,
-      image,
+      image_url,
       description,
       price,
-      categoryId,
+      category_id,
     };
+    console.log('111111111', payload)
     const newProduct = await dispatch(addAProduct(payload));
     if (newProduct) {
-      history.push(`/product/${newProduct.id}`);
+      history.push(`/products/${newProduct.id}`);
       // reset()
     }
   };
@@ -69,7 +70,7 @@ const AddProduct = () => {
             type="text"
             placeholder="Image"
             required
-            value={image}
+            value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
         </div>
@@ -90,6 +91,16 @@ const AddProduct = () => {
             required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="price-input">
+          <label> Category Id </label>
+          <input id='form-label-price'
+            type="number"
+            placeholder="Category Id"
+            required
+            value={category_id}
+            onChange={(e) => setCategoryId(e.target.value)}
           />
         </div>
         <button className="add-product-button" type="submit">

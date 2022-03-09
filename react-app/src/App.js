@@ -41,11 +41,11 @@ function App() {
         <Route path='/products' exact={true}>
           <AllProducts />
         </Route>
+        <Route path='/products/new' exact={true} >
+          <AddProduct/>
+        </Route>
         <Route path='/products/:id' exact={true}>
           <SingleProduct/>
-        </Route>
-        <Route path='/addProduct' exact={true} >
-          <AddProduct/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />

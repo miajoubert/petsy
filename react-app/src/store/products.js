@@ -51,6 +51,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 
 export const addAProduct = (product) => async (dispatch) => {
+  console.log('99999999999', product)
   const response = await fetch('/products/new', {
     method: "POST",
     headers: {
@@ -58,10 +59,9 @@ export const addAProduct = (product) => async (dispatch) => {
     },
     body: JSON.stringify(product)
   })
-  console.log('1111111111111', response)
+  console.log('222222222', response)
   if(response.ok) {
     const product = await response.json()
-    console.log('222222222', product)
     dispatch(addProduct(product))
     return product
   }
