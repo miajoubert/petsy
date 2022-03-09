@@ -10,6 +10,13 @@ const getReviews = (reviews) => {
   };
 };
 
+const addReview = (review) => {
+  return {
+    type: ADD_REVIEW,
+    review
+  }
+}
+
 export const getAllReviews = () => async (dispatch) => {
   const response = await fetch("/api/reviews");
   if (response.ok) {
@@ -18,6 +25,23 @@ export const getAllReviews = () => async (dispatch) => {
     return data.reviews;
   }
 };
+
+export const addAReview = (review) => async (dispatch) => {
+  console.log('111111111', review)
+  const response = await fetch('/api/reviews/new', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(review)
+  })
+
+  if (response.ok) {
+    const review = await response.json()
+    dispatch(addAReview(review))
+    return review
+  }
+}
 
 const reviewsReducer = (state = {}, action) => {
   let newState;

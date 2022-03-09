@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
 import AllReviews from "../../Reviews/GetReviews";
-import Reviews from "../../Reviews/GetReviews/reviews";
+import Reviews from "../../Reviews/CreateReview";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
