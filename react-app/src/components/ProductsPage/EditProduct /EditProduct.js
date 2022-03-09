@@ -1,53 +1,64 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { addAProduct } from "../../../store/products";
+import { useHistory, useParams, Redirect } from "react-router-dom";
+import { editOneProduct } from "../../../store/products";
 
-const AddProduct = ({ onClose }) => {
+const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const { id } = useParams();
+  const product = useSelector((state) => state.productsReducer[id]);
 
-  const [name, setName] = useState("");
-  const [image_url, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category_id, setCategoryId] = useState("");
-  const [errors, setErrors] = useState("");
+  const [productId, setId] = useState(product?.id || "");
+  const [name, setName] = useState(product?.name || "");
+  const [image_url, setImageUrl] = useState(product?.image_url || "");
+  const [description, setDescription] = useState(product?.description || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [category_id, setCategoryId] = useState(product?.category_id || "");
+  const [created_at, setCreatedAt] = useState(product?.created_at || "");
 
   useEffect(() => {
-    if (!user) {
-      history.push("/");
+    if (product) {
+      setId(product.id);
+      setName(product.name);
+      setImageUrl(product.image_url);
+      setDescription(product.description);
+      setPrice(product.price);
+      setCategoryId(product.category_id);
     }
-  }, [user, history]);
+  }, [product]);
 
-  const newProductSubmit = async (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      userId: user.id,
+      ...product,
       name,
       image_url,
       description,
       price,
       category_id,
+      created_at,
+      user,
     };
-    console.log("2222222222", payload);
-    const newProduct = await dispatch(addAProduct(payload));
-    if (newProduct) {
-      history.push(`/products/${newProduct.id}`);
+
+    const updatedProduct = await dispatch(editOneProduct(payload));
+    if (updatedProduct) {
+      history.push(`/products/${product.id}`);
+      onClose(false)
     }
   };
 
   return (
-    <div>
-      <form className="new-product-form" onSubmit={newProductSubmit}>
-        <div className="new-product-title"> List Your Product</div>
+    <div className="edit-product-container">
+      <form className="edit-product" onSubmit={handleEditSubmit}>
+        <h2>Edit Your Product</h2>
         <div className="name-input">
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
-            required
+            // required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -58,7 +69,7 @@ const AddProduct = ({ onClose }) => {
             id="form-label-image"
             type="text"
             placeholder="Image"
-            required
+            // required
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -68,7 +79,7 @@ const AddProduct = ({ onClose }) => {
           <textarea
             id="form-label-description"
             placeholder="Description"
-            required
+            // required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -78,8 +89,10 @@ const AddProduct = ({ onClose }) => {
           <input
             id="form-label-price"
             type="number"
+            step="0.01"
+            pattern="^(./d{1,2}?$)"
             placeholder="Price"
-            required
+            // required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -90,15 +103,18 @@ const AddProduct = ({ onClose }) => {
             id="form-label-price"
             type="number"
             placeholder="Category Id"
-            required
+            // required
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
           />
         </div>
-        <button className="add-product-button" type="submit">
+        <div className="created-at-input">
+          <input type="hidden" value={created_at} />
+        </div>
+        <button className="edit-product-button" type="submit">
           Submit
         </button>
-        <button className="cancel-add-button" type="true" onClick={onClose}>
+        <button className="cancel-edit-button" onClick={onClose}>
           Cancel
         </button>
       </form>
@@ -106,4 +122,4 @@ const AddProduct = ({ onClose }) => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;

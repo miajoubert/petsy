@@ -22,8 +22,15 @@ const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
     product,
-  }
-}
+  };
+};
+
+const editProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
+    product,
+  };
+};
 
 const deleteProduct = (id) => {
   return {
@@ -36,6 +43,7 @@ export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
   if (response.ok) {
     const data = await response.json();
+    console.log('88888888888888888', data)
     dispatch(getProducts(data.products));
     return data.products;
   }
@@ -44,28 +52,39 @@ export const getAllProducts = () => async (dispatch) => {
 export const getSingleProduct = (id) => async (dispatch) => {
   const response = await fetch(`/products/${id}`);
   if (response.ok) {
-    const product = await response.json();
-    dispatch(getProduct(product));
-    return product;
+    const data = await response.json();
+    dispatch(getProduct(data));
+    return data;
   }
 };
 
 export const addAProduct = (product) => async (dispatch) => {
-  console.log('99999999999', product)
-  const response = await fetch('/products/new', {
+  const response = await fetch("/products/new", {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(product)
-  })
-  console.log('222222222', response)
-  if(response.ok) {
-    const product = await response.json()
-    dispatch(addProduct(product))
-    return product
+    body: JSON.stringify(product),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addProduct(data));
+    return data;
   }
-}
+};
+
+export const editOneProduct = (product) => async (dispatch) => {
+  const response = await fetch(`/products/${product.id}/edit`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(product),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(editProduct(data));
+    return data;
+  }
+};
 
 export const deleteSingleProduct = (id) => async (dispatch) => {
   const response = await fetch(`/products/delete/${id}`, {
@@ -91,9 +110,14 @@ const productsReducer = (state = {}, action) => {
       newState[action.product.id] = action.product;
       return newState;
     case ADD_PRODUCT:
-      newState = { ...state }
-      newState[action.product.id] = action.product
-      return newState
+      newState = { ...state };
+      newState[action.product.id] = action.product;
+      return newState;
+    case EDIT_PRODUCT:
+      newState = { ...state };
+      console.log('%%%%%%', action)
+      newState[action.product.id] = action.product;
+      return newState;
     case DELETE_PRODUCT:
       newState = { ...state };
       delete newState[action.id];
