@@ -13,42 +13,38 @@ const NavBar = () => {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
-        <li>
-          <NavLink to='/profile' exact={true} activeClassName='active'>
+      <li className='nav-session-links'>
+        <div>
+          <NavLink to='/profile' exact={true}>
             Profile
           </NavLink>
-        </li>
-        <li>
-          <i class="fas fa-shopping-cart"></i>
-        </li>
-        <li>
+          <i className="fas fa-shopping-cart"></i>
           <LogoutButton />
-        </li>
-      </>
+        </div>
+      </li>
     )
   } else {
     sessionLinks = (
-      <>
-        <li>
+      <li className='nav-session-links'>
+        <div>
           <LoginFormModal />
-        </li>
-        <li>
           <SignupFormModal />
-        </li>
-      </>
+        </div>
+      </li>
     )
   }
 
   return (
     <nav>
       <ul className='nav-top'>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Petsy
-          </NavLink>
+        <li className='nav-home'>
+          <div>
+            <NavLink to='/' exact={true} className='nav-logo'>
+              Petsy
+            </NavLink>
+          </div>
         </li>
-        <li>
+        <li className='nav-search'>
           <SearchBar />
         </li>
         {sessionLinks}
