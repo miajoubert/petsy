@@ -31,6 +31,7 @@ const AddProduct = () => {
       price,
       category_id,
     };
+    console.log('2222222222',payload)
     const newProduct = await dispatch(addAProduct(payload));
     if (newProduct) {
       history.push(`/products/${newProduct.id}`);

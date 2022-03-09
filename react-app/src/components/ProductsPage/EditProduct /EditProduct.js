@@ -1,49 +1,53 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { editOneProduct } from "../../../store/products";
 
-const EditProduct = ({ hideForm }) => {
+const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
+  const [productId, setId] = useState(product?.id || "");
   const [name, setName] = useState(product?.name || "");
   const [image_url, setImageUrl] = useState(product?.image_url || "");
   const [description, setDescription] = useState(product?.description || "");
   const [price, setPrice] = useState(product?.price || "");
   const [category_id, setCategoryId] = useState(product?.category_id || "");
+  const [created_at, setCreatedAt] = useState(product?.created_at || "");
 
   useEffect(() => {
     if (product) {
-      setName(product.name)
-      setImageUrl(product.image_url)
-      setDescription(product.description)
-      setPrice(product.price)
-      setCategoryId(product.category_id)
+      setId(product.id);
+      setName(product.name);
+      setImageUrl(product.image_url);
+      setDescription(product.description);
+      setPrice(product.price);
+      setCategoryId(product.category_id);
     }
-  }, [product])
+  }, [product]);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      id: product.id,
+      ...product,
       name,
       image_url,
       description,
       price,
       category_id,
+      created_at,
       user,
     };
+
     const updatedProduct = await dispatch(editOneProduct(payload));
     if (updatedProduct) {
-      history.push(`/products/${product}`)
+      history.push(`/products/${product.id}`);
+      onClose(false)
     }
-
   };
-
 
   return (
     <div className="edit-product-container">
@@ -85,6 +89,8 @@ const EditProduct = ({ hideForm }) => {
           <input
             id="form-label-price"
             type="number"
+            step="0.01"
+            pattern="^(./d{1,2}?$)"
             placeholder="Price"
             // required
             value={price}
@@ -102,6 +108,9 @@ const EditProduct = ({ hideForm }) => {
             onChange={(e) => setCategoryId(e.target.value)}
           />
         </div>
+        <div className="created-at-input">
+          <input type="hidden" value={created_at} />
+        </div>
         <button className="add-product-button" type="submit">
           Submit
         </button>
@@ -110,4 +119,4 @@ const EditProduct = ({ hideForm }) => {
   );
 };
 
-export default EditProduct
+export default EditProduct;

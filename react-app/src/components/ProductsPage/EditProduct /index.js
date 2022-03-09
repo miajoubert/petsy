@@ -12,11 +12,11 @@ const EditProductModal = () => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditProduct />
+          <EditProduct onClose={() => setShowModal(false)}/>
         </Modal>
       )}
     </>
   );
 };
 
-export default EditProductModal
+export default EditProductModal;

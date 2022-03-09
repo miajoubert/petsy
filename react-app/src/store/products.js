@@ -25,10 +25,10 @@ const addProduct = (product) => {
   };
 };
 
-const editProduct = (id) => {
+const editProduct = (product) => {
   return {
     type: EDIT_PRODUCT,
-    id,
+    product,
   };
 };
 
@@ -43,6 +43,7 @@ export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
   if (response.ok) {
     const data = await response.json();
+    console.log('88888888888888888', data)
     dispatch(getProducts(data.products));
     return data.products;
   }
@@ -72,19 +73,16 @@ export const addAProduct = (product) => async (dispatch) => {
   }
 };
 
-export const editOneProduct = (id) => async (dispatch) => {
-  const response = await fetch(`/products/edit/${id}`, {
+export const editOneProduct = (product) => async (dispatch) => {
+  const response = await fetch(`/products/${product.id}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(id),
+    body: JSON.stringify(product),
   });
   if (response.ok) {
     const data = await response.json();
-    console.log('111111111111111', response)
     dispatch(editProduct(data));
     return data;
-  } else {
-    return ['Error Occured']
   }
 };
 
@@ -117,6 +115,7 @@ const productsReducer = (state = {}, action) => {
       return newState;
     case EDIT_PRODUCT:
       newState = { ...state };
+      console.log('%%%%%%', action)
       newState[action.product.id] = action.product;
       return newState;
     case DELETE_PRODUCT:

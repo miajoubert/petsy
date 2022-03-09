@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField
+from wtforms import StringField, TextAreaField, IntegerField, HiddenField, DecimalField
 from wtforms.validators import DataRequired
 
 class EditProductForm(FlaskForm):
@@ -7,5 +7,6 @@ class EditProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()] )
     image_url = StringField('Image', validators=[DataRequired()], )
     description = TextAreaField('Description', validators=[DataRequired()])
-    price = IntegerField('Price', validators=[DataRequired()] )
+    price = DecimalField('Price', validators=[DataRequired()] )
     category_id = IntegerField('Category', validators=[DataRequired()])
+    created_at = HiddenField("Created At",)
