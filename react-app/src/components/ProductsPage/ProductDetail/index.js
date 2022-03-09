@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
+import EditProductModal from "../EditProduct ";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -40,10 +41,11 @@ const SingleProduct = () => {
           }
         />
       </div>
-      <div className="product_price">${product.price}</div>
+      <div className="product_price">${product?.price}</div>
       <div>Quantity</div>
       <h2> Description </h2>
       <div>{product.description}</div>
+      <EditProductModal/>
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>
