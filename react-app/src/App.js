@@ -12,11 +12,13 @@ import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
+import Cart from './components/Cart/Cart';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   let term = ""
   if (localStorage.search) term = localStorage.search
   const dispatch = useDispatch();
@@ -65,6 +67,7 @@ function App() {
           <Results />
         </Route>
       </Switch>
+      <Cart onClick={() => setShowCart(!showCart)} className='sidebar' />
     </BrowserRouter>
   );
 }
