@@ -15,11 +15,11 @@ const AddProduct = () => {
   const [category_id, setCategoryId] = useState("");
   const [errors, setErrors] = useState("");
 
-  // useEffect(() => {
-  //     if (!user) {
-  //         history.push('/')
-  //     }
-  // }, [user, history])
+  useEffect(() => {
+      if (!user) {
+          history.push('/')
+      }
+  }, [user, history])
 
   const newProductSubmit = async (e) => {
     e.preventDefault();
@@ -31,11 +31,9 @@ const AddProduct = () => {
       price,
       category_id,
     };
-    console.log('111111111', payload)
     const newProduct = await dispatch(addAProduct(payload));
     if (newProduct) {
-      history.push(`/products/${newProduct.id}`);
-      // reset()
+      history.replace(`/products/${newProduct.id}`);
     }
   };
 
@@ -43,13 +41,6 @@ const AddProduct = () => {
     e.preventDefault();
     history.push("/products");
   };
-  // const reset = () => {
-  //     setName(''),
-  //     setImageUrl(''),
-  //     setDescription(''),
-  //     setPrice(0),
-  //     setCategoryId(0)
-  // }
 
   return (
     <div>
