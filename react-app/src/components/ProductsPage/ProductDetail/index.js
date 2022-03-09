@@ -51,6 +51,7 @@ const SingleProduct = () => {
         DELETE
       </button>
       <h2> User Reviews </h2>
+    
       <AllReviews />
     </div>
   );

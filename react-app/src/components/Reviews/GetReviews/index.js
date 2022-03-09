@@ -22,7 +22,8 @@ const AllReviews = () => {
         <div>
             {reviewsList.map((review) => (
                 <div className="all-reviews-container">
-                    {review?.review}
+                    <div>{review.rating}</div>
+                    <div>{review?.review}</div>
                 </div>
             ))}
         </div>
