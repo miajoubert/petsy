@@ -42,10 +42,10 @@ function App() {
           <AllProducts />
         </Route>
         <Route path='/products/new' exact={true} >
-          <AddProduct/>
+          <AddProduct />
         </Route>
         <Route path='/products/:id' exact={true}>
-          <SingleProduct/>
+          <SingleProduct />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
@@ -53,9 +53,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </Route>
         <Route path='/results' exact={true} >
           <Results />
         </Route>

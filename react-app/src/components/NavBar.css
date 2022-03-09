@@ -1,0 +1,9 @@
+.nav-top {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-bottom {
+    display: flex;
+    list-style-type: none;
+}
