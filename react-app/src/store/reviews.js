@@ -35,11 +35,12 @@ export const addAReview = (review) => async (dispatch) => {
     },
     body: JSON.stringify(review)
   })
-
   if (response.ok) {
-    const review = await response.json()
-    dispatch(addAReview(review))
-    return review
+    console.log('4444444444', response)
+    const data = await response.json()
+    console.log('2222222222', data)
+    dispatch(addReview(data))
+    return data
   }
 }
 

@@ -14,7 +14,6 @@ const SingleProduct = () => {
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
   const reviews = useSelector(state => state.reviewsReducer);
-  console.log('22222222222', reviews)
   const redirect = () => history.replace("/products");
 
   useEffect(() => {
@@ -53,14 +52,11 @@ const SingleProduct = () => {
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>
-
-      {/* {product.id === reviews.product_id && ( */}
         <div>
         <h2> User Reviews </h2>
         <AllReviews/>
         <Reviews/>
         </div>
-        {/* )} */}
     </div>
   );
 };

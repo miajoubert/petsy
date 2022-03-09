@@ -19,9 +19,10 @@ def add_reviews():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_review = Review(
-            review = form.data('review'),
-            rating = form.data('rating'),
-            userId = current_user.id,
+            review = form.data['review'],
+            rating = form.data['rating'],
+            buyer_id = current_user.id,
+            product_id = form.data['ProductId'],
         )
         db.session.add(new_review)
         db.session.commit()

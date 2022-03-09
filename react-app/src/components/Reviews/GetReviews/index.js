@@ -4,11 +4,9 @@ import { useParams } from "react-router-dom";
 import { getAllReviews } from "../../../store/reviews";
 
 const AllReviews = () => {
-  // const [reviewsList, setReviewsList] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
   const reviews = useSelector((state) => state.reviewsReducer);
-  console.log("5555", reviews);
   const product = useSelector((state) => state.productsReducer[id]);
 
   useEffect(() => {
