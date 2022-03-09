@@ -1,4 +1,4 @@
-const GET_REVIEWS = "reivews/GET_REVIEWS";
+const GET_REVIEWS = "reviews/GET_REVIEWS";
 const ADD_REVIEW = "reviews/ADD_REVIEW";
 const EDIT_REVIEW = "reviews/EDIT_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";

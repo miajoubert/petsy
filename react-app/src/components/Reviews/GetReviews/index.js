@@ -1,38 +1,35 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getAllReviews } from "../../../store/reviews";
-import { getSingleProduct } from "../../../store/products";
 
 const AllReviews = () => {
-  const [reviewsList, setReviewsList] = useState([]);
+  // const [reviewsList, setReviewsList] = useState([]);
   const dispatch = useDispatch();
+  const { id } = useParams();
   const reviews = useSelector((state) => state.reviewsReducer);
-  const product = useSelector((state) => state.productsReducer);
-  console.log('3333333333333', reviews)
-
-  console.log("2222222", product);
+  console.log("5555", reviews);
+  const product = useSelector((state) => state.productsReducer[id]);
 
   useEffect(() => {
     dispatch(getAllReviews());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (reviews) {
-      setReviewsList(Object.values(reviews));
-    }
-  }, [reviews]);
+  const reviewsArr = Object.values(reviews);
 
   return (
     <div>
-      {reviewsList.map((review) => (
-        <div className="all-reviews-container">
-          {product?.id === review?.product_id && (
-          <div>
-                {review.review}
-          </div>
-          )}
-        </div>
-      ))}
+      {reviewsArr.map((review) => {
+        if (review.product_id === product.id) {
+          return (
+            <div className="all-reviews-container">
+              <div>{review?.rating}</div>
+              <div>{review?.review}</div>
+            </div>
+          );
+        }
+        else return null
+      })}
     </div>
   );
 };
