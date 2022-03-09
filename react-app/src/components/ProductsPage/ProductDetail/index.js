@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
+import AllReviews from "../../Reviews/GetReviews";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const SingleProduct = () => {
         DELETE
       </button>
       <h2> User Reviews </h2>
+      <AllReviews />
     </div>
   );
 };
