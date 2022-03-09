@@ -27,7 +27,6 @@ export const getAllReviews = () => async (dispatch) => {
 };
 
 export const addAReview = (reviewDetails) => async (dispatch) => {
-  console.log("111111111", reviewDetails);
   const response = await fetch("/api/reviews/new", {
     method: "POST",
     headers: {
@@ -37,7 +36,6 @@ export const addAReview = (reviewDetails) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log("2222222222", data);
     dispatch(addReview(data));
     return data;
   }
@@ -54,7 +52,6 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case ADD_REVIEW:
       newState = { ...state };
-      console.log('55555555', action)
       newState[action.review.id] = action.review;
       return newState;
     default:

@@ -13,8 +13,6 @@ const CreateReview = ({ onClose }) => {
 
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
-  console.log('!!!!!!',product)
-  console.log('??????',user)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +22,7 @@ const CreateReview = ({ onClose }) => {
       review,
       rating,
     };
-    console.log('33333333', payload)
+    
     const newReview = await dispatch(addAReview(payload));
     if (newReview) {
       history.push(`/products/${product.id}`);
