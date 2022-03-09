@@ -25,6 +25,7 @@ export const findResults = (searchTerm) => async (dispatch) => {
 
 export const listResults = () => async (dispatch) => {
     const res = await fetch('/results');
+    console.log('list res', res)
     const results = await res.json();
     console.log('list results', results)
     dispatch(list(results.products))
