@@ -9,9 +9,13 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+
+        localStorage.setItem("search", searchTerm)
 
         dispatch(findResults(searchTerm))
+
+        setSearchTerm("")
 
         history.push('/results');
     }
