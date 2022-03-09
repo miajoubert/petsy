@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../store/products";
+import AddProductModal from "../AddProduct";
 
 const AllProducts = () => {
   const [productList, setProductList] = useState([]);
@@ -20,7 +21,7 @@ const AllProducts = () => {
 
   return (
     <div>
-      <Link to={`/products/new`}>Add</Link>
+      <AddProductModal/>
       {productList.length &&
         productList.map((product) => (
           <div className="all-products-container">
