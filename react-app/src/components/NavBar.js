@@ -5,6 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginModal';
 import SignupFormModal from './auth/SignupModal';
 import SearchBar from './SearchBar';
+import Cart from './Cart/Cart';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -18,7 +19,9 @@ const NavBar = () => {
           <NavLink to='/profile' exact={true}>
             Profile
           </NavLink>
-          <i className="fas fa-shopping-cart"></i>
+          <button>
+            <i className="fas fa-shopping-cart"></i>
+          </button>
           <LogoutButton />
         </div>
       </li>

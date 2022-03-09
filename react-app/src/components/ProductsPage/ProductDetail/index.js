@@ -21,7 +21,7 @@ const SingleProduct = () => {
     return null;
   }
 
-  async function handleDelete () {
+  async function handleDelete() {
     await dispatch(deleteSingleProduct(id));
     redirect();
   };
@@ -41,8 +41,10 @@ const SingleProduct = () => {
           }
         />
       </div>
-      <div className="product_price">${product?.price}</div>
-      <div>Quantity</div>
+      <div className="product_price">${product.price}</div>
+      <div>
+        <button onClick={() => dispatch()}>Add to Cart</button>
+      </div>
       <h2> Description </h2>
       <div>{product.description}</div>
       <EditProductModal/>
