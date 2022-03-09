@@ -12,6 +12,7 @@ import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
 import { authenticate } from './store/session';
+import EditProduct from './components/ProductsPage/EditProduct /EditProduct';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,9 +41,6 @@ function App() {
         </Route>
         <Route path='/products' exact={true}>
           <AllProducts />
-        </Route>
-        <Route path='/products/new' exact={true} >
-          <AddProduct/>
         </Route>
         <Route path='/products/:id' exact={true}>
           <SingleProduct/>
