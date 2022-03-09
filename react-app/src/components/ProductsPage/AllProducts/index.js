@@ -20,6 +20,7 @@ const AllProducts = () => {
 
   return (
     <div>
+      <Link to={`/products/new`}>Add</Link>
       {productList.length &&
         productList.map((product) => (
           <div className="all-products-container">
