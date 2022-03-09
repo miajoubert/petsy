@@ -13,17 +13,21 @@ import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
 import { authenticate } from './store/session';
+import { findResults } from './store/results'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  let term = ""
+  if (localStorage.search) term = localStorage.search
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(authenticate())
+      await dispatch(findResults(term))
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, term]);
 
   if (!loaded) {
     return null;

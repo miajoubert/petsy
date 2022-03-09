@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { listResults } from '../store/results';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Results = () => {
-    const dispatch = useDispatch();
-    let res = useSelector(state => state.results)
-    let results = Object.values(res)
-
-    useEffect(() => {
-        dispatch(listResults())
-    }, [dispatch])
+    let rslts = useSelector(state => state.results)
+    let results = Object.values(rslts)
 
     if (!results.length) {
         return (
             <div> No results found!</div>
         )
-    } else if (results) {
+    } else if (results.length) {
         return (
             <div className="all-products-container">
                 {results.map((result) => (
