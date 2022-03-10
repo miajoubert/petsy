@@ -74,7 +74,6 @@ const reviewsReducer = (state = {}, action) => {
     case DELETE_REVIEW:
       newState = { ...state };
       delete newState[action.reviewId];
-      console.log('22222222222', newState)
       return newState;
     default:
       return state;

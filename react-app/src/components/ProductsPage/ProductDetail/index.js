@@ -6,7 +6,6 @@ import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
 import AllReviews from "../../Reviews/GetReviews";
 import Reviews from "../../Reviews/CreateReview";
-import { deleteAReview } from "../../../store/reviews";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ const SingleProduct = () => {
     return null;
   }
 
-  
   async function handleDelete(e) {
     e.preventDefault()
     await dispatch(deleteSingleProduct(id));
@@ -48,7 +46,7 @@ const SingleProduct = () => {
           }
         />
       </div>
-      <div className="product_price">${product.price}</div>
+      <div className="product_price">{parseFloat(product.price).toFixed(2)}</div>
       <div className="cart-item-functions">
         <button onClick={() => dispatch(populateCart(product))}>Add to Cart</button>
       </div>
@@ -58,11 +56,11 @@ const SingleProduct = () => {
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>
-        <div>
+      <div>
         <h2> User Reviews </h2>
-        <AllReviews/>
-        <Reviews/>
-        </div>
+        <AllReviews />
+        <Reviews />
+      </div>
     </div>
   );
 };
