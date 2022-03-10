@@ -25,14 +25,23 @@ const Cart = () => {
         dispatch()
     }
 
+    let subtotal = parseInt(0);
+    cartItems.map(item => parseFloat(subtotal += parseFloat(item.price * item.count)).toFixed(2))
+
     return (
         <div>
             <ul>
                 {cartItems.map(item => <CartItem key={item.id} item={item} />)}
             </ul>
-            <form onSubmit={handleSubmit}>
-                <button type="submit">Submit Order</button>
-            </form>
+            <hr />
+            <div>
+                <div> Subtotal: {parseFloat(subtotal).toFixed(2)} </div>
+                <div> Tax (5.5%): {parseFloat(subtotal * .055).toFixed(2)} </div>
+                <div> Total: {parseFloat(subtotal * 1.055).toFixed(2)} </div>
+                <form onSubmit={handleSubmit}>
+                    <button type="submit">Submit Order</button>
+                </form>
+            </div>
         </div>
     )
 }

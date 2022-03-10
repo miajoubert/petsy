@@ -46,7 +46,7 @@ const SingleProduct = () => {
           }
         />
       </div>
-      <div className="product_price">${product.price}</div>
+      <div className="product_price">{parseFloat(product.price).toFixed(2)}</div>
       <div className="cart-item-functions">
         <button onClick={() => dispatch(populateCart(product))}>
           Add to Cart
@@ -64,6 +64,7 @@ const SingleProduct = () => {
       </div>
         <h2> User Reviews </h2>
         <AllReviews />
+
       </div>
     </div>
   );
