@@ -17,11 +17,10 @@ const addReview = (review) => {
   };
 };
 
-const deleteReview = (id) => {
-  console.log('1111111111'. id)
+const deleteReview = (review) => {
   return {
     type: DELETE_REVIEW,
-    id,
+    review,
   };
 };
 
@@ -34,13 +33,13 @@ export const getAllReviews = () => async (dispatch) => {
   }
 };
 
-export const addAReview = (reviewDetails) => async (dispatch) => {
+export const addAReview = (review) => async (dispatch) => {
   const response = await fetch("/api/reviews/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(reviewDetails),
+    body: JSON.stringify(review),
   });
   if (response.ok) {
     const data = await response.json();
@@ -49,16 +48,14 @@ export const addAReview = (reviewDetails) => async (dispatch) => {
   }
 };
 
-export const deleteAReview = (id) => async (dispatch) => {
-  console.log('%%%%%%%%%%%%%%%%%', id )
-  const response = await fetch(`/api/reviews/${id}`, {
+export const deleteAReview = (review) => async (dispatch) => {
+  console.log('111111111', review )
+  const response = await fetch(`/api/reviews/${review}`, {
     method: "DELETE",
   });
-
-  console.log('-------------', response)
   if (response.ok) {
-    await dispatch(deleteReview(id));
-    return response;
+    dispatch(deleteReview(review));
+    return "Delete Successful";
   }
 };
 

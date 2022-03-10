@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
@@ -14,7 +14,7 @@ const SingleProduct = () => {
 
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
-  const review = useSelector(state => state.reviewsReducer[id]);
+  const reviews = useSelector(state => state.reviewsReducer);
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -24,15 +24,12 @@ const SingleProduct = () => {
     return null;
   }
 
-  async function handleDelete() {
+  async function handleDelete(e) {
+    e.preventDefault()
     await dispatch(deleteSingleProduct(id));
     history.push('/products')
   }
 
-  async function handleReviewDelete() {
-    await dispatch(deleteAReview(review))
-    history.push(`/products/${product.id}`)
-  }
 
   return (
     <div className="product_detail-container">
@@ -61,9 +58,6 @@ const SingleProduct = () => {
         <h2> User Reviews </h2>
         <AllReviews/>
         <Reviews/>
-        <button className="delete-review-button" onClick={handleReviewDelete}>
-          Delete
-          </button>
         </div>
     </div>
   );
