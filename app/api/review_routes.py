@@ -45,6 +45,7 @@ def edit_reviews():
 @login_required
 def delete_reviews(id):
     review_to_delete = Review.query.get(id)
+    print('------------------', review_to_delete)
     db.session.delete(review_to_delete)
     db.session.commit()
     return {'message': 'Success'}

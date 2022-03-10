@@ -50,9 +50,12 @@ export const addAReview = (reviewDetails) => async (dispatch) => {
 };
 
 export const deleteAReview = (id) => async (dispatch) => {
+  console.log('%%%%%%%%%%%%%%%%%', id )
   const response = await fetch(`/api/reviews/${id}`, {
     method: "DELETE",
   });
+
+  console.log('-------------', response)
   if (response.ok) {
     await dispatch(deleteReview(id));
     return response;
