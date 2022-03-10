@@ -9,7 +9,7 @@ import Cart from './Cart/Cart';
 import './NavBar.css';
 
 const NavBar = () => {
-  const [showCart, setShowCart] = useState(true);
+  const [showCart, setShowCart] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;

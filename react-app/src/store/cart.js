@@ -35,15 +35,10 @@ export const updateCount = (product, count) => {
 };
 
 export const refreshCart = (cart) => {
-    let cartItems = [];
-    console.log("MY CARTTTTTTTTTT", cart)
-    if (cart) {
-        cartItems = Object.entries(cart)
-    }
-    console.log(cartItems)
+    console.log("OUR REFRESHED CART", cart)
     return {
         type: REFRESH_CART,
-        cartItems
+        cart
     }
 }
 
@@ -62,6 +57,7 @@ export default function cartReducer(state = {}, action) {
                 }
             }
             localStorage.setItem('cart', JSON.stringify(newState));
+            console.log("WE'RE IN THE ADD COUNT REDUCER CASE", newState)
             return newState;
         case SUBTRACT_FROM_CART:
             newState = { ...state }
@@ -70,27 +66,21 @@ export default function cartReducer(state = {}, action) {
             } else {
                 delete newState[action.product.id]
             }
+            console.log("WE'RE IN THE SUTRACT COUNT REDUCER CASE", newState)
             return newState;
         case REMOVE_FROM_CART:
             newState = { ...state }
             delete newState[action.productId]
+            console.log("WE'RE IN THE REMOVE COUNT REDUCER CASE", newState)
             return newState;
         case UPDATE_COUNT:
             newState = { ...state }
             newState[action.product.id].count = action.count
+            console.log("WE'RE IN THE UPDATE COUNT REDUCER CASE", newState)
             return newState;
         case REFRESH_CART:
-            newState = { ...state }
-            if (newState[action.cartItems?.id]) {
-                newState[action.cartItems?.id].count++
-            } else if (action.cartItems.id) {
-                newState[action.cartItems?.id] = {
-                    ...action.cartItems,
-                    id: action.cartItems?.id,
-                    count: 1
-                }
-            }
-            return newState;
+            newState = { ...state, ...action.cart }
+            return newState
         default:
             return state;
     }
