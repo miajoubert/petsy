@@ -43,7 +43,6 @@ export const getAllProducts = () => async (dispatch) => {
   const response = await fetch("/products");
   if (response.ok) {
     const data = await response.json();
-    console.log('88888888888888888', data)
     dispatch(getProducts(data.products));
     return data.products;
   }
@@ -115,7 +114,6 @@ const productsReducer = (state = {}, action) => {
       return newState;
     case EDIT_PRODUCT:
       newState = { ...state };
-      console.log('%%%%%%', action)
       newState[action.product.id] = action.product;
       return newState;
     case DELETE_PRODUCT:
