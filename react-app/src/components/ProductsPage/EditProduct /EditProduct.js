@@ -16,25 +16,19 @@ const EditProduct = ({ onClose }) => {
   const [price, setPrice] = useState(product?.price || "");
   const [category_id, setCategoryId] = useState(product?.category_id || "");
   const [created_at, setCreatedAt] = useState(product?.created_at || "");
-  const [errors, setErrors] = useState([]);
+  const [errorValidator, setErrorValidator] = useState([]);
 
-  const editProductValidation = (e) => {
-    let validationErrors = [];
-    if(!name) validationErrors.push("Please provide a name")
-    if (!image_url.length) validationErrors.push("Please provide a valid URL");
+  useEffect(() => {
+    const errors = [];
+    if (!name) errors.push("Please provide a name");
+    if (!image_url.length) errors.push("Please provide a valid URL");
     if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
-      validationErrors.push("Please provide a valid URL");
-    if (!description)
-      validationErrors.push("Please provide a description");
-    if (!price) validationErrors.push("Please provide a price");
-    if (!category_id) validationErrors.push("Please provide a category Id");
-
-    if (validationErrors.length) {
-      setErrors(validationErrors);
-      console.log("validationErrors", validationErrors);
-      return true;
-    } else return false;
-  };
+      errors.push("Please provide a valid URL");
+    if (!description) errors.push("Please provide a description");
+    if (!price) errors.push("Please provide a price");
+    if (category_id < 1 || category_id > 5) errors.push("Category Id must be between 1 to 5");
+    setErrorValidator(errors)
+  }, [name, image_url, description, price, category_id]);
 
   useEffect(() => {
     if (product) {
@@ -47,9 +41,7 @@ const EditProduct = ({ onClose }) => {
   }, [product]);
 
   const handleEditSubmit = async (e) => {
-    if (editProductValidation()) {
-      e.preventDefault();
-    } else {
+
       e.preventDefault();
       const payload = {
         ...product,
@@ -66,17 +58,16 @@ const EditProduct = ({ onClose }) => {
         history.push(`/products/${product.id}`);
         onClose(false);
       }
-    }
   };
 
   return (
     <div className="edit-product-container">
       <form className="edit-product" onSubmit={handleEditSubmit}>
         <h2>Edit Your Product</h2>
-        <ul className='errors-list'>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
+        <ul>
+        {errorValidator.map((error) => (
+          <li className="error-list" key={error}>{error}</li>
+        ))}
         </ul>
         <div className="name-input">
           <label> Name </label>
@@ -132,7 +123,7 @@ const EditProduct = ({ onClose }) => {
         <div className="created-at-input">
           <input type="hidden" value={created_at} />
         </div>
-        <button className="edit-product-button" type="submit">
+        <button className="edit-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
         </button>
         <button className="cancel-edit-button" onClick={onClose} >
