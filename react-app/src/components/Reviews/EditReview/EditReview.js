@@ -24,15 +24,16 @@ const EditReviewForm = ({onClose, reviewId}) => {
   const handleEditReview = async (e) => {
     e.preventDefault();
     const payload = {
-      reviewId,
+      ...reviews,
       review,
       rating,
-      created_at
+      created_at,
     };
 
     console.log('payload', payload)
     const updatedReview = await dispatch(editAReview(payload));
     if (updatedReview) {
+      console.log('updatedReviews', updatedReview)
       history.push(`/products/${id}`);
     }
   };

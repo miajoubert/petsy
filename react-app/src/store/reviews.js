@@ -55,11 +55,11 @@ export const addAReview = (review) => async (dispatch) => {
   }
 };
 
-export const editAReview = (reviewId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${reviewId.reviewId}`, {
+export const editAReview = (review) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${review.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(reviewId.reviewId),
+    body: JSON.stringify(review),
   });
   if (response.ok) {
     const data = await response.json();
@@ -70,7 +70,6 @@ export const editAReview = (reviewId) => async (dispatch) => {
 };
 
 export const deleteAReview = (reviewId) => async (dispatch) => {
-
   const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
