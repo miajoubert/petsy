@@ -11,12 +11,6 @@ const Cart = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // useEffect(() => {
-    //     if (!localStorage.cart) {
-    //         dispatch(refreshCart({}));
-    //     }
-    // }, [dispatch]);
-
     const cartItems = Object.values(cart)
         .map(item => {
             return {

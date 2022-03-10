@@ -48,7 +48,10 @@ const ordersReducer = (state = {}, action) => {
             newState = { ...state }
             return newState;
         case GET_ORDERS:
-            newState = { ...state }
+            newState = { ...state };
+            action.orders.forEach((order) => {
+                newState[order.id] = order;
+            });
             return newState;
         default:
             return state;
