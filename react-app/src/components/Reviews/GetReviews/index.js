@@ -3,27 +3,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAllReviews } from "../../../store/reviews";
 import { deleteAReview } from "../../../store/reviews";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const AllReviews = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const reviews = useSelector((state) => state.reviewsReducer);
   const product = useSelector((state) => state.productsReducer[id]);
-  const history = useHistory();
-  const reviewsArr = Object.values(reviews);
-  const [reviewsLength, setReviewsLength] = useState(reviewsArr.length)
+  const [reviewsArr, setReviewsArr] = useState([])
 
   useEffect(() => {
-    dispatch(getAllReviews());
-  }, [dispatch, reviewsLength]);
+    dispatch(getAllReviews())
+  }, [dispatch]);
 
+  useEffect(() => {
+    setReviewsArr(Object.values(reviews))
+  }, [reviews]);
 
-  async function handleReviewDelete(e, reviewId) {
+  function handleReviewDelete(e, reviewId) {
     e.preventDefault()
-    await dispatch(deleteAReview(reviewId));
-    setReviewsLength(reviewsArr.length-1)
-    history.push(`/products/${id}`);
+    dispatch(deleteAReview(reviewId));
   };
   return (
     <div>
