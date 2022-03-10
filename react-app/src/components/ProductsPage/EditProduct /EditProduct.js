@@ -6,7 +6,7 @@ import { editOneProduct } from "../../../store/products";
 const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.session.user);
+  
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
@@ -83,7 +83,6 @@ const EditProduct = ({ onClose }) => {
           <input
             id="form-label-name"
             placeholder="Name"
-            // required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -94,7 +93,6 @@ const EditProduct = ({ onClose }) => {
             id="form-label-image"
             type="text"
             placeholder="Image"
-            // required
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -104,7 +102,6 @@ const EditProduct = ({ onClose }) => {
           <textarea
             id="form-label-description"
             placeholder="Description"
-            // required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -117,7 +114,6 @@ const EditProduct = ({ onClose }) => {
             step="0.01"
             pattern="^(./d{1,2}?$)"
             placeholder="Price"
-            // required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
