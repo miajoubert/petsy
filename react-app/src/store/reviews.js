@@ -56,7 +56,6 @@ export const addAReview = (review) => async (dispatch) => {
 };
 
 export const editAReview = (reviewId) => async (dispatch) => {
-  console.log("222222222222", reviewId);
   const response = await fetch(`/api/reviews/${reviewId.reviewId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -96,6 +95,7 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
+      console.log('action', action)
       newState[action.review.id] = action.review;
       return newState;
     case DELETE_REVIEW:
