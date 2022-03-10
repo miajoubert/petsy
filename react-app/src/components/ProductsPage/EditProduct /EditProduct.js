@@ -16,6 +16,15 @@ const EditProduct = ({ onClose }) => {
   const [price, setPrice] = useState(product?.price || "");
   const [category_id, setCategoryId] = useState(product?.category_id || "");
   const [created_at, setCreatedAt] = useState(product?.created_at || "");
+  const [errors, setErrors] = useState([]);
+
+  const editProductValidation = (e) => {
+    let validationErrors = [];
+    if (!image_url.length) validationErrors.push("Please provide a valid URL");
+    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/)) validationErrors.push("Please provide a valid URL");
+    if (!description.length) validationErrors.push("Please provide a description");
+
+  }
 
   useEffect(() => {
     if (product) {
