@@ -14,7 +14,6 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const product = useSelector((state) => state.productsReducer[id]);
-  const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   // const reviews = useSelector((state) => state.reviewsReducer);
 
@@ -57,11 +56,13 @@ const SingleProduct = () => {
         </button>
       </div>
       <h2> Description </h2>
-      <div className="product-description">{product.description}</div>
-      <EditProductModal />
-      <button className="delete_btn" onClick={handleDelete}>
-        DELETE
-      </button>
+      
+        <div className="product-description">{product.description}</div>
+        {userId && <EditProductModal />}
+        {userId && <button className="delete_btn" onClick={handleDelete}>
+          DELETE
+        </button>}
+      
       <div className="reviews-display">
         {userId && (
           <div className="add-review-modal">
