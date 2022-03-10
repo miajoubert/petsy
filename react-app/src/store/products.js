@@ -1,4 +1,4 @@
-const GET_PRODUCTS = "product/GET_PRODUCTS";
+const GET_PRODUCTS = "products/GET_PRODUCTS";
 const GET_PRODUCT = "products/GET_PRODUCT";
 const ADD_PRODUCT = "products/ADD_PRODUCT";
 const DELETE_PRODUCT = "products/DELETE_PRODUCT";

@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
+import { submitOrder } from "../../store/orders";
 
 const Cart = () => {
     let cart = useSelector(state => state.cart);
     const products = useSelector(state => state.productsReducer)
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const cartItems = Object.values(cart)
         .map(item => {
@@ -22,7 +25,21 @@ const Cart = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch()
+
+        let order_number = Date.now();
+
+        const cartItems = Object.values(cart)
+            .map(item => {
+                const payload = {
+                    order_number,
+                    product_id: item.id,
+                    quantity: item.count
+                }
+
+                dispatch(submitOrder(payload))
+            });
+
+        history.push('/');
     }
 
     let subtotal = parseInt(0);
