@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -7,12 +7,22 @@ import { addAReview } from "../../../store/reviews";
 const CreateReview = ({ onClose }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user?.id);
   const product = useSelector((state) => state.productsReducer[id]);
   const history = useHistory();
 
+
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [errorValidator, setErrorValidator] = useState([]);
+
+  useEffect(() => {
+    const errors = []
+    if (!review) errors.push('Please provide a review')
+    if (!rating) errors.push('Please provide a rating')
+    if (rating < 1 || rating > 5) errors.push('Rating must be between 1 or 5')
+    setErrorValidator(errors)
+  }, [review, rating])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,13 +42,19 @@ const CreateReview = ({ onClose }) => {
 
   return (
     <div>
+      <ul>
+      {errorValidator.map((error) => (
+            <li className="error-list" key={error}>
+              {error}
+            </li>
+          ))}
+      </ul>
       <form className="new-review-form" onSubmit={handleSubmit}>
         <div className="review">
           <label> Review </label>
           <textarea
             type="text"
             placeholder="Review"
-            required
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
@@ -51,12 +67,11 @@ const CreateReview = ({ onClose }) => {
             max="5"
             step='1'
             placeholder="Rating"
-            required
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           />
         </div>
-        <button className="add-product-button" type="submit">
+        <button className="add-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
         </button>
         <button className="cancel-add-button" type="true" onClick={onClose}>

@@ -63,7 +63,6 @@ export const editAReview = (review) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log('data', data)
     dispatch(editReview(data));
     return data;
   }
@@ -94,7 +93,6 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
-      console.log('action', action)
       newState[action.review.id] = action.review;
       return newState;
     case DELETE_REVIEW:
