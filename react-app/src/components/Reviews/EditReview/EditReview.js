@@ -29,7 +29,7 @@ const EditReviewForm = ({onClose}) => {
       ...review,
       review,
       rating,
-      created_at,
+      created_at
     };
 
     const updatedReview = await dispatch(editAReview(payload));
