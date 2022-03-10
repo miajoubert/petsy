@@ -12,19 +12,18 @@ const AllReviews = () => {
   const product = useSelector((state) => state.productsReducer[id]);
   const history = useHistory();
   const reviewsArr = Object.values(reviews);
-  const [reviewsLength, setReviewsLength] = useState(reviewsArr.length)
 
   useEffect(() => {
     dispatch(getAllReviews());
-  }, [dispatch, reviewsLength]);
-
+  }, [dispatch]);
 
   async function handleReviewDelete(e, reviewId) {
     e.preventDefault()
-    await dispatch(deleteAReview(reviewId));
-    setReviewsLength(reviewsArr.length-1)
+    await dispatch(deleteAReview(reviewId))
     history.push(`/products/${id}`);
   };
+
+
   return (
     <div>
       {reviewsArr.map((review) => {

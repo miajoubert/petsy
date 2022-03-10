@@ -49,7 +49,6 @@ export const addAReview = (review) => async (dispatch) => {
 };
 
 export const deleteAReview = (review) => async (dispatch) => {
-  console.log('111111111', review )
   const response = await fetch(`/api/reviews/${review}`, {
     method: "DELETE",
   });
@@ -74,7 +73,7 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case DELETE_REVIEW:
       newState = { ...state };
-      delete newState[action.id];
+      delete newState[action.review];
       return newState;
     default:
       return state;

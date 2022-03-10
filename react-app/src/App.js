@@ -14,21 +14,23 @@ import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
+import { refreshCart } from './store/cart'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
 
   let term = ""
   if (localStorage.search) term = localStorage.search
-  let refreshCart = ''
-  if (localStorage.cart) refreshCart = localStorage.cart
-  // console.log(JSON.parse(refreshCart))
+  let sameCart = {}
+  if (localStorage.cart) sameCart = localStorage.cart
+  console.log("!!!!!!!!!!!!!!!!!!", sameCart)
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate())
       await dispatch(findResults(term))
+      await dispatch(refreshCart(sameCart))
       setLoaded(true);
     })();
   }, [dispatch, term]);
