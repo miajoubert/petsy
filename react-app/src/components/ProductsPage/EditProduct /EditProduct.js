@@ -55,7 +55,7 @@ const EditProduct = ({ onClose }) => {
           <input
             id="form-label-name"
             placeholder="Name"
-            // required
+            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -66,7 +66,7 @@ const EditProduct = ({ onClose }) => {
             id="form-label-image"
             type="text"
             placeholder="Image"
-            // required
+            required
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -76,7 +76,7 @@ const EditProduct = ({ onClose }) => {
           <textarea
             id="form-label-description"
             placeholder="Description"
-            // required
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -89,7 +89,7 @@ const EditProduct = ({ onClose }) => {
             step="0.01"
             pattern="^(./d{1,2}?$)"
             placeholder="Price"
-            // required
+            required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />

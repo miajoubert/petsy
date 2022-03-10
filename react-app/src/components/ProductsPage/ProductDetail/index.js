@@ -14,7 +14,8 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const product = useSelector((state) => state.productsReducer[id]);
-  // const userId = useSelector((state) => state.session.user?.id);
+  const user = useSelector((state) => state.session.user);
+  const userId = useSelector((state) => state.session.user?.id);
   // const reviews = useSelector((state) => state.reviewsReducer);
 
   useEffect(() => {
@@ -46,7 +47,10 @@ const SingleProduct = () => {
           }
         />
       </div>
-      <div className="product_price">{parseFloat(product.price).toFixed(2)}</div>
+      <div className="product_price">
+        {parseFloat(product.price).toFixed(2)}
+      </div>
+
       <div className="cart-item-functions">
         <button onClick={() => dispatch(populateCart(product))}>
           Add to Cart
@@ -59,12 +63,14 @@ const SingleProduct = () => {
         DELETE
       </button>
       <div className="reviews-display">
-      <div className="add-review-modal">
-      <Reviews />
-      </div>
+        {userId && (
+          <div className="add-review-modal">
+            <Reviews />
+          </div>
+        )}
         <h2> User Reviews </h2>
-        <AllReviews />
 
+        <AllReviews />
       </div>
     </div>
   );
