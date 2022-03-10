@@ -9,6 +9,8 @@ import EditReviewModal from "../EditReview";
 const AllReviews = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const user = useSelector((state) => state.session.user);
+  const userId = useSelector((state) => state.session.user?.id);
   const reviews = useSelector((state) => state.reviewsReducer);
   const product = useSelector((state) => state.productsReducer[id]);
   const history = useHistory();
@@ -31,17 +33,19 @@ const AllReviews = () => {
         if (review.product_id === product.id) {
           return (
             <div key={review?.id} className="review-container">
+              <h2>{user?.username}</h2>
               <div>{review?.rating}</div>
               <div>{review?.review}</div>
+              {userId === review.buyer_id &&
+              <div>
+                <EditReviewModal reviewId={review?.id}/>
               <button
                 className="delete-review-button"
                 onClick={(e) => handleReviewDelete(e, review?.id)}
               >
-                Delete
+                Delete Your Review
               </button>
-              <div>
-                <EditReviewModal reviewId={review?.id}/>
-              </div>
+              </div>}
             </div>
           );
         } else return null;
