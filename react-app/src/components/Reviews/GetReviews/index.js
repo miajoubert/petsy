@@ -16,11 +16,10 @@ const AllReviews = () => {
   useEffect(() => {
     dispatch(getAllReviews());
   }, [dispatch]);
-=======
 
   function handleReviewDelete(e, reviewId) {
     e.preventDefault()
-    await dispatch(deleteAReview(reviewId))
+    dispatch(deleteAReview(reviewId))
     history.push(`/products/${id}`);
   };
 
