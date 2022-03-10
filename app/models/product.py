@@ -14,7 +14,7 @@ class Product(db.Model):
   created_at = db.Column(db.DateTime, nullable=False)
   updated_at = db.Column(db.DateTime, nullable=False)
   seller = db.relationship("User", back_populates="product")
-  category = db.relationship("Category", back_populates="product")
+  category = db.relationship("Category", back_populates="products")
   review = db.relationship("Review", back_populates="product")
   shopping_cart = db.relationship("Shopping_Cart", secondary=cart_products, back_populates="products")
 
