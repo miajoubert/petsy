@@ -12,6 +12,7 @@ import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
+import CategoryPage from './components/CategoryPage';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
 import { refreshCart } from './store/cart'
@@ -48,6 +49,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/categories/:id' exact={true}>
+          <CategoryPage />
         </Route>
         <Route path='/products' exact={true}>
           <AllProducts />

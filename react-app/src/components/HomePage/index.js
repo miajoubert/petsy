@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getAllProducts } from '../../store/products';
+// import { getAllProducts } from '../../store/products';
+import { getCategories } from '../../store/category';
 import './HomePage.css';
 
 // Function to limit number of products showing unless we do it on backend
@@ -10,23 +11,37 @@ import './HomePage.css';
 // For now, returning the same data as the AllProducts component
 
 const HomePage = () => {
-    const [productList, setProductList] = useState([]);
     const dispatch = useDispatch();
-    const products = useSelector(state => state.productsReducer);
+    // const [productList, setProductList] = useState([]);
+    // const products = useSelector(state => state.productsReducer);
+
+    const categoriesObj = useSelector(state => state.categories);
+    const categories = Object.values(categoriesObj);
+    // categories.map((category) => console.log('5555555', category.products));
+    // console.log('%%%%%%%%%%%', categoryProducts)
+
 
     useEffect(() => {
-        dispatch(getAllProducts());
+        // dispatch(getAllProducts());
+        dispatch(getCategories());
     }, [dispatch]);
 
-    useEffect(() => {
-        if (products) {
-            setProductList(Object.values(products))
-        }
-    }, [products]);
+    // useEffect(() => {
+    //     if (products) {
+    //         setProductList(Object.values(products))
+    //     }
+    // }, [products]);
 
     return (
         <div>
-            {productList.length &&
+            {categories.map((category) => (
+                <div key={category.id} className='category-container'>
+                    <div>{category.name}</div>
+                    <div>Category Products</div>
+                    <div></div>
+                </div>
+            ))}
+            {/* {productList.length &&
                 productList.map((product) => (
                     <div className="all-products-container">
                         <div className="product_images">
@@ -49,7 +64,7 @@ const HomePage = () => {
                         <div className="product_name">{product?.name}</div>
                         <div className="product_price">${product?.price}</div>
                     </div>
-                ))}
+                ))} */}
         </div>
     )
 };
