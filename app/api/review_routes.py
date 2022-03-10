@@ -36,9 +36,19 @@ def add_reviews():
 @review_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_reviews():
-    ##edit form
-    ##query
-    return None
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        edit = Review.query.get(id)
+        edit.review = form.data['review'],
+        edit.rating = form.data['rating'],
+        edit.product_id = form.data['product_id'],
+        edit.created_at = form.data['created_at'],
+        edit.updated_at = datetime.now(),
+        db.session.add(edit)
+        db.session.commit()
+        return edit.to_dict()
+    return {'message': "Success"}
 
 
 @review_routes.route('/<int:id>', methods=["DELETE"])

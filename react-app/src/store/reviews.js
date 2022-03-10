@@ -17,6 +17,13 @@ const addReview = (review) => {
   };
 };
 
+const editReview = (review) => {
+  return {
+    type: EDIT_REVIEW,
+    review,
+  }
+}
+
 const deleteReview = (review) => {
   return {
     type: DELETE_REVIEW,
@@ -48,8 +55,21 @@ export const addAReview = (review) => async (dispatch) => {
   }
 };
 
+export const editAReview = (review) => async (dispatch) => {
+  console.log('222222222222', review)
+  const response = await fetch(`/api/reviews/${review}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  })
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(editReview(data))
+    return data
+  }
+}
+
 export const deleteAReview = (review) => async (dispatch) => {
-  console.log('111111111', review )
   const response = await fetch(`/api/reviews/${review}`, {
     method: "DELETE",
   });

@@ -6,7 +6,7 @@ import { getSingleProduct, deleteSingleProduct } from "../../../store/products";
 import EditProductModal from "../EditProduct ";
 import AllReviews from "../../Reviews/GetReviews";
 import Reviews from "../../Reviews/CreateReview";
-import { deleteAReview } from "../../../store/reviews";
+// import EditReviewModal from "../../Reviews/EditReview";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,8 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const product = useSelector((state) => state.productsReducer[id]);
-  const userId = useSelector((state) => state.session.user?.id);
-  const reviews = useSelector(state => state.reviewsReducer);
+  // const userId = useSelector((state) => state.session.user?.id);
+  // const reviews = useSelector((state) => state.reviewsReducer);
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -25,13 +25,11 @@ const SingleProduct = () => {
     return null;
   }
 
-  
   async function handleDelete(e) {
-    e.preventDefault()
+    e.preventDefault();
     await dispatch(deleteSingleProduct(id));
-    history.push('/products')
+    history.push("/products");
   }
-
 
   return (
     <div className="product_detail-container">
@@ -50,19 +48,23 @@ const SingleProduct = () => {
       </div>
       <div className="product_price">${product.price}</div>
       <div className="cart-item-functions">
-        <button onClick={() => dispatch(populateCart(product))}>Add to Cart</button>
+        <button onClick={() => dispatch(populateCart(product))}>
+          Add to Cart
+        </button>
       </div>
       <h2> Description </h2>
-      <div>{product.description}</div>
+      <div className="product-description">{product.description}</div>
       <EditProductModal />
       <button className="delete_btn" onClick={handleDelete}>
         DELETE
       </button>
-        <div>
+      <div className="reviews-display">
+      <div className="add-review-modal">
+      <Reviews />
+      </div>
         <h2> User Reviews </h2>
-        <AllReviews/>
-        <Reviews/>
-        </div>
+        <AllReviews />
+      </div>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const CreateReview = ({ onClose }) => {
       <form className="new-review-form" onSubmit={handleSubmit}>
         <div className="review">
           <label> Review </label>
-          <input
+          <textarea
             type="text"
             placeholder="Review"
             required
