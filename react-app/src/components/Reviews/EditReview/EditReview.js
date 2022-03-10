@@ -35,6 +35,7 @@ const EditReviewForm = ({onClose, reviewId}) => {
     if (updatedReview) {
       console.log('updatedReviews', updatedReview)
       history.push(`/products/${id}`);
+      onClose(false)
     }
   };
 
@@ -46,6 +47,7 @@ const EditReviewForm = ({onClose, reviewId}) => {
           <textarea
             type="text"
             placeholder="Review"
+            required
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
@@ -57,6 +59,7 @@ const EditReviewForm = ({onClose, reviewId}) => {
             min="1"
             max="5"
             step="1"
+            required
             placeholder="Rating"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
