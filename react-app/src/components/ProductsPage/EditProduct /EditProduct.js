@@ -20,11 +20,21 @@ const EditProduct = ({ onClose }) => {
 
   const editProductValidation = (e) => {
     let validationErrors = [];
+    if(!name) validationErrors.push("Please provide a name")
     if (!image_url.length) validationErrors.push("Please provide a valid URL");
-    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/)) validationErrors.push("Please provide a valid URL");
-    if (!description.length) validationErrors.push("Please provide a description");
+    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
+      validationErrors.push("Please provide a valid URL");
+    if (!description)
+      validationErrors.push("Please provide a description");
+    if (!price) validationErrors.push("Please provide a price");
+    if (!category_id) validationErrors.push("Please provide a category Id");
 
-  }
+    if (validationErrors.length) {
+      setErrors(validationErrors);
+      console.log("validationErrors", validationErrors);
+      return true;
+    } else return false;
+  };
 
   useEffect(() => {
     if (product) {
@@ -37,21 +47,25 @@ const EditProduct = ({ onClose }) => {
   }, [product]);
 
   const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      ...product,
-      name,
-      image_url,
-      description,
-      price,
-      category_id,
-      created_at,
-    };
+    if (editProductValidation()) {
+      e.preventDefault();
+    } else {
+      e.preventDefault();
+      const payload = {
+        ...product,
+        name,
+        image_url,
+        description,
+        price,
+        category_id,
+        created_at,
+      };
 
-    const updatedProduct = await dispatch(editOneProduct(payload));
-    if (updatedProduct) {
-      history.push(`/products/${product.id}`);
-      onClose(false)
+      const updatedProduct = await dispatch(editOneProduct(payload));
+      if (updatedProduct) {
+        history.push(`/products/${product.id}`);
+        onClose(false);
+      }
     }
   };
 
@@ -59,6 +73,11 @@ const EditProduct = ({ onClose }) => {
     <div className="edit-product-container">
       <form className="edit-product" onSubmit={handleEditSubmit}>
         <h2>Edit Your Product</h2>
+        <ul className='errors-list'>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <div className="name-input">
           <label> Name </label>
           <input
@@ -120,7 +139,7 @@ const EditProduct = ({ onClose }) => {
         <button className="edit-product-button" type="submit">
           Submit
         </button>
-        <button className="cancel-edit-button" onClick={onClose}>
+        <button className="cancel-edit-button" onClick={onClose} >
           Cancel
         </button>
       </form>
