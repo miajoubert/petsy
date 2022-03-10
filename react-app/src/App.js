@@ -19,19 +19,20 @@ import { refreshCart } from './store/cart'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   let term = ""
   if (localStorage.search) term = localStorage.search
   let sameCart = {}
   if (localStorage.cart) sameCart = localStorage.cart
-  console.log("!!!!!!!!!!!!!!!!!!", sameCart)
-  const dispatch = useDispatch();
+  let jsonCart = JSON.parse(`${sameCart}`)
+  console.log("JSON CART", jsonCart)
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate())
       await dispatch(findResults(term))
-      await dispatch(refreshCart(sameCart))
+      await dispatch(refreshCart(jsonCart))
       setLoaded(true);
     })();
   }, [dispatch, term]);

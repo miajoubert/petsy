@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 
 const Cart = () => {
-    const cart = useSelector(state => state.cart);
+    let cart = useSelector(state => state.cart);
     const products = useSelector(state => state.productsReducer)
     const dispatch = useDispatch();
 
