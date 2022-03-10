@@ -14,8 +14,6 @@ const EditReviewForm = ({onClose, reviewId}) => {
   const [rating, setRating] = useState(reviews?.rating || "");
   const [created_at, setCreatedAt] = useState(reviews?.created_at || "");
 
-  console.log('reviews', reviews)
-
   useEffect(() => {
     if (reviews) {
       setReview(reviews.review);

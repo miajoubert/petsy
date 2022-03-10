@@ -57,10 +57,10 @@ export const addAReview = (review) => async (dispatch) => {
 
 export const editAReview = (reviewId) => async (dispatch) => {
   console.log("222222222222", reviewId);
-  const response = await fetch(`/api/reviews/${reviewId.id}`, {
+  const response = await fetch(`/api/reviews/${reviewId.reviewId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(reviewId.id),
+    body: JSON.stringify(reviewId.reviewId),
   });
   if (response.ok) {
     const data = await response.json();
@@ -71,6 +71,7 @@ export const editAReview = (reviewId) => async (dispatch) => {
 };
 
 export const deleteAReview = (reviewId) => async (dispatch) => {
+
   const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });

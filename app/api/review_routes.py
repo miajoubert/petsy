@@ -40,6 +40,7 @@ def edit_reviews():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         edit = Review.query.get(id)
+        edit.buyer_id = current_user.id
         edit.review = form.data['review'],
         edit.rating = form.data['rating'],
         edit.product_id = form.data['product_id'],
