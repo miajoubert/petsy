@@ -10,7 +10,6 @@ const EditProduct = ({ onClose }) => {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
-  const [productId, setId] = useState(product?.id || "");
   const [name, setName] = useState(product?.name || "");
   const [image_url, setImageUrl] = useState(product?.image_url || "");
   const [description, setDescription] = useState(product?.description || "");
@@ -20,7 +19,6 @@ const EditProduct = ({ onClose }) => {
 
   useEffect(() => {
     if (product) {
-      setId(product.id);
       setName(product.name);
       setImageUrl(product.image_url);
       setDescription(product.description);
@@ -39,7 +37,6 @@ const EditProduct = ({ onClose }) => {
       price,
       category_id,
       created_at,
-      user,
     };
 
     const updatedProduct = await dispatch(editOneProduct(payload));

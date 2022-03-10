@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getAllReviews } from "../../../store/reviews";
 import { deleteAReview } from "../../../store/reviews";
 import { useHistory } from "react-router-dom";
+import EditReviewModal from "../EditReview";
 
 const AllReviews = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ const AllReviews = () => {
               >
                 Delete
               </button>
+              <div>
+                <EditReviewModal/>
+              </div>
             </div>
           );
         } else return null;

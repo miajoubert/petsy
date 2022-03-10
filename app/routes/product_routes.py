@@ -55,17 +55,6 @@ def edit_product(id):
         edit.category_id = int(form.data['category_id']),
         edit.created_at = form.data['created_at'],
         edit.updated_at = datetime.now(),
-        # edit = Product(
-        #     seller_id = current_user.id,
-        #     name = form.data['name'],
-        #     image_url = form.data['image_url'],
-        #     description = form.data['description'],
-        #     price = form.data['price'],
-        #     category_id = int(form.data['category_id']),
-        #     created_at = form.data['created_at'],
-        #     updated_at = datetime.now(),
-        # )
-        # Product.query.filter_by(id == id).update(edit)
         db.session.add(edit)
         db.session.commit()
         return edit.to_dict()
