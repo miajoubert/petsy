@@ -55,7 +55,7 @@ const categoriesReducer = (state = {}, action) => {
             //     }
             // };
             // return newState;
-            console.log(action)
+            console.log('hola', action)
         default:
             return state;
     }
