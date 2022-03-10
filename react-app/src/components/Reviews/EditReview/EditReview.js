@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editAReview } from "../../../store/reviews";
 
-const EditReviewForm = ({onClose}) => {
+const EditReviewForm = ({onClose, reviewId}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const { id } = useParams();
   const reviews = useSelector((state) => state.reviewsReducer);
   const history = useHistory();
 
-  console.log('6666666666', reviews)
-
   const [review, setReview] = useState(reviews?.review || "");
   const [rating, setRating] = useState(reviews?.rating || "");
   const [created_at, setCreatedAt] = useState(reviews?.created_at || "");
+
+  console.log('reviewId', reviewId)
 
   useEffect(() => {
     if (reviews) {
@@ -32,6 +32,7 @@ const EditReviewForm = ({onClose}) => {
       created_at
     };
 
+    console.log('payload', payload)
     const updatedReview = await dispatch(editAReview(payload));
     if (updatedReview) {
       history.push(`/products/${id}`);
@@ -42,7 +43,7 @@ const EditReviewForm = ({onClose}) => {
     <div className="edit-review-container">
       <form className="edit-review" onSubmit={handleEditReview}>
         <div className="review">
-          <label> Review </label>
+          <label> Update Review </label>
           <textarea
             type="text"
             placeholder="Review"
@@ -51,7 +52,7 @@ const EditReviewForm = ({onClose}) => {
           />
         </div>
         <div className="rating">
-          <label> Rating </label>
+          <label> Update Rating </label>
           <input
             type="number"
             min="1"

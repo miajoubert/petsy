@@ -40,7 +40,7 @@ const AllReviews = () => {
                 Delete
               </button>
               <div>
-                <EditReviewModal/>
+                <EditReviewModal reviewId={review?.id}/>
               </div>
             </div>
           );

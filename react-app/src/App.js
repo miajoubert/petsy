@@ -11,7 +11,6 @@ import User from './components/user/User';
 import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
-import AddProduct from './components/ProductsPage/AddProduct/AddProduct';
 import CategoryPage from './components/CategoryPage';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
@@ -31,7 +30,7 @@ function App() {
     (async () => {
       await dispatch(authenticate())
       await dispatch(findResults(term))
-      await dispatch(refreshCart(sameCart))
+      // await dispatch(refreshCart(sameCart))
       setLoaded(true);
     })();
   }, [dispatch, term]);
