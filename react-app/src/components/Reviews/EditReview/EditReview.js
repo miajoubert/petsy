@@ -7,14 +7,14 @@ const EditReviewForm = ({onClose, reviewId}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const { id } = useParams();
-  const reviews = useSelector((state) => state.reviewsReducer);
+  const reviews = useSelector((state) => state.reviewsReducer[reviewId]);
   const history = useHistory();
 
   const [review, setReview] = useState(reviews?.review || "");
   const [rating, setRating] = useState(reviews?.rating || "");
   const [created_at, setCreatedAt] = useState(reviews?.created_at || "");
 
-  console.log('reviewId', reviewId)
+  console.log('reviews', reviews)
 
   useEffect(() => {
     if (reviews) {
@@ -26,7 +26,7 @@ const EditReviewForm = ({onClose, reviewId}) => {
   const handleEditReview = async (e) => {
     e.preventDefault();
     const payload = {
-      ...review,
+      reviewId,
       review,
       rating,
       created_at
