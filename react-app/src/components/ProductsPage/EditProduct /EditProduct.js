@@ -26,7 +26,7 @@ const EditProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 5) errors.push("Category Id must be between 1 to 5");
+    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 
