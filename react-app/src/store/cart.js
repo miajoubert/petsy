@@ -30,7 +30,7 @@ export const refreshCart = (cart) => {
         .map(item => {
             return {
                 ...item,
-                ...products[item.id]
+                // ...products[item.id]
             }
         });
     console.log('11111111111111111', cartItems)
