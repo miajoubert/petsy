@@ -23,9 +23,11 @@ function App() {
   let term = ""
   if (localStorage.search) term = localStorage.search
   let sameCart = {}
-  if (localStorage.cart) sameCart = localStorage.cart
-  let jsonCart = JSON.parse(`${sameCart}`)
-  console.log("JSON CART", jsonCart)
+  let jsonCart;
+  if (localStorage.cart) {
+    sameCart = localStorage.cart
+    jsonCart = JSON.parse(`${sameCart}`)
+  }
 
   useEffect(() => {
     (async () => {

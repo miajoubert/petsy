@@ -2,12 +2,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
+import { resetCart, refreshCart } from "../../store/cart";
+import { useEffect } from "react";
 
 const Cart = () => {
     let cart = useSelector(state => state.cart);
     const products = useSelector(state => state.productsReducer)
     const dispatch = useDispatch();
     const history = useHistory();
+
+    // useEffect(() => {
+    //     if (!localStorage.cart) {
+    //         dispatch(refreshCart({}));
+    //     }
+    // }, [dispatch]);
 
     const cartItems = Object.values(cart)
         .map(item => {
@@ -39,7 +47,10 @@ const Cart = () => {
                 dispatch(submitOrder(payload))
             });
 
-        history.push('/');
+        dispatch(resetCart());
+        console.log('-----------', cart)
+        localStorage.removeItem('cart');
+        history.push('/products');
     }
 
     let subtotal = parseInt(0);
