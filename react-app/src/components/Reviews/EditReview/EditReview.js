@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editAReview } from "../../../store/reviews";
 
-const EditReviewForm = ({onClose}) => {
+const EditReviewForm = ({onClose, reviewId}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const { id } = useParams();
-  const reviews = useSelector((state) => state.reviewsReducer);
+  const reviews = useSelector((state) => state.reviewsReducer[reviewId]);
   const history = useHistory();
-
-  console.log('6666666666', reviews)
 
   const [review, setReview] = useState(reviews?.review || "");
   const [rating, setRating] = useState(reviews?.rating || "");
@@ -26,15 +24,18 @@ const EditReviewForm = ({onClose}) => {
   const handleEditReview = async (e) => {
     e.preventDefault();
     const payload = {
-      ...review,
+      ...reviews,
       review,
       rating,
-      created_at
+      created_at,
     };
 
+    console.log('payload', payload)
     const updatedReview = await dispatch(editAReview(payload));
     if (updatedReview) {
+      console.log('updatedReviews', updatedReview)
       history.push(`/products/${id}`);
+      onClose(false)
     }
   };
 
@@ -42,21 +43,23 @@ const EditReviewForm = ({onClose}) => {
     <div className="edit-review-container">
       <form className="edit-review" onSubmit={handleEditReview}>
         <div className="review">
-          <label> Review </label>
+          <label> Update Review </label>
           <textarea
             type="text"
             placeholder="Review"
+            required
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
         <div className="rating">
-          <label> Rating </label>
+          <label> Update Rating </label>
           <input
             type="number"
             min="1"
             max="5"
             step="1"
+            required
             placeholder="Rating"
             value={rating}
             onChange={(e) => setRating(e.target.value)}

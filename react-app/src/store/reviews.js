@@ -21,8 +21,8 @@ const editReview = (review) => {
   return {
     type: EDIT_REVIEW,
     review,
-  }
-}
+  };
+};
 
 const deleteReview = (reviewId) => {
   return {
@@ -56,18 +56,18 @@ export const addAReview = (review) => async (dispatch) => {
 };
 
 export const editAReview = (review) => async (dispatch) => {
-  console.log('222222222222', review)
-  const response = await fetch(`/api/reviews/${review}`, {
+  const response = await fetch(`/api/reviews/${review.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(review),
-  })
+  });
   if (response.ok) {
-    const data = await response.json()
-    dispatch(editReview(data))
-    return data
+    const data = await response.json();
+    console.log('data', data)
+    dispatch(editReview(data));
+    return data;
   }
-}
+};
 
 export const deleteAReview = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
@@ -90,6 +90,11 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case ADD_REVIEW:
       newState = { ...state };
+      newState[action.review.id] = action.review;
+      return newState;
+    case EDIT_REVIEW:
+      newState = { ...state };
+      console.log('action', action)
       newState[action.review.id] = action.review;
       return newState;
     case DELETE_REVIEW:
