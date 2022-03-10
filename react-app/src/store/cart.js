@@ -26,17 +26,25 @@ export const removeFromCart = (productId) => {
 }
 
 export const refreshCart = (cart) => {
+    const cartItems = Object.values(cart)
+        .map(item => {
+            return {
+                ...item,
+                ...products[item.id]
+            }
+        });
+    console.log('11111111111111111', cartItems)
     return {
         type: REFRESH_CART,
         cart
     }
 }
 
-export const updateCount = (itemId, count) => {
-    if (count < 1) return removeFromCart(itemId);
+export const updateCount = (product, count) => {
+    if (count < 1) return removeFromCart(product.id);
     return {
         type: UPDATE_COUNT,
-        itemId,
+        product,
         count
     };
 };
@@ -69,6 +77,11 @@ export default function cartReducer(state = {}, action) {
             } else {
                 delete newState[action.product.id]
             }
+            return newState;
+        case UPDATE_COUNT:
+            newState = { ...state }
+            console.log()
+            newState[action.product.id].count = action.count
             return newState;
         case REFRESH_CART:
             newState = { ...state }
