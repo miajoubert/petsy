@@ -17,6 +17,7 @@ import { findResults } from './store/results'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+
   let term = ""
   if (localStorage.search) term = localStorage.search
   const dispatch = useDispatch();
