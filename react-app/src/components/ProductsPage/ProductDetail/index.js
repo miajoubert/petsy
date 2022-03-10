@@ -44,7 +44,7 @@ const SingleProduct = () => {
       </div>
       <div className="product_price">${product.price}</div>
       <div className="cart-item-functions">
-        <button onClick={() => dispatch(populateCart(product.id))}>Add to Cart</button>
+        <button onClick={() => dispatch(populateCart(product))}>Add to Cart</button>
       </div>
       <h2> Description </h2>
       <div>{product.description}</div>

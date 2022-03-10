@@ -20,6 +20,9 @@ function App() {
 
   let term = ""
   if (localStorage.search) term = localStorage.search
+  let refreshCart = ''
+  if (localStorage.cart) refreshCart = localStorage.cart
+  // console.log(JSON.parse(refreshCart))
   const dispatch = useDispatch();
 
   useEffect(() => {
