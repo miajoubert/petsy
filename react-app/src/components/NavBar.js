@@ -58,6 +58,9 @@ const NavBar = () => {
       </ul>
       <ul className='nav-bottom'>
         <li>
+          <NavLink to='/products' exact={true} activeClassName='active'>All Products</NavLink>
+        </li>
+        <li>
           <NavLink to='/categories/1' exact={true} activeClassName='active'>Dog Food</NavLink>
         </li>
         <li>
