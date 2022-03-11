@@ -6,14 +6,8 @@ import { getAllProducts } from "../../store/products";
 import { getCategories } from "../../store/category";
 import "./HomePage.css";
 
-// Function to limit number of products showing unless we do it on backend
-
-// For now, returning the same data as the AllProducts component
-
 const HomePage = () => {
   const dispatch = useDispatch();
-  const [productList, setProductList] = useState([]);
-  const products = useSelector((state) => state.productsReducer);
 
   const categoriesObj = useSelector((state) => state.categories);
   const categories = Object.values(categoriesObj);
@@ -23,35 +17,13 @@ const HomePage = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (products) {
-  //     setProductList(Object.values(products));
-  //   }
-  // }, [products]);
-
-  const selectFiveProductsPerCategory = (category) => {
-    let selectedProducts = [];
-
-    for (let i = 0; i <= 5; i++) {
-      selectedProducts.push(category.products[i]);
-    }
-
-    return selectedProducts
-  };
-
-  // let productsList = (
-
-  // )
-
-
   return (
-
     <div>
       {categories.map((category) => (
         <div key={category.id} className="category-container">
           <h2>{category.name}</h2>
           {category.products.map((product) => (
-            <div>
+            <div key={product?.id}>
               {product.name}
               <div>
                 <Link
@@ -76,33 +48,6 @@ const HomePage = () => {
           <div></div>
         </div>
       ))}
-      {/* {productList.map((product) => (
-            <div className="all-products-container">
-              <div className="product_images">
-                  <div>
-                    <Link
-                      key={`single_product_link_${product?.id}`}
-                      to={`/products/${product?.id}`}
-                    >
-                      <img
-                        width={300}
-                        height={300}
-                        alt={product?.name}
-                        src={
-                          product?.image_url
-                            ? product?.image_url
-                            : "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="
-                        }
-                      />
-                    </Link>
-                    <h4 className="product_name">
-                      {product?.name}
-                    </h4>
-                    <h5 className="product_price">${product?.price}</h5>
-                  </div>
-              </div>
-            </div>
-          ))} */}
     </div>
   );
 };

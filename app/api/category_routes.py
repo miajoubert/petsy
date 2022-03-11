@@ -8,7 +8,7 @@ category_routes = Blueprint("categories", __name__)
 @category_routes.route('')
 def get_all_categories():
     categories = Category.query.join(Product).all()
-    return {'categories': [category.to_dict() for category in categories]}
+    return {'categories': [category.to_dict_with_limit() for category in categories]}
 
 
 @category_routes.route("/<int:id>")
