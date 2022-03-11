@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     product = db.relationship("Product", back_populates="seller")
     review = db.relationship('Review', back_populates='buyer')
-    shopping_cart = db.relationship('Shopping_Cart', back_populates='buyer')
+    orders = db.relationship('Order', back_populates='user')
 
     @property
     def password(self):

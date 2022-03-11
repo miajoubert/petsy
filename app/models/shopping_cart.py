@@ -7,7 +7,6 @@ class Shopping_Cart(db.Model):
     buyer_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
-    buyer = db.relationship('User', back_populates='shopping_cart')
     products = db.relationship('Product', secondary=cart_products, back_populates='shopping_cart')
 
     def to_dict(self):

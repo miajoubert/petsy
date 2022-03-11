@@ -15,6 +15,7 @@ import CategoryPage from './components/CategoryPage';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
 import { refreshCart } from './store/cart'
+import { getAllProducts } from './store/products';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +35,7 @@ function App() {
       await dispatch(authenticate())
       await dispatch(findResults(term))
       await dispatch(refreshCart(jsonCart))
+      await dispatch(getAllProducts())
       setLoaded(true);
     })();
   }, [dispatch, term]);
@@ -61,10 +63,10 @@ function App() {
         <Route path='/products/:id' exact={true}>
           <SingleProduct />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        <ProtectedRoute path='/profile' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >

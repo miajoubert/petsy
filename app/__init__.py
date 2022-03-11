@@ -34,11 +34,11 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(category_routes, url_prefix='/api/categories')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
+app.register_blueprint(user_routes, url_prefix='/profile')
 app.register_blueprint(product_routes, url_prefix='/products')
 app.register_blueprint(result_routes, url_prefix='/results')
 app.register_blueprint(home_route, url_prefix='/')
