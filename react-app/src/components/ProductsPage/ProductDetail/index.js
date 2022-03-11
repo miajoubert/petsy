@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { populateCart } from "../../../store/cart";
@@ -56,13 +56,13 @@ const SingleProduct = () => {
         </button>
       </div>}
       <h2> Description </h2>
-      
-        <div className="product-description">{product.description}</div>
-        {userId && <EditProductModal />}
-        {userId && <button className="delete_btn" onClick={handleDelete}>
-          DELETE
-        </button>}
-      
+
+      <div className="product-description">{product.description}</div>
+      {userId && <EditProductModal />}
+      {userId && <button className="delete_btn" onClick={handleDelete}>
+        DELETE
+      </button>}
+
       <div className="reviews-display">
         {userId && (
           <div className="add-review-modal">

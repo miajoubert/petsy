@@ -11,7 +11,7 @@ const EditReviewForm = ({ onClose, reviewId }) => {
 
   const [review, setReview] = useState(reviews?.review || "");
   const [rating, setRating] = useState(reviews?.rating || "");
-  const [created_at, setCreatedAt] = useState(reviews?.created_at || "");
+  const [created_at] = useState(reviews?.created_at || "");
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const EditReviewForm = ({ onClose, reviewId }) => {
     if (!rating) errors.push("Please provide a rating");
     if (rating < 1 || rating > 5)
       errors.push("Rating must been between 1 or 5");
-      setErrorValidator(errors)
+    setErrorValidator(errors)
   }, [review, rating]);
 
   const handleEditReview = async (e) => {

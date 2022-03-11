@@ -2,8 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
-import { resetCart, refreshCart } from "../../store/cart";
-import { useEffect } from "react";
+import { resetCart } from "../../store/cart";
 
 const Cart = () => {
     let cart = useSelector(state => state.cart);
@@ -30,7 +29,7 @@ const Cart = () => {
 
         let order_number = Date.now();
 
-        const cartItems = Object.values(cart)
+        Object.values(cart)
             .map(item => {
                 const payload = {
                     order_number,
@@ -42,7 +41,6 @@ const Cart = () => {
             });
 
         dispatch(resetCart());
-        console.log('-----------', cart)
         localStorage.removeItem('cart');
         history.push('/products');
     }

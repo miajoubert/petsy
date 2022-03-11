@@ -46,15 +46,15 @@ const categoriesReducer = (state = {}, action) => {
         newState[category.id] = category;
       });
       return newState;
-    case LOAD_CATEGORY:
-      // newState = {
-      //     ...state,
-      //     [action.event.id]: {
-      //         ...state[action.event.id],
-      //         ...action.event
-      //     }
-      // };
-      // return newState;
+    // case LOAD_CATEGORY:
+    // newState = {
+    //     ...state,
+    //     [action.event.id]: {
+    //         ...state[action.event.id],
+    //         ...action.event
+    //     }
+    // };
+    // return newState;
     default:
       return state;
   }
