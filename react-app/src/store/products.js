@@ -40,7 +40,7 @@ const deleteProduct = (id) => {
 };
 
 export const getAllProducts = () => async (dispatch) => {
-  const response = await fetch("/products");
+  const response = await fetch("/api/products");
   if (response.ok) {
     const data = await response.json();
     dispatch(getProducts(data.products));
@@ -49,7 +49,7 @@ export const getAllProducts = () => async (dispatch) => {
 };
 
 export const getSingleProduct = (id) => async (dispatch) => {
-  const response = await fetch(`/products/${id}`);
+  const response = await fetch(`/api/products/${id}`);
   if (response.ok) {
     const data = await response.json();
     dispatch(getProduct(data));
@@ -58,7 +58,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 
 export const addAProduct = (product) => async (dispatch) => {
-  const response = await fetch("/products/new", {
+  const response = await fetch("/api/products/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export const addAProduct = (product) => async (dispatch) => {
 };
 
 export const editOneProduct = (product) => async (dispatch) => {
-  const response = await fetch(`/products/${product.id}/edit`, {
+  const response = await fetch(`/api/products/${product.id}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
@@ -86,7 +86,7 @@ export const editOneProduct = (product) => async (dispatch) => {
 };
 
 export const deleteSingleProduct = (id) => async (dispatch) => {
-  const response = await fetch(`/products/delete/${id}`, {
+  const response = await fetch(`/api/products/delete/${id}`, {
     method: "DELETE",
   });
   if (response.ok) {
