@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAllReviews } from "../../../store/reviews";
@@ -37,15 +37,15 @@ const AllReviews = () => {
               <div>{review?.rating}</div>
               <div>{review?.review}</div>
               {userId === review.buyer_id &&
-              <div>
-                <EditReviewModal reviewId={review?.id}/>
-              <button
-                className="delete-review-button"
-                onClick={(e) => handleReviewDelete(e, review?.id)}
-              >
-                Delete Your Review
-              </button>
-              </div>}
+                <div>
+                  <EditReviewModal reviewId={review?.id} />
+                  <button
+                    className="delete-review-button"
+                    onClick={(e) => handleReviewDelete(e, review?.id)}
+                  >
+                    Delete Your Review
+                  </button>
+                </div>}
             </div>
           );
         } else return null;

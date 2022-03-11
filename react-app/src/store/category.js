@@ -16,7 +16,7 @@ const loadCategory = (category) => {
 };
 
 export const getCategories = () => async (dispatch) => {
-  const res = await fetch("/api/categories");
+  const res = await fetch("/categories");
 
   if (res.ok) {
     const categories = await res.json();
@@ -27,14 +27,13 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getCategory = (id) => async (dispatch) => {
-  const res = await fetch(`api/categories/${id}`);
-
+  const res = await fetch(`/categories/${id}`);
+  console.log('hello?', res)
   if (res.ok) {
     const category = await res.json();
     dispatch(loadCategory(category));
+    return res;
   }
-
-  return res;
 };
 
 const categoriesReducer = (state = {}, action) => {
@@ -47,14 +46,9 @@ const categoriesReducer = (state = {}, action) => {
       });
       return newState;
     case LOAD_CATEGORY:
-      // newState = {
-      //     ...state,
-      //     [action.event.id]: {
-      //         ...state[action.event.id],
-      //         ...action.event
-      //     }
-      // };
-      // return newState;
+      newState = { ...state };
+      newState[action.category.id] = action.category;
+      return newState;
     default:
       return state;
   }

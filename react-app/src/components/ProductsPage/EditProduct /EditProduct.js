@@ -6,7 +6,7 @@ import { editOneProduct } from "../../../store/products";
 const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
+
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
@@ -15,7 +15,7 @@ const EditProduct = ({ onClose }) => {
   const [description, setDescription] = useState(product?.description || "");
   const [price, setPrice] = useState(product?.price || "");
   const [category_id, setCategoryId] = useState(product?.category_id || "");
-  const [created_at, setCreatedAt] = useState(product?.created_at || "");
+  const [created_at] = useState(product?.created_at || "");
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {
@@ -42,22 +42,22 @@ const EditProduct = ({ onClose }) => {
 
   const handleEditSubmit = async (e) => {
 
-      e.preventDefault();
-      const payload = {
-        ...product,
-        name,
-        image_url,
-        description,
-        price,
-        category_id,
-        created_at,
-      };
+    e.preventDefault();
+    const payload = {
+      ...product,
+      name,
+      image_url,
+      description,
+      price,
+      category_id,
+      created_at,
+    };
 
-      const updatedProduct = await dispatch(editOneProduct(payload));
-      if (updatedProduct) {
-        history.push(`/products/${product.id}`);
-        onClose(false);
-      }
+    const updatedProduct = await dispatch(editOneProduct(payload));
+    if (updatedProduct) {
+      history.push(`/products/${product.id}`);
+      onClose(false);
+    }
   };
 
   return (
@@ -65,9 +65,9 @@ const EditProduct = ({ onClose }) => {
       <form className="edit-product" onSubmit={handleEditSubmit}>
         <h2>Edit Your Product</h2>
         <ul>
-        {errorValidator.map((error) => (
-          <li className="error-list" key={error}>{error}</li>
-        ))}
+          {errorValidator.map((error) => (
+            <li className="error-list" key={error}>{error}</li>
+          ))}
         </ul>
         <div className="name-input">
           <label> Name </label>

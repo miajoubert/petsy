@@ -14,3 +14,10 @@ class Category(db.Model):
             'name': self.name,
             'products': [product.to_dict() for product in self.products]
         }
+
+  def to_dict_with_limit(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'products': [product.to_dict() for product in self.products[0:5]]
+        }

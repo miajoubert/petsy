@@ -6,7 +6,6 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/user/UsersList';
 import User from './components/user/User';
 import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
@@ -33,13 +32,13 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate())
+      await dispatch(getAllProducts())
       await dispatch(findResults(term))
       await dispatch(refreshCart(jsonCart))
-      await dispatch(getAllProducts())
 
       setLoaded(true);
     })();
-  }, [dispatch, term]);
+  }, [dispatch, term, jsonCart]);
 
   if (!loaded) {
     return null;

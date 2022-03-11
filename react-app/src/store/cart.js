@@ -6,33 +6,33 @@ const REFRESH_CART = 'cart/REFRESH_CART';
 const RESET_CART = 'cart/RESET_CART';
 
 export const populateCart = (product) => {
-  return {
-    type: ADD_TO_CART,
-    product,
-  };
+    return {
+        type: ADD_TO_CART,
+        product,
+    };
 };
 
 export const subtractFromCart = (product) => {
-  return {
-    type: SUBTRACT_FROM_CART,
-    product,
-  };
+    return {
+        type: SUBTRACT_FROM_CART,
+        product,
+    };
 };
 
 export const removeFromCart = (productId) => {
-  return {
-    type: REMOVE_FROM_CART,
-    productId,
-  };
+    return {
+        type: REMOVE_FROM_CART,
+        productId,
+    };
 };
 
 export const updateCount = (product, count) => {
-  if (count < 1) return removeFromCart(product.id);
-  return {
-    type: UPDATE_COUNT,
-    product,
-    count,
-  };
+    if (count < 1) return removeFromCart(product.id);
+    return {
+        type: UPDATE_COUNT,
+        product,
+        count,
+    };
 };
 
 export const refreshCart = (cart) => {
@@ -72,10 +72,12 @@ export default function cartReducer(state = {}, action) {
             } else {
                 delete newState[action.product.id]
             }
+            localStorage.setItem('cart', JSON.stringify(newState));
             return newState;
         case REMOVE_FROM_CART:
             newState = { ...state }
             delete newState[action.productId]
+            localStorage.setItem('cart', JSON.stringify(newState));
             return newState;
         case UPDATE_COUNT:
             newState = { ...state }

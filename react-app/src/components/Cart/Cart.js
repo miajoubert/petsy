@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
-import { resetCart, refreshCart } from "../../store/cart";
-import { useEffect } from "react";
+import { resetCart } from "../../store/cart";
+import './Cart.css';
 
 const Cart = () => {
     let cart = useSelector(state => state.cart);
@@ -30,7 +30,7 @@ const Cart = () => {
 
         let order_number = Date.now();
 
-        const cartItems = Object.values(cart)
+        Object.values(cart)
             .map(item => {
                 const payload = {
                     order_number,
@@ -42,7 +42,6 @@ const Cart = () => {
             });
 
         dispatch(resetCart());
-        console.log('-----------', cart)
         localStorage.removeItem('cart');
         history.push('/products');
     }
@@ -51,12 +50,12 @@ const Cart = () => {
     cartItems.map(item => parseFloat(subtotal += parseFloat(item.price * item.count)).toFixed(2))
 
     return (
-        <div>
+        <div className='cart'>
             <ul>
                 {cartItems.map(item => <CartItem key={item.id} item={item} />)}
             </ul>
             <hr />
-            <div>
+            <div className='cart-totals'>
                 <div> Subtotal: {parseFloat(subtotal).toFixed(2)} </div>
                 <div> Tax (5.5%): {parseFloat(subtotal * .055).toFixed(2)} </div>
                 <div> Total: {parseFloat(subtotal * 1.055).toFixed(2)} </div>

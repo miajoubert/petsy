@@ -1,0 +1,29 @@
+.cart {
+    margin-top: 16px;
+    padding: 0 8px;
+}
+
+.cart ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.cart-item-functions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.cart-item-functions input {
+    height: 24px;
+    text-align: center;
+    width: 32px;
+}

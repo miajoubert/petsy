@@ -24,6 +24,11 @@ const NavBar = () => {
             <i className="fas fa-shopping-cart"></i>
           </button>
           <div style={showCart ? { transform: 'translateX(-100%)' } : {}} className="sidebar">
+            <div className='sidebar-header'>
+              <button className="arrow-button" onClick={() => setShowCart(false)}>
+                <i className="fas fa-arrow-right"></i>
+              </button>
+            </div>
             <Cart />
           </div>
           <LogoutButton />
@@ -57,6 +62,9 @@ const NavBar = () => {
         {sessionLinks}
       </ul>
       <ul className='nav-bottom'>
+        <li>
+          <NavLink to='/products' exact={true} activeClassName='active'>All Products</NavLink>
+        </li>
         <li>
           <NavLink to='/categories/1' exact={true} activeClassName='active'>Dog Food</NavLink>
         </li>
