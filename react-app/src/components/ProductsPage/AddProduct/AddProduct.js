@@ -13,8 +13,21 @@ const AddProduct = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category_id, setCategoryId] = useState("");
-  const [errors, setErrors] = useState("");
+  const [errorValidator, setErrorValidator] = useState([]);
 
+  useEffect(() => {
+    const errors = [];
+    if (!name) errors.push("Please provide a name");
+    if (!image_url.length) errors.push("Please provide a valid URL");
+    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
+      errors.push("Please provide a valid URL");
+    if (!description) errors.push("Please provide a description");
+    if (!price) errors.push("Please provide a price");
+    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    setErrorValidator(errors)
+  }, [name, image_url, description, price, category_id]);
+
+  
   useEffect(() => {
     if (!user) {
       history.push("/");
@@ -22,31 +35,37 @@ const AddProduct = ({ onClose }) => {
   }, [user, history]);
 
   const newProductSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      userId: user.id,
-      name,
-      image_url,
-      description,
-      price,
-      category_id,
-    };
-    const newProduct = await dispatch(addAProduct(payload));
-    if (newProduct) {
-      history.push(`/products/${newProduct.id}`);
-    }
+  
+      e.preventDefault();
+      const payload = {
+        userId: user.id,
+        name,
+        image_url,
+        description,
+        price,
+        category_id,
+      };
+      const newProduct = await dispatch(addAProduct(payload));
+      if (newProduct) {
+        history.push(`/products/${newProduct.id}`);
+      }
+    
   };
 
   return (
     <div>
       <form className="new-product-form" onSubmit={newProductSubmit}>
-        <div className="new-product-title"> List Your Product</div>
+        <h2>List Your Product</h2>
+        <ul>
+        {errorValidator.map((error) => (
+          <li className="error-list" key={error}>{error}</li>
+        ))}
+        </ul>
         <div className="name-input">
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
-            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -57,7 +76,6 @@ const AddProduct = ({ onClose }) => {
             id="form-label-image"
             type="text"
             placeholder="Image"
-            required
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -67,7 +85,6 @@ const AddProduct = ({ onClose }) => {
           <textarea
             id="form-label-description"
             placeholder="Description"
-            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -78,7 +95,6 @@ const AddProduct = ({ onClose }) => {
             id="form-label-price"
             type="number"
             placeholder="Price"
-            required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -89,12 +105,11 @@ const AddProduct = ({ onClose }) => {
             id="form-label-price"
             type="number"
             placeholder="Category Id"
-            required
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
           />
         </div>
-        <button className="add-product-button" type="submit">
+        <button className="add-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
         </button>
         <button className="cancel-add-button" type="true" onClick={onClose}>

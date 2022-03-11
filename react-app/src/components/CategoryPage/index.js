@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import { getCategory } from '../../store/category';
-import './CategoryPage.css';
+import { getCategory } from "../../store/category";
+import "./CategoryPage.css";
 
 const CategoryPage = () => {
-    const { id } = useParams();
-    const category = useSelector(state => state.categories[id]);
-    const dispatch = useDispatch();
-    console.log('kfdkjs', category)
+  const { id } = useParams();
+  const category = useSelector((state) => state.categories[id]);
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getCategory(id));
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getCategory(id));
+  }, [dispatch]);
 
-    return (
-        <div>Hello</div>
-    )
+  return <div>Hello</div>;
 };
 
 export default CategoryPage;

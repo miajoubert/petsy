@@ -6,7 +6,7 @@ import { editOneProduct } from "../../../store/products";
 const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.session.user);
+  
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
 
@@ -16,6 +16,19 @@ const EditProduct = ({ onClose }) => {
   const [price, setPrice] = useState(product?.price || "");
   const [category_id, setCategoryId] = useState(product?.category_id || "");
   const [created_at, setCreatedAt] = useState(product?.created_at || "");
+  const [errorValidator, setErrorValidator] = useState([]);
+
+  useEffect(() => {
+    const errors = [];
+    if (!name) errors.push("Please provide a name");
+    if (!image_url.length) errors.push("Please provide a valid URL");
+    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
+      errors.push("Please provide a valid URL");
+    if (!description) errors.push("Please provide a description");
+    if (!price) errors.push("Please provide a price");
+    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    setErrorValidator(errors)
+  }, [name, image_url, description, price, category_id]);
 
   useEffect(() => {
     if (product) {
@@ -28,34 +41,39 @@ const EditProduct = ({ onClose }) => {
   }, [product]);
 
   const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      ...product,
-      name,
-      image_url,
-      description,
-      price,
-      category_id,
-      created_at,
-    };
 
-    const updatedProduct = await dispatch(editOneProduct(payload));
-    if (updatedProduct) {
-      history.push(`/products/${product.id}`);
-      onClose(false)
-    }
+      e.preventDefault();
+      const payload = {
+        ...product,
+        name,
+        image_url,
+        description,
+        price,
+        category_id,
+        created_at,
+      };
+
+      const updatedProduct = await dispatch(editOneProduct(payload));
+      if (updatedProduct) {
+        history.push(`/products/${product.id}`);
+        onClose(false);
+      }
   };
 
   return (
     <div className="edit-product-container">
       <form className="edit-product" onSubmit={handleEditSubmit}>
         <h2>Edit Your Product</h2>
+        <ul>
+        {errorValidator.map((error) => (
+          <li className="error-list" key={error}>{error}</li>
+        ))}
+        </ul>
         <div className="name-input">
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
-            // required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -66,7 +84,6 @@ const EditProduct = ({ onClose }) => {
             id="form-label-image"
             type="text"
             placeholder="Image"
-            // required
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -76,7 +93,6 @@ const EditProduct = ({ onClose }) => {
           <textarea
             id="form-label-description"
             placeholder="Description"
-            // required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -89,7 +105,6 @@ const EditProduct = ({ onClose }) => {
             step="0.01"
             pattern="^(./d{1,2}?$)"
             placeholder="Price"
-            // required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -108,10 +123,10 @@ const EditProduct = ({ onClose }) => {
         <div className="created-at-input">
           <input type="hidden" value={created_at} />
         </div>
-        <button className="edit-product-button" type="submit">
+        <button className="edit-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
         </button>
-        <button className="cancel-edit-button" onClick={onClose}>
+        <button className="cancel-edit-button" onClick={onClose} >
           Cancel
         </button>
       </form>

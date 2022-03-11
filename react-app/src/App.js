@@ -36,6 +36,7 @@ function App() {
       await dispatch(findResults(term))
       await dispatch(refreshCart(jsonCart))
       await dispatch(getAllProducts())
+
       setLoaded(true);
     })();
   }, [dispatch, term]);
@@ -48,19 +49,19 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/categories/:id' exact={true}>
+        <Route path="/categories/:id" exact={true}>
           <CategoryPage />
         </Route>
-        <Route path='/products' exact={true}>
+        <Route path="/products" exact={true}>
           <AllProducts />
         </Route>
-        <Route path='/products/:id' exact={true}>
+        <Route path="/products/:id" exact={true}>
           <SingleProduct />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
@@ -69,10 +70,10 @@ function App() {
         <ProtectedRoute path='/profile' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route path="/" exact={true}>
           <HomePage />
         </Route>
-        <Route path='/results' exact={true} >
+        <Route path="/results" exact={true}>
           <Results />
         </Route>
       </Switch>
