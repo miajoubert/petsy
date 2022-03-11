@@ -59,10 +59,16 @@
     width: 24px;
 }
 
-.nav-login, .nav-signup {
+.nav-session-links {
+    align-items: center;
+    display: flex;
+}
+
+.nav-login, .nav-signup, .nav-logout, .profile-btn {
     background-color: white;
     border: 0;
     border-radius: 24px;
+    color: black;
     font-size: 13px;
     font-weight: bold;
     line-height: 1.4;
@@ -71,12 +77,28 @@
     padding: 9px 15px;
 }
 
-.nav-login:hover, .nav-signup:hover {
+.nav-login:hover,
+.nav-signup:hover,
+.nav-logout:hover,
+.shopping-cart-btn:hover,
+.profile-btn:hover {
     background-color: #EFEFEF;
 }
 
-.nav-signup {
-margin-left: 10px;
+.nav-signup, .nav-logout {
+    margin-left: 10px;
+}
+
+.shopping-cart-btn {
+    color: black;
+    background-color: white;
+    border: 0;
+    border-radius: 24px;
+    font-size: 16px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 4px 15px;
 }
 
 .nav-bottom {

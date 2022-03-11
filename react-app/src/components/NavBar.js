@@ -17,10 +17,10 @@ const NavBar = () => {
     sessionLinks = (
       <li className='nav-session-links'>
         <div>
-          <NavLink to='/profile' exact={true}>
+          <NavLink className='profile-btn' to='/profile' exact={true}>
             Profile
           </NavLink>
-          <button type="button" onClick={() => setShowCart(!showCart)}>
+          <button className='shopping-cart-btn' type="button" onClick={() => setShowCart(!showCart)}>
             <i className="fas fa-shopping-cart"></i>
           </button>
           <div style={showCart ? { transform: 'translateX(-100%)' } : {}} className="sidebar">
