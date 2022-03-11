@@ -16,11 +16,11 @@
 .nav-logo {
     color: #f1651f;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .nav-search {
-    padding: 0 40px;
+    padding: 0 20px 0 40px;
 }
 
 .search-form {
@@ -36,7 +36,7 @@
     border-top-left-radius: 96px;
     border-right: 0;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 20px;
     outline: none;
     padding: 9px 42px 9px 18px;
 }
@@ -48,12 +48,12 @@
     border-top-right-radius: 96px;
     border-left: 0;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 20px;
     padding: 12px 21px 12px 15px;
 }
 
 .search-form button:hover {
-    background-color: rgb(229, 226, 226);
+    background-color: #EFEFEF;
 }
 
 .fa-search {
@@ -61,7 +61,25 @@
     width: 24px;
 }
 
-.nav-session-links {}
+.nav-login, .nav-signup {
+    background-color: white;
+    border: 0;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 9px 15px;
+}
+
+.nav-login:hover, .nav-signup:hover {
+    background-color: #EFEFEF;
+}
+
+.nav-signup {
+margin-left: 10px;
+}
 
 .nav-bottom {
     border-bottom: 1px solid #e6e6e6;

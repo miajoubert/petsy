@@ -38,7 +38,7 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <li className='nav-session-links'>
-        <div>
+        <div className='login-signup'>
           <LoginFormModal />
           <SignupFormModal />
         </div>
@@ -52,7 +52,9 @@ const NavBar = () => {
         <li className='nav-home'>
           <div>
             <NavLink to='/' exact={true} className='nav-logo'>
-              Petsy
+              <div >
+                Petsy
+              </div>
             </NavLink>
           </div>
         </li>
