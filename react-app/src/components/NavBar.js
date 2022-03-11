@@ -47,7 +47,7 @@ const NavBar = () => {
   }
 
   return (
-    <nav>
+    <nav className='nav-container'>
       <ul className='nav-top'>
         <li className='nav-home'>
           <div>

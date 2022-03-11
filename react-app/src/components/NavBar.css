@@ -1,8 +1,10 @@
 .nav-top {
+    align-items: center;
     display: grid;
     grid-template-columns: auto 5fr auto;
     list-style-type: none;
-    padding-right: 40px;
+    margin: 0;
+    padding: 16px 40px;
 }
 
 .nav-top a {
@@ -13,6 +15,8 @@
 
 .nav-logo {
     color: #f1651f;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 35px;
 }
 
 .nav-search {
@@ -22,15 +26,50 @@
 .search-form {
     display: grid;
     grid-template-columns: 4fr auto;
+    height: 48px;
+}
+
+.search-form input {
+    background-color: rgba(34, 34, 34, 0.05);
+    border: 2px solid #222222;
+    border-bottom-left-radius: 96px;
+    border-top-left-radius: 96px;
+    border-right: 0;
+    font-size: 16px;
+    line-height: 24px;
+    outline: none;
+    padding: 9px 42px 9px 18px;
+}
+
+.search-form button {
+    background-color: rgba(34, 34, 34, 0.05);
+    border: 2px solid #222222;
+    border-bottom-right-radius: 96px;
+    border-top-right-radius: 96px;
+    border-left: 0;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 21px 12px 15px;
+}
+
+.search-form button:hover {
+    background-color: rgb(229, 226, 226);
+}
+
+.fa-search {
+    height: 24px;
+    width: 24px;
 }
 
 .nav-session-links {}
 
 .nav-bottom {
+    border-bottom: 1px solid #e6e6e6;
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-    padding: 0;
+    margin: 0;
+    padding: 16px 0;
 }
 
 .nav-bottom a {
@@ -38,21 +77,21 @@
 }
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 300px;
-    right: -300px;
-    transition: all 0.2s linear;
     background-color: whitesmoke;
     box-shadow: 0px 0 8px 1px lightgrey;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    transition: all 0.2s linear;
 }
 
 .sidebar-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    height: 79px;
     box-shadow: 3px -1px 3px 3px lightgrey;
+    display: flex;
+    height: 79px;
+    justify-content: space-between;
+    padding: 0 16px;
 }

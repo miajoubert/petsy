@@ -18,7 +18,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='categories-container'>
       {categories.map((category) => (
         <div key={category.id} className="category-container">
           <h2>{category.name}</h2>
