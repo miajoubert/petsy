@@ -17,30 +17,32 @@ const HomePage = () => {
 
   const categoriesObj = useSelector((state) => state.categories);
   const categories = Object.values(categoriesObj);
-  console.log("categories", categories);
-  // categories.map((category) => ('5555555', category.products));
-  // ('%%%%%%%%%%%', categoryProducts)
 
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getCategories());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (products) {
-      setProductList(Object.values(products));
-    }
-  }, [products]);
+  // useEffect(() => {
+  //   if (products) {
+  //     setProductList(Object.values(products));
+  //   }
+  // }, [products]);
 
-  const selectThreeGroups = (groups) => {
-    let selectedGroups = [];
+  const selectFiveProductsPerCategory = (category) => {
+    let selectedProducts = [];
 
     for (let i = 0; i <= 5; i++) {
-      selectedGroups.push(groups[i]);
+      selectedProducts.push(category.products[i]);
     }
 
-    return selectedGroups
+    return selectedProducts
   };
+
+  // let productsList = (
+
+  // )
+
 
   return (
 

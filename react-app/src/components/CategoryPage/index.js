@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { getCategories } from "../../store/category";
+import { getCategory } from "../../store/category";
 import "./CategoryPage.css";
 
 const CategoryPage = () => {
@@ -11,14 +11,14 @@ const CategoryPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    dispatch(getCategory(parseInt(id)));
+  }, [dispatch, id]);
 
   return (
     <div className='category-products-container'>
       {category?.products.map(product => (
-        <div className='product-container'>
-          <Link key={product?.id} to={`/products/${product?.id}`}>
+        <div key={product?.id} className='product-container'>
+          <Link to={`/products/${product?.id}`}>
             <img className='product-image'
               width={300}
               height={300}

@@ -14,5 +14,4 @@ def get_all_categories():
 @category_routes.route("/<int:id>")
 def get_category_by_id(id):
     category = Category.query.get(id)
-    products = Product.query.filter(Product.category_id == category.id).all()
-    return {"products": [product.to_dict() for product in products]}
+    return category.to_dict()
