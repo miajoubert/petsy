@@ -17,6 +17,7 @@ const CartItem = ({ item }) => {
       <div className='cart-item-price'>$ {parseFloat(item?.price * item.count).toFixed(2)}</div>
       <div className="cart-item-functions">
         <input
+          className="cart-number-input"
           type="number"
           value={count}
           onChange={(e) => setCount(e.target.value)}
@@ -24,12 +25,15 @@ const CartItem = ({ item }) => {
           min={1}
         />
         <button
+          className="cart-function-buttons"
           onClick={() => dispatch(populateCart(item))}
         > + </button>
         <button
+          className="cart-function-buttons"
           onClick={() => dispatch(subtractFromCart(item))}
         > - </button>
         <button
+          className="cart-function-buttons"
           onClick={() => dispatch(removeFromCart(item?.id))}
         > Remove </button>
       </div>

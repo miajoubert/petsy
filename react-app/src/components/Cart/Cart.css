@@ -22,8 +22,18 @@
     margin-top: 8px;
 }
 
-.cart-item-functions input {
-    height: 24px;
+.cart-number-input {
+    height: 16px;
     text-align: center;
     width: 32px;
+    margin: 0 0 0 5px;
+}
+.cart-number-input::-webkit-outer-spin-button,
+.cart-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.cart-function-buttons {
+    margin: 0 0 0 5px;
+    font-size: 15px;
 }
