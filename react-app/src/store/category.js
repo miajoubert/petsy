@@ -16,7 +16,7 @@ const loadCategory = (category) => {
 };
 
 export const getCategories = () => async (dispatch) => {
-  const res = await fetch("/categories");
+  const res = await fetch("/api/categories");
 
   if (res.ok) {
     const categories = await res.json();
@@ -27,7 +27,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getCategory = (id) => async (dispatch) => {
-  const res = await fetch(`/categories/${id}`);
+  const res = await fetch(`/api/categories/${id}`);
   console.log('hello?', res)
   if (res.ok) {
     const category = await res.json();
