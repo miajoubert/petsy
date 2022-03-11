@@ -12,9 +12,9 @@ const CartItem = ({ item }) => {
   }, [item?.count])
 
   return (
-    <li>
-      <div> {item?.name} </div>
-      <div>$ {parseFloat(item?.price * item.count).toFixed(2)}</div>
+    <li className='cart-item'>
+      <div className='cart-item-name'> {item?.name} </div>
+      <div className='cart-item-price'>$ {parseFloat(item?.price * item.count).toFixed(2)}</div>
       <div className="cart-item-functions">
         <input
           type="number"

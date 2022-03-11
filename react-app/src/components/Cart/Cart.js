@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
 import { resetCart } from "../../store/cart";
+import './Cart.css';
 
 const Cart = () => {
     let cart = useSelector(state => state.cart);
@@ -49,12 +50,12 @@ const Cart = () => {
     cartItems.map(item => parseFloat(subtotal += parseFloat(item.price * item.count)).toFixed(2))
 
     return (
-        <div>
+        <div className='cart'>
             <ul>
                 {cartItems.map(item => <CartItem key={item.id} item={item} />)}
             </ul>
             <hr />
-            <div>
+            <div className='cart-totals'>
                 <div> Subtotal: {parseFloat(subtotal).toFixed(2)} </div>
                 <div> Tax (5.5%): {parseFloat(subtotal * .055).toFixed(2)} </div>
                 <div> Total: {parseFloat(subtotal * 1.055).toFixed(2)} </div>
