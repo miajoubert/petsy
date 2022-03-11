@@ -27,7 +27,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getCategory = (id) => async (dispatch) => {
-  const res = await fetch(`/api/categories/${id}`);
+  const res = await fetch(`/categories/${id}`);
   console.log('hello?', res)
   if (res.ok) {
     const category = await res.json();

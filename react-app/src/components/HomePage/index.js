@@ -20,11 +20,11 @@ const HomePage = () => {
   return (
     <div>
       {categories.map((category) => (
-        <div key={category.id} className="category-container">
-          <h2>{category.name}</h2>
-          {category.products.map((product) => (
+        <div key={category?.id} className="category-container">
+          <h2>{category?.name}</h2>
+          {category?.products.map((product) => (
             <div key={product?.id}>
-              {product.name}
+              {product?.name}
               <div>
                 <Link
                   key={`single_product_link_${product?.id}`}
@@ -44,7 +44,6 @@ const HomePage = () => {
                 <h4 className="product_name">{product?.name}{category.name}</h4>
                 <h5 className="product_price">$ {parseFloat(product?.price).toFixed(2)}</h5>
               </div>
-              <div>{product.price}</div>
             </div>
           ))}
           <div></div>
