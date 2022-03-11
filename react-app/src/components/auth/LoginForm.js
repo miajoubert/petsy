@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import "./auth.css";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -40,41 +41,54 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
+    <form onSubmit={onLogin} className="login-form-container">
+      <div className="errors-list">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <button
-          type="button"
-          className="demoUserButton"
-          onClick={demoUserLogin}
-        >
-          Demo User
-        </button>
+      <div className="sign_in-container">
+        <div className="sign_in-logo">Sign in</div>
+        <div>
+          <button
+            type="button"
+            className="demo-user-btn"
+            onClick={demoUserLogin}
+          >
+            Try Demo
+          </button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
+      <div id="login-container">
+        <div className="login-text-container">
+          <label htmlFor="email">Email</label>
+        </div>
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+            className="email_input-bar"
+          />
+        </div>
+        <div className="login-text-container">
+          <label htmlFor="password">Password</label>
+        </div>
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+            className="password_input-bar"
+          />
+        </div>
+          <button type="submit" className="sign_in-btn">
+            Sign in
+          </button>
       </div>
     </form>
   );

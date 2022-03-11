@@ -1,0 +1,127 @@
+.login-form-container { 
+    max-width: 500px;
+    height: 400px;
+    background: transparent;
+    border-radius: 30px;
+}
+
+.demo-user-btn {
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 24px;
+    background-color: white;
+    color:black;
+    text-decoration: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #222222;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+.errors-list {
+    color: #ff726f;
+    align-items: center;
+}
+
+.sign_in-container {
+    margin: 15px;
+}
+
+.sign_in-logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.demo-user-btn:hover {
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 24px;
+    color:black;
+    text-decoration: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #222222;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sign_in-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 30px; */
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-text-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 320px;
+    margin-bottom: 5px; 
+    
+}
+
+.sign_in-btn { 
+    cursor: pointer;
+    border-radius: 24px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    min-height: 48px;
+    min-width: 48px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 10;
+    background-color: #222222;
+    color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #222222;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.email_input-bar {
+    width: 320px;
+    height: 40px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.password_input-bar {
+    width: 320px;
+    height: 40px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 200;
+}
