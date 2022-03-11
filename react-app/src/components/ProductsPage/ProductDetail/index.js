@@ -51,11 +51,11 @@ const SingleProduct = () => {
         {parseFloat(product.price).toFixed(2)}
       </div>
 
-      <div className="cart-item-functions">
+      {userId && <div className="cart-item-functions">
         <button onClick={() => dispatch(populateCart(product))}>
           Add to Cart
         </button>
-      </div>
+      </div>}
       <h2> Description </h2>
       <div className="product-description">{product.description}</div>
       <EditProductModal />
