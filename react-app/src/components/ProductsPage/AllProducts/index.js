@@ -21,7 +21,7 @@ const AllProducts = () => {
 
   return (
     <div>
-      <AddProductModal/>
+      <AddProductModal />
       {productList.length &&
         productList.map((product) => (
           <div className="all-products-container">
@@ -43,7 +43,7 @@ const AllProducts = () => {
               </Link>
             </div>
             <div className="product_name">{product?.name}</div>
-            <div className="product_price">${product?.price}</div>
+            <div className="product_price">$ {product?.price}</div>
           </div>
         ))}
     </div>

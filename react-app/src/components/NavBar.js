@@ -29,7 +29,7 @@ const NavBar = () => {
                 <i className="fas fa-arrow-right"></i>
               </button>
             </div>
-            <Cart />
+            <Cart showCart={() => setShowCart()} />
           </div>
           <LogoutButton />
         </div>

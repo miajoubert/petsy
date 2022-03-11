@@ -6,7 +6,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import User from './components/user/User';
+import UsersList from './components/User/UsersList';
+import User from './components/User/User';
 import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
@@ -48,6 +49,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path="/" exact={true}>
+          <HomePage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -63,18 +67,15 @@ function App() {
         <Route path="/products/:id" exact={true}>
           <SingleProduct />
         </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute> */}
         <ProtectedRoute path='/profile' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path="/" exact={true}>
-          <HomePage />
-        </Route>
         <Route path="/results" exact={true}>
           <Results />
         </Route>
+        {/* <ProtectedRoute path='/users' exact={true} >
+          <UsersList />
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

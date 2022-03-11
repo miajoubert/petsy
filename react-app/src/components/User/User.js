@@ -7,26 +7,34 @@ function User() {
   const dispatch = useDispatch();
   const products = useSelector(state => state.productsReducer);
   const ordersObj = useSelector(state => state.orders);
-  const orders = Object.values(ordersObj);
+  const ordersArr = Object.values(ordersObj);
 
-  console.log('products', products)
+  let orders = {}
+  ordersArr.map(order => {
+    if (!orders[order.order_number]) {
+      orders[order.order_number] = [order]
+    } else if (orders[order.order_number]) {
+      orders[order.order_number].push(order)
+    }
+  })
 
-  console.log(orders)
+  let myOrders = Object.values(orders)
+  console.log('THIS IS MY ORDERS AFTER REORG', myOrders)
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`/profile`);
+      const response = await fetch(`/api/profile`);
       const user = await response.json();
       setUser(user);
     })();
     dispatch(listOrders())
-  }, [dispatch]);
+  }, []);
 
   if (!user) {
     return null;
   }
 
-  // let subtotal = parseInt(0);
+  let subtotal = parseInt(0);
   // orders.map(order => console.log(parseFloat(subtotal += parseFloat(products[order.product_id].price * order.quantity).toFixed(2))))
   // // parseFloat(subtotal += parseFloat(products[order.product_id].price * order.quantity)).toFixed(2)
 
@@ -41,13 +49,21 @@ function User() {
         </li>
       </ul>
       <div className='order-history-container'>
+        <div><b> Order History </b></div>
         <ul>
-          {orders.map(order => (
-            <li key={order.id}>
-              <div>{order.order_number}</div>
-              <div>{products[order.product_id].name}</div>
-              <div>{order.quantity}</div>
-              {/* <div>{parseFloat(subtotal * 1.055).toFixed(2)}</div> */}
+          {myOrders.map(orders => (
+            <li key={orders[0]?.id}>
+              <div>Order: {orders[0]?.order_number}</div>
+              <div hidden={true}>{subtotal = parseInt(0)}</div>
+              <div>{orders.map(order => (
+                <>
+                  <div>{products[order.product_id].name} -- {order.quantity}</div>
+                  <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
+                </>
+              ))}
+                <div>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</div>
+                <div> - </div>
+              </div>
             </li>
           ))}
         </ul>

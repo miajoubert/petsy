@@ -5,7 +5,7 @@ import { submitOrder } from "../../store/orders";
 import { resetCart } from "../../store/cart";
 import './Cart.css';
 
-const Cart = () => {
+const Cart = ({ showCart }) => {
     let cart = useSelector(state => state.cart);
     const products = useSelector(state => state.productsReducer)
     const dispatch = useDispatch();
@@ -43,7 +43,8 @@ const Cart = () => {
 
         dispatch(resetCart());
         localStorage.removeItem('cart');
-        history.push('/products');
+        showCart(false)
+        history.push('/profile');
     }
 
     let subtotal = parseInt(0);
