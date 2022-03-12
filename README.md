@@ -47,8 +47,7 @@ This is the starter for the Flask React project.
 
    ```bash
    pipenv lock -r > requirements.txt
-   ```
-
+ 
 *ALSO IMPORTANT!*
    psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.

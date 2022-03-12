@@ -2,7 +2,7 @@
 
 .login-form-container {
   max-width: 500px;
-  height: 400px;
+  height: 420px;
   background: transparent;
   border-radius: 30px;
 }
@@ -119,6 +119,7 @@
   font-weight: 200;
 }
 
+
 .password_input-bar {
   width: 320px;
   height: 40px;
@@ -127,11 +128,31 @@
   font-weight: 200;
 }
 
+/* .hr {
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.petsy-signin-policy {
+  font-size: 13px;
+  line-height: 18px;
+  color: #595959;
+  max-width: 450px;
+} */
+
+
 /*** Signup Form ***/
 
 .signup-form-container {
-  max-width: 500px;
-  height: 480px;
+  max-width: 520px;
+  height: 550px;
   background: transparent;
   border-radius: 30px;
 }
@@ -142,7 +163,8 @@
   align-items: center;
 }
 
-.sign-in-font {
+
+.sign-up-text {
   font-size: 20px;
   font-weight: bold;
 }
@@ -212,3 +234,11 @@
   font-size: 18px;
   font-weight: 200;
 }
+
+.petsy-policy {
+  font-size: 13px;
+  line-height: 18px;
+  color: #595959;
+  max-width: 300px;
+}
+
