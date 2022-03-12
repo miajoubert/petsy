@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './auth/LoginModal';
 import SignupFormModal from './auth/SignupModal';
 import SearchBar from './SearchBar';
+import ProfileButton from './User/ProfileButton';
 import Cart from './Cart/Cart';
 import './NavBar.css';
 
 const NavBar = () => {
-  const [showCart, setShowCart] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const cart = useSelector(state => state.cart)
+
+  const [showCart, setShowCart] = useState(false);
 
   let cartCount = 0;
   Object.values(cart)
@@ -25,9 +26,7 @@ const NavBar = () => {
     sessionLinks = (
       <li className='nav-session-links'>
         <div>
-          <NavLink className='profile-btn' to='/profile' exact={true}>
-            Profile
-          </NavLink>
+          <ProfileButton user={sessionUser} />
           <button className='shopping-cart-btn' type="button" onClick={() => setShowCart(!showCart)}>
             <i className="fas fa-shopping-cart"></i>
           </button>
@@ -55,7 +54,6 @@ const NavBar = () => {
             </div>
             <Cart showCart={() => setShowCart()} />
           </div>
-          <LogoutButton />
         </div>
       </li>
     )
