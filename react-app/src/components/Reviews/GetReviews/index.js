@@ -28,12 +28,12 @@ const AllReviews = () => {
   }
 
   return (
-    <div>
+    <div className="reviews-content">
       {reviewsArr.map((review) => {
         if (review.product_id === product.id) {
           return (
             <div key={review?.id} className="review-container">
-                <div className="user-name">{review.username}{" "}{review.created_at.slice(5, 17)}</div>
+              <div className="user-name">{review.username}{" "}{review.created_at.slice(5, 17)}</div>
               <div className="star-rating">
                 {Array(review.rating)
                   .fill(
@@ -62,6 +62,7 @@ const AllReviews = () => {
           );
         } else return null;
       })}
+
     </div>
   );
 };
