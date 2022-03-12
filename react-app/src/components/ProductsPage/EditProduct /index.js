@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../../../context/Modal";
 import EditProduct from "./EditProduct";
+import './EditProduct.css'
 
 const EditProductModal = () => {
   const [showModal, setShowModal] = useState(false);
