@@ -1,29 +1,109 @@
 .cart {
-    margin-top: 16px;
-    padding: 0 8px;
+    position: absolute;
+    margin: 10px 0 10px 0;
+    padding: 0 10px 20px 10px;
+    width: 92%
 }
 
-.cart ul {
+.cart-list {
     list-style: none;
+    width: 100%;
     padding: 0;
+    overflow-y: auto;
+}
+
+.item-count {
+    font-size: 22px;
 }
 
 .cart-item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
+}
+.cart-item:hover {
+    font-weight: bold;
+}
+
+.cart-name-and-price-container {
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: row;
+}
+.cart-item-name {
+    width: 80%;
+}
+.cart-item-price {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
 }
 
 .cart-item-functions {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 8px;
 }
 
-.cart-item-functions input {
-    height: 24px;
+.cart-number-input {
+    height: 16px;
     text-align: center;
     width: 32px;
+    margin: 0 0 0 5px;
+}
+.cart-number-input::-webkit-outer-spin-button,
+.cart-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.cart-function-buttons {
+    margin: 0 0 0 5px;
+    font-size: 15px;
+    height: 22px;
+    width: 22px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+.cart-function-buttons:hover {
+    background-color: gray;
+    border-radius: 3px;
+}
+
+.cart-function-buttons-remove {
+    position: absolute;
+    right: 10px;
+    font-size: 10px;
+    background-color:rgb(211, 211, 211, .6);
+    border: 1px solid black;
+    border-radius: 2px;
+}
+.cart-function-buttons-remove:hover {
+    background-color: lightgray;
+    color: rgb(255, 140, 0);
+    font-weight: bold;
+}
+
+.cart-totals-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart-total {
+    padding: 10px 0;
+}
+
+.submit-cart-button {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: gray;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.submit-cart-button:hover {
+    background-color: rgb(255, 140, 0, .6);
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listOrders } from '../../store/orders';
 
+import './Profile.css'
+
 function User() {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
@@ -35,37 +37,49 @@ function User() {
   }
 
   let subtotal = parseInt(0);
-  // orders.map(order => console.log(parseFloat(subtotal += parseFloat(products[order.product_id].price * order.quantity).toFixed(2))))
-  // // parseFloat(subtotal += parseFloat(products[order.product_id].price * order.quantity)).toFixed(2)
 
   return (
-    <div>
-      <ul>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
+    <div className='order-history-main'>
+      <ul className='user-info-container'>
+        <div className='user-info-name'>
+          Welcome back, {user.username}
+        </div>
+        {/* <button>Change Password</button> */}
       </ul>
       <div className='order-history-container'>
-        <div><b> Order History </b></div>
-        <ul>
-          {myOrders.map(orders => (
-            <li key={orders[0]?.id}>
-              <div>Order: {orders[0]?.order_number}</div>
-              <div hidden={true}>{subtotal = parseInt(0)}</div>
-              <div>{orders.map(order => (
-                <>
-                  <div>{products[order.product_id].name} -- {order.quantity}</div>
-                  <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
-                </>
-              ))}
-                <div>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</div>
-                <div> - </div>
-              </div>
-            </li>
-          ))}
+        <div><b> Review your order history: </b></div>
+        <ul className='order-history-all-container'>
+          <div className='order-tiles-container'>
+            {myOrders.map(orders => (
+              <>
+                <div className='order-history-tile'>
+                  <div className='tile-header'>
+                    <div className='header-left'>
+                      Purchased on {new Date(orders[0]?.created_at).toDateString()} at {new Date(orders[0]?.created_at).getHours()}:{new Date(orders[0]?.created_at).getMinutes()}
+                    </div>
+                    <div className='header-right'>
+                      <b>#{orders[0]?.order_number}</b>
+                    </div>
+                  </div>
+                  <div className='tile-body'></div>
+
+                  <div className='order-history-details-container'>
+                    <div hidden={false} key={orders[0]?.id}>
+                      <div hidden={true}>{subtotal = parseInt(0)}</div>
+                      <div>{orders.map(order => (
+                        <>
+                          <div className='product-in-list'>{products[order.product_id].name} -- <b>{order.quantity}</b></div>
+                          <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
+                        </>
+                      ))}
+                        <div className='order-total'><b>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</b></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
         </ul>
       </div>
     </div>

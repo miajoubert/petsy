@@ -12,3 +12,17 @@ body {
 #root {
     height: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: lightgray;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: darkgray;
+  border-radius: 3px;
+}
