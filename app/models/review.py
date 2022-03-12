@@ -18,6 +18,7 @@ class Review(db.Model):
             'id': self.id,
             'buyer_id': self.buyer_id,
             'product_id': self.product_id,
+            'username': self.buyer.username if self.buyer else None,
             'review': self.review,
             'rating': self.rating,
             'created_at': self.created_at,

@@ -63,7 +63,6 @@ const EditProduct = ({ onClose }) => {
   return (
     <div className="edit-product-container">
       <form className="edit-product" onSubmit={handleEditSubmit}>
-        <h2>Edit Your Product</h2>
         <ul>
           {errorValidator.map((error) => (
             <li className="error-list" key={error}>{error}</li>
