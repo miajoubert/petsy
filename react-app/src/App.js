@@ -12,6 +12,7 @@ import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
 import CategoryPage from './components/CategoryPage';
+import Footer from './components/Footer';
 import { authenticate } from './store/session';
 import { findResults } from './store/results'
 import { refreshCart } from './store/cart'
@@ -77,6 +78,7 @@ function App() {
           <UsersList />
         </ProtectedRoute> */}
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
