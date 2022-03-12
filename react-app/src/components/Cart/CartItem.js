@@ -13,9 +13,15 @@ const CartItem = ({ item }) => {
 
   return (
     <li className='cart-item'>
-      <div className='cart-item-name'> {item?.name} </div>
-      <div className='cart-item-price'>$ {parseFloat(item?.price * item.count).toFixed(2)}</div>
+      <div className="cart-name-and-price-container">
+        <div className='cart-item-name'> {item?.name} </div>
+        <div className='cart-item-price'>$ {parseFloat(item?.price * item.count).toFixed(2)}</div>
+      </div>
       <div className="cart-item-functions">
+        <button
+          className="cart-function-buttons"
+          onClick={() => dispatch(subtractFromCart(item))}
+        > - </button>
         <input
           className="cart-number-input"
           type="number"
@@ -29,11 +35,7 @@ const CartItem = ({ item }) => {
           onClick={() => dispatch(populateCart(item))}
         > + </button>
         <button
-          className="cart-function-buttons"
-          onClick={() => dispatch(subtractFromCart(item))}
-        > - </button>
-        <button
-          className="cart-function-buttons"
+          className="cart-function-buttons-remove"
           onClick={() => dispatch(removeFromCart(item?.id))}
         > Remove </button>
       </div>

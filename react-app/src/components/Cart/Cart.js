@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
 import { resetCart } from "../../store/cart";
-import './Cart.css';
+import './Cart.css'
 
 const Cart = ({ showCart }) => {
     let cart = useSelector(state => state.cart);
@@ -52,16 +52,23 @@ const Cart = ({ showCart }) => {
 
     return (
         <div className='cart'>
-            <ul>
+            <ul className="cart-list">
                 {cartItems.map(item => <CartItem key={item.id} item={item} />)}
             </ul>
             <hr />
-            <div className='cart-totals'>
-                <div> Subtotal: {parseFloat(subtotal).toFixed(2)} </div>
-                <div> Tax (5.5%): {parseFloat(subtotal * .055).toFixed(2)} </div>
-                <div> Total: {parseFloat(subtotal * 1.055).toFixed(2)} </div>
+            <div className='cart-totals-container'>
+                <div className="cart-totals-div">
+                    <div> Subtotal: $ {parseFloat(subtotal).toFixed(2)} </div>
+                    <div> Tax: $ {parseFloat(subtotal * .055).toFixed(2)} </div>
+                    <div className="cart-total"><b> Total: $ {parseFloat(subtotal * 1.055).toFixed(2)} </b></div>
+                </div>
                 <form onSubmit={handleSubmit}>
-                    <button type="submit">Submit Order</button>
+                    <button
+                        className="submit-cart-button"
+                        type="submit"
+                    >
+                        Submit Order
+                    </button>
                 </form>
             </div>
         </div>

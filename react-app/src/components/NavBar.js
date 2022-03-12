@@ -11,6 +11,14 @@ import './NavBar.css';
 const NavBar = () => {
   const [showCart, setShowCart] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
+  const cart = useSelector(state => state.cart)
+
+  let cartCount = 0;
+  Object.values(cart)
+    .map(product => (
+      cartCount += product.count
+    ))
+
 
   let sessionLinks;
   if (sessionUser) {
@@ -28,6 +36,22 @@ const NavBar = () => {
               <button className="arrow-button" onClick={() => setShowCart(false)}>
                 <i className="fas fa-arrow-right"></i>
               </button>
+              <div
+                className='item-count'
+                hidden={!(cartCount > 1)}
+              >
+                {cartCount} items in your shopping cart
+              </div>
+              <div
+                className='item-count'
+                hidden={!(cartCount === 1)}
+              > {cartCount} item in your shopping cart
+              </div>
+              <div
+                className='item-count'
+                hidden={!(cartCount === 0)}
+              > {cartCount} items in your shopping cart
+              </div>
             </div>
             <Cart showCart={() => setShowCart()} />
           </div>
