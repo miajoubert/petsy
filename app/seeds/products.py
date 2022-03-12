@@ -63,7 +63,7 @@ def seed_products():
   moose = Product(
     seller_id=1,
     name="KONG Cozie Marvin the Moose Plush Dog Toy",
-    image_url="https://assets.petco.com/petco/image/upload/c_pad,dpr_1.0,f_auto,q_auto,h_636,w_636/c_pad,h_636,w_636/1490338-center-3",
+    image_url="https://cdn.shopify.com/s/files/1/2382/0223/products/40938-1499796385_e16bfbd0-ff98-40f5-b828-2bd43b22581b_1000x1000.jpg?v=1571614173",
     description="The KONG Cozies are cute, soft and cuddly plush toys made with an extra layer of material, so they're extra tough. Cozies are perfect for a game of fetch or as a comfort toy for your furry friend. Grab one of the 10 amazingly cute Cozie characters for your dog and we know your dog will love you for it.",
     price=10.99,
     category_id=2,

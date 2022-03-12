@@ -29,7 +29,9 @@ const SearchBar = () => {
                 onChange={e => setSearchTerm(e.target.value)}
                 required
             />
-            <button>Search</button>
+            <button>
+                <i className="fas fa-search"></i>
+            </button>
         </form>
     )
 }
