@@ -51,7 +51,7 @@ const SignUpForm = () => {
         ))}
       </div>
       <div id="create_account-logo">
-        <p className="sign-in-font">Create your account</p>
+        <p className="sign-up-text">Create your account</p>
       </div>
       <div id="signup-container">
         <div className="signup-text-container">
@@ -107,9 +107,12 @@ const SignUpForm = () => {
             className="repeat_password_input-bar"
           ></input>
         </div>
-        <button type="submit" className="sign_up-btn">
-          Sign Up
-        </button>
+          <button type="submit" className="sign_up-btn">
+            Sign Up
+          </button>
+          <p className="petsy-policy"> By clicking Sign in, you agree to Petsy's Terms of Use and Privacy
+            Policy, which does not exist. Petsy will not send you
+            communications and post without your permission.</p>
       </div>
     </form>
   );

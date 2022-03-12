@@ -1,134 +1,77 @@
-# Flask React Project
+# Petsy
 
-This is the starter for the Flask React project.
+Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where users can buy and sell pet products as well as leave ratings/reviews of their items.
 
-## Getting started
+# Index
 
-1. Clone this repository (only this branch)
+- [Live Site](https://petsy-store.herokuapp.com/)
+- [Feature List](https://github.com/miajoubert/petsy/wiki/Feature-List)
+- [Database Schema](https://github.com/miajoubert/petsy/wiki/Database-Schema)
+- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Routes-Frontend)
+- [API Documentation](https://github.com/miajoubert/petsy/wiki/Routes----API)
+- [User Stories](https://github.com/miajoubert/petsy/wiki/User-Stories)
+- [Redux State](https://github.com/miajoubert/petsy/wiki/Redux-State)
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+# Technologies Used
 
-2. Install dependencies
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+# Getting started
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+1. Clone this repository
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+   ```git@github.com/miajoubert/petsy.git```
 
-   ```bash
-   pipenv shell
-   ```
+2. CD into the /app directory and install dependencies
 
-   ```bash
-   flask db upgrade
-   ```
+    ```pipenv install```
 
-   ```bash
-   flask seed all
-   ```
+3. CD into the /react-app directory and install dependencies
 
-   ```bash
-   flask run
-   ```
+    ```npm install```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+4.  Create a .env file based on the .env.example given (An AWS S3 account is required for adding/editing user profile pictures!)
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+5.  Create a user in psql based on your .env DATABASE_URL app_name
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+    ```psql -c "CREATE USER <username> PASSWORD '<password>' CREATEDB"```
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+6.  Create a databse in psql based on your.env DATABASE_URL app_db_name
 
-## Deploy to Heroku
+7. Start your shell, migrate your database, seed your database, and run the flask app
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+   ```pipenv shell```
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+   ```flask db upgrade```
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+    ```flask seed all```
 
-   ```bash
-   heroku login
-   ```
+    ```flask run```
 
-6. Login to the heroku container registry
+8. Open another terminal and change directory into /react-app and run the React app
 
-   ```bash
-   heroku container:login
-   ```
+	```npm start```
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+# Features
 
-9. Release your docker container to heroku
+## Splash Page 
+![Splash-Page](https://user-images.githubusercontent.com/87781597/158024746-4325799d-e31a-4530-934e-f42154416e54.png)
 
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
 
-10. set up your database
 
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
+## Login Page
+![Login-Page](https://user-images.githubusercontent.com/87781597/158024845-76569883-5566-4e39-bd5f-c2a08af283b7.png)
 
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
 
-12. profit
 
-### For M1 Mac users
+## Shopping Cart 
 
-(Replaces **Step 8**)
+```Shopping Cart Image To Be Updated```
 
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
+## Product Detail Page 
+![Product-Detail](https://user-images.githubusercontent.com/87781597/158024972-b931a0ca-da1c-467d-b656-6a47cb82e585.png)
 
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
 
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+## 404 Page Not Found 
+![image](https://user-images.githubusercontent.com/87781597/158023261-a9b58781-45b6-47eb-a058-73bd005135f7.png)
