@@ -11,8 +11,11 @@
 
 .product-image {
   border-radius: 3px;
-  object-fit: contain;
   margin: 20px 0px 0px 20%;
+}
+
+.product-image img {
+  object-fit: contain;
 }
 
 .product-price {

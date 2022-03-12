@@ -72,7 +72,7 @@ const SingleProduct = () => {
               </div>
             )}
             <h2>
-            {productReviews?.length} Reviews{" "}
+              {productReviews?.length} Reviews{" "}
               {rating > 0 &&
                 Array(rating)
                   .fill(
