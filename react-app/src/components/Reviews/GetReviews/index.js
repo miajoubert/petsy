@@ -33,7 +33,8 @@ const AllReviews = () => {
         if (review.product_id === product.id) {
           return (
             <div key={review?.id} className="review-container">
-              <div>
+                <div className="user-name">{review.username}{" "}{review.created_at.slice(5, 17)}</div>
+              <div className="star-rating">
                 {Array(review.rating)
                   .fill(
                     <span>
@@ -44,8 +45,7 @@ const AllReviews = () => {
                     <span key={idx}>{star}</span>
                   ))}
               </div>
-              <h2>{review.username}</h2>
-              <div className="date">{review.created_at.slice(5, 17)}</div>
+              <div className="date"></div>
               <div>{review?.review}</div>
               {userId === review.buyer_id && (
                 <div>
