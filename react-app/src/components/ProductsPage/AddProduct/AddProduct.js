@@ -27,7 +27,7 @@ const AddProduct = ({ onClose }) => {
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 
-  
+
   useEffect(() => {
     if (!user) {
       history.push("/");
@@ -35,7 +35,7 @@ const AddProduct = ({ onClose }) => {
   }, [user, history]);
 
   const newProductSubmit = async (e) => {
-  
+
       e.preventDefault();
       const payload = {
         userId: user.id,
@@ -49,7 +49,7 @@ const AddProduct = ({ onClose }) => {
       if (newProduct) {
         history.push(`/products/${newProduct.id}`);
       }
-    
+
   };
 
   return (

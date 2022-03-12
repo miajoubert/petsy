@@ -92,7 +92,6 @@ const SingleProduct = () => {
           <div className="product-price">
             ${parseFloat(product.price).toFixed(2)}
           </div>
-          <div className="product-description">{product.description}</div>
           <label className="size-text">Size</label>
           <select className="size-selector">
             <option value="" selected="">
@@ -119,6 +118,9 @@ const SingleProduct = () => {
             )}
           </div>
           <div className="bottom-right-container">
+            <h2>Description</h2>
+          <div className="product-description">{product.description}</div>
+
           <h2>Shipping and return policies</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
