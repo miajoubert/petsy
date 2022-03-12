@@ -17,10 +17,10 @@ const NavBar = () => {
     sessionLinks = (
       <li className='nav-session-links'>
         <div>
-          <NavLink to='/profile' exact={true}>
+          <NavLink className='profile-btn' to='/profile' exact={true}>
             Profile
           </NavLink>
-          <button type="button" onClick={() => setShowCart(!showCart)}>
+          <button className='shopping-cart-btn' type="button" onClick={() => setShowCart(!showCart)}>
             <i className="fas fa-shopping-cart"></i>
           </button>
           <div style={showCart ? { transform: 'translateX(-100%)' } : {}} className="sidebar">
@@ -38,7 +38,7 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <li className='nav-session-links'>
-        <div>
+        <div className='login-signup'>
           <LoginFormModal />
           <SignupFormModal />
         </div>
@@ -47,12 +47,14 @@ const NavBar = () => {
   }
 
   return (
-    <nav>
+    <nav className='nav-container'>
       <ul className='nav-top'>
         <li className='nav-home'>
           <div>
             <NavLink to='/' exact={true} className='nav-logo'>
-              Petsy
+              <div >
+                Petsy
+              </div>
             </NavLink>
           </div>
         </li>
