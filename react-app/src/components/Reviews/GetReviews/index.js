@@ -33,7 +33,6 @@ const AllReviews = () => {
         if (review.product_id === product.id) {
           return (
             <div key={review?.id} className="review-container">
-              <h2>{reviews.length}</h2>
               <div>
                 {Array(review.rating)
                   .fill(

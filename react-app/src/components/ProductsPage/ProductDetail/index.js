@@ -50,6 +50,7 @@ const SingleProduct = () => {
     overallRating(productReviews) / productReviews.length
   );
 
+
   return (
     <div className="product_detail-container">
       <div className="product">
@@ -64,16 +65,26 @@ const SingleProduct = () => {
                 : "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="
             }
           />
-                  <div className="reviews-display">
-          {userId && userId !== product?.seller_id && (
-            <div className="add-review-modal">
-              <Reviews />
-            </div>
-          )}
-          <h2> Reviews </h2>
+          <div className="reviews-display">
+            {userId && userId !== product?.seller_id && (
+              <div className="add-review-modal">
+                <Reviews />
+              </div>
+            )}
+            <h2>
+            {productReviews?.length} Reviews{" "}
+              {rating > 0 &&
+                Array(rating)
+                  .fill(
+                    <span>
+                      <i className="fas fa-star"></i>
+                    </span>
+                  )
+                  .map((star, idx) => <span key={idx}>{star}</span>)}
+            </h2>
 
-          <AllReviews />
-        </div>
+            <AllReviews />
+          </div>
         </div>
         <div className="product-info-container">
           <h2>{product.name}</h2>
@@ -119,31 +130,31 @@ const SingleProduct = () => {
           </div>
           <div className="bottom-right-container">
             <h2>Description</h2>
-          <div className="product-description">{product.description}</div>
+            <div className="product-description">{product.description}</div>
 
-          <h2>Shipping and return policies</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <h2>FAQs</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <h2>Meet Your Seller</h2>
-          <h3>{product.username}</h3>
-      </div>
+            <h2>Shipping and return policies</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h2>FAQs</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h2>Meet Your Seller</h2>
+            <h3>{product.username}</h3>
+          </div>
         </div>
       </div>
     </div>
