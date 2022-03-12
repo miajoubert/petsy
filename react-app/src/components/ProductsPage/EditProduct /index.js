@@ -9,7 +9,7 @@ const EditProductModal = () => {
   return (
     <>
       <button className="edit-product-modal" onClick={() => setShowModal(true)}>
-        EDIT
+        Edit Your Product
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

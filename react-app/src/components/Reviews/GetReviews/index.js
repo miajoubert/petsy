@@ -5,6 +5,7 @@ import { getAllReviews } from "../../../store/reviews";
 import { deleteAReview } from "../../../store/reviews";
 import { useHistory } from "react-router-dom";
 import EditReviewModal from "../EditReview";
+import "./Reviews.css";
 
 const AllReviews = () => {
   const dispatch = useDispatch();
@@ -21,11 +22,10 @@ const AllReviews = () => {
   }, [dispatch]);
 
   function handleReviewDelete(e, reviewId) {
-    e.preventDefault()
-    dispatch(deleteAReview(reviewId))
+    e.preventDefault();
+    dispatch(deleteAReview(reviewId));
     history.push(`/products/${id}`);
-  };
-
+  }
 
   return (
     <div>
@@ -33,10 +33,22 @@ const AllReviews = () => {
         if (review.product_id === product.id) {
           return (
             <div key={review?.id} className="review-container">
-              <h2>{user?.username}</h2>
-              <div>{review?.rating}</div>
+              <h2>{reviews.length}</h2>
+              <div>
+                {Array(review.rating)
+                  .fill(
+                    <span>
+                      <i className="fas fa-star fa-xs"></i>
+                    </span>
+                  )
+                  .map((star, idx) => (
+                    <span key={idx}>{star}</span>
+                  ))}
+              </div>
+              <h2>{review.username}</h2>
+              <div className="date">{review.created_at.slice(5, 17)}</div>
               <div>{review?.review}</div>
-              {userId === review.buyer_id &&
+              {userId === review.buyer_id && (
                 <div>
                   <EditReviewModal reviewId={review?.id} />
                   <button
@@ -45,7 +57,8 @@ const AllReviews = () => {
                   >
                     Delete Your Review
                   </button>
-                </div>}
+                </div>
+              )}
             </div>
           );
         } else return null;
