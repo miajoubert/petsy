@@ -1,45 +1,134 @@
 .nav-top {
+    align-items: center;
     display: grid;
     grid-template-columns: auto 5fr auto;
     list-style-type: none;
-    padding-right: 40px;
+    margin: 0;
+    padding: 16px 40px;
 }
 
 .nav-top a {
     text-decoration: none;
 }
 
-.nav-home {}
-
 .nav-logo {
     color: #f1651f;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
 }
 
 .nav-search {
-    padding: 0 40px;
+    padding: 0 20px 0 20px;
 }
 
 .search-form {
     display: grid;
     grid-template-columns: 4fr auto;
+    height: 46px;
 }
 
-.nav-session-links {}
+.search-form input {
+    background-color: rgba(34, 34, 34, 0.05);
+    border: 2px solid #222222;
+    border-bottom-left-radius: 96px;
+    border-top-left-radius: 96px;
+    border-right: 0;
+    font-size: 16px;
+    height: 24px;
+    outline: none;
+    padding: 9px 42px 9px 18px;
+}
+
+.search-form button {
+    background-color: rgba(34, 34, 34, 0.05);
+    border: 2px solid #222222;
+    border-bottom-right-radius: 96px;
+    border-top-right-radius: 96px;
+    border-left: 0;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 9px 21px 9px 15px;
+}
+
+.search-form button:hover {
+    background-color: #EFEFEF;
+}
+
+.fa-search {
+    height: 24px;
+    width: 24px;
+}
+
+.nav-session-links {
+    align-items: center;
+    display: flex;
+}
+
+.nav-login, .nav-signup, .nav-logout, .profile-btn {
+    background-color: white;
+    border: 0;
+    border-radius: 24px;
+    color: black;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 9px 15px;
+}
+
+.nav-login:hover,
+.nav-signup:hover,
+.nav-logout:hover,
+.shopping-cart-btn:hover,
+.profile-btn:hover {
+    background-color: #EFEFEF;
+}
+
+.nav-signup, .nav-logout {
+    margin-left: 10px;
+}
+
+.shopping-cart-btn {
+    color: black;
+    background-color: white;
+    border: 0;
+    border-radius: 24px;
+    font-size: 16px;
+    line-height: 1.4;
+    min-height: 36px;
+    min-width: 36px;
+    padding: 4px 15px;
+}
 
 .nav-bottom {
+    border-bottom: 1px solid #e6e6e6;
     display: flex;
+    font-size: 13px;
     justify-content: space-around;
     list-style-type: none;
-    padding: 0;
+    margin: 0;
+}
+
+.nav-bottom li {
+    margin-right: 12px;
+    margin-top: 4px;
+    padding-bottom: 12px;
 }
 
 .nav-bottom a {
+    color: black;
     text-decoration: none;
 }
 
+.nav-bottom a:hover {
+    border-bottom: 1px solid black;
+}
+
 .sidebar {
+    background-color: whitesmoke;
+    box-shadow: 0px 0 8px 1px lightgrey;
     position: fixed;
-    top: 0;
     bottom: 0;
     width: 30vw;
     right: -30vw;
@@ -52,7 +141,10 @@
 }
 
 .sidebar-header {
+    align-items: center;
+    box-shadow: 3px -1px 3px 3px lightgrey;
     display: flex;
+    height: 79px;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
