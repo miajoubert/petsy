@@ -19,7 +19,7 @@ const Cart = ({ showCart }) => {
             }
         });
 
-    if (!cartItems.length) return
+    if (!cartItems.length) return null
 
     const handleSubmit = (e) => {
         e.preventDefault();
