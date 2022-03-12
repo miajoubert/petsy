@@ -19,11 +19,7 @@ const Cart = ({ showCart }) => {
             }
         });
 
-    if (!cartItems.length) return (
-        <div className="no-items-display">
-            No items in cart. Add products to continue.
-        </div>
-    )
+    if (!cartItems.length) return
 
     const handleSubmit = (e) => {
         e.preventDefault();
