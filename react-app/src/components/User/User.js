@@ -20,8 +20,8 @@ function User() {
     }
   })
 
-  let myOrders = Object.values(orders)
-  console.log('THIS IS MY ORDERS AFTER REORG', myOrders)
+  let myOrders = Object.values(orders);
+  myOrders.sort((a, b) => b[0].order_number - a[0].order_number)
 
   useEffect(() => {
     (async () => {
@@ -30,7 +30,7 @@ function User() {
       setUser(user);
     })();
     dispatch(listOrders())
-  }, []);
+  }, [dispatch]);
 
   if (!user) {
     return null;
@@ -44,41 +44,43 @@ function User() {
         <div className='user-info-name'>
           Welcome back, {user.username}
         </div>
-        {/* <button>Change Password</button> */}
       </ul>
       <div className='order-history-container'>
         <div><b> Review your order history: </b></div>
         <ul className='order-history-all-container'>
           <div className='order-tiles-container'>
-            {myOrders.map(orders => (
-              <>
-                <div className='order-history-tile'>
-                  <div className='tile-header'>
-                    <div className='header-left'>
-                      Purchased on {new Date(orders[0]?.created_at).toDateString()} at {new Date(orders[0]?.created_at).getHours()}:{new Date(orders[0]?.created_at).getMinutes()}
-                    </div>
-                    <div className='header-right'>
-                      <b>#{orders[0]?.order_number}</b>
-                    </div>
-                  </div>
-                  <div className='tile-body'></div>
-
-                  <div className='order-history-details-container'>
-                    <div hidden={false} key={orders[0]?.id}>
-                      <div hidden={true}>{subtotal = parseInt(0)}</div>
-                      <div>{orders.map(order => (
-                        <>
-                          <div className='product-in-list'>{products[order.product_id].name} -- <b>{order.quantity}</b></div>
-                          <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
-                        </>
-                      ))}
-                        <div className='order-total'><b>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</b></div>
+            {myOrders.map(orders => {
+              if (user.id === orders[0].buyer_id) {
+                return (
+                  <div key={orders[0]?.id}>
+                    <div className='order-history-tile'>
+                      <div className='tile-header'>
+                        <div className='header-left'>
+                          Purchased on {new Date(orders[0]?.created_at).toDateString()} at {new Date(orders[0]?.created_at).getHours()}:{new Date(orders[0]?.created_at).getMinutes()}
+                        </div>
+                        <div className='header-right'>
+                          <b>#{orders[0]?.order_number}</b>
+                        </div>
+                      </div>
+                      <div className='tile-body'></div>
+                      <div className='order-history-details-container'>
+                        <div hidden={false} key={orders[0]?.id}>
+                          <div hidden={true}>{subtotal = parseInt(0)}</div>
+                          <div>{orders.map(order => (
+                            <div key={order.id}>
+                              <div className='product-in-list'>{products[order.product_id].name} -- <b>{order.quantity}</b></div>
+                              <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
+                            </div>
+                          ))}
+                            <div className='order-total'><b>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</b></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </>
-            ))}
+                )
+              }
+            })}
           </div>
         </ul>
       </div>

@@ -56,7 +56,7 @@ const SingleProduct = () => {
       <div className="product">
         <div className="product-image">
           <img
-            width={450}
+            width={350}
             height={450}
             alt={product?.name}
             src={
@@ -72,7 +72,7 @@ const SingleProduct = () => {
               </div>
             )}
             <h2>
-            {productReviews?.length} Reviews{" "}
+              {productReviews?.length} Reviews{" "}
               {rating > 0 &&
                 Array(rating)
                   .fill(
@@ -82,7 +82,6 @@ const SingleProduct = () => {
                   )
                   .map((star, idx) => <span key={idx}>{star}</span>)}
             </h2>
-
             <AllReviews />
           </div>
         </div>

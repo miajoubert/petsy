@@ -3,6 +3,13 @@
     margin: 100px 0px 0px ;
 }
 
+.reviews-content {
+    height: 575px;
+    overflow: auto;
+    padding-right: 50px;
+    width: 400px;
+}
+
 .star-rating {
     padding: 0px 0px 10px 0px;
 }

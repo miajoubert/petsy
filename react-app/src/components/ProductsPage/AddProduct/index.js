@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
 import { Modal } from "../../../context/Modal";
-
 import AddProduct from "./AddProduct";
+import './AddProduct.css';
 
 const AddProductModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +13,7 @@ const AddProductModal = () => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddProduct onClose={() => setShowModal(false)}/>
+          <AddProduct onClose={() => setShowModal(false)} />
         </Modal>
       )}
     </>
