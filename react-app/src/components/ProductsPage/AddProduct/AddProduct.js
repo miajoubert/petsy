@@ -23,7 +23,7 @@ const AddProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    if (category_id < 1 || category_id > 8) errors.push("Category Id must be between 1 to 8");
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 

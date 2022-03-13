@@ -26,7 +26,7 @@ const EditProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    if (category_id < 1 || category_id > 8) errors.push("Category Id must be between 1 to 8");
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 
@@ -61,23 +61,23 @@ const EditProduct = ({ onClose }) => {
   };
 
   return (
-    <div className="edit-product-container">
-      <form className="edit-product" onSubmit={handleEditSubmit}>
+      <form className="edit-product-container" onSubmit={handleEditSubmit}>
         <ul>
           {errorValidator.map((error) => (
             <li className="error-list" key={error}>{error}</li>
           ))}
         </ul>
-        <div className="name-input">
+        <div>
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="image-input">
+        <div>
           <label> Image </label>
           <input
             id="form-label-image"
@@ -85,18 +85,20 @@ const EditProduct = ({ onClose }) => {
             placeholder="Image"
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="description-input">
+        <div>
           <label> Description </label>
           <textarea
             id="form-label-description"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="edit_product_description_input-bar"
           />
         </div>
-        <div className="price-input">
+        <div>
           <label> Price </label>
           <input
             id="form-label-price"
@@ -106,6 +108,7 @@ const EditProduct = ({ onClose }) => {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="price-input">
@@ -117,6 +120,7 @@ const EditProduct = ({ onClose }) => {
             // required
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="created-at-input">
@@ -129,7 +133,6 @@ const EditProduct = ({ onClose }) => {
           Cancel
         </button>
       </form>
-    </div>
   );
 };
 
