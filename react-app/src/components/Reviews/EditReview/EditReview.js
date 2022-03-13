@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editAReview } from "../../../store/reviews";
+import "./EditReview.css"
 
 const EditReviewForm = ({ onClose, reviewId }) => {
   const dispatch = useDispatch();
