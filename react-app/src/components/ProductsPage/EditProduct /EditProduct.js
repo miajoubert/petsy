@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editOneProduct } from "../../../store/products";
+import { getCategories } from '../../../store/category';
 
 const EditProduct = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const EditProduct = ({ onClose }) => {
     if (!price) errors.push("Please provide a price");
     if (!category_id) errors.push('Please provide a category');
     setErrorValidator(errors)
+    dispatch(getCategories());
   }, [name, image_url, description, price, category_id]);
 
   useEffect(() => {
@@ -76,6 +78,7 @@ const EditProduct = ({ onClose }) => {
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="image-input">
@@ -86,6 +89,7 @@ const EditProduct = ({ onClose }) => {
             placeholder="Image"
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="description-input">
@@ -95,6 +99,7 @@ const EditProduct = ({ onClose }) => {
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="edit_product_description_input-bar"
           />
         </div>
         <div className="price-input">
@@ -107,6 +112,7 @@ const EditProduct = ({ onClose }) => {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="category-input">
@@ -115,6 +121,7 @@ const EditProduct = ({ onClose }) => {
             id="form-label-category"
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
+            className='edit_product_category_input_bar'
           >
             <option value=''>Please choose an option</option>
             {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
