@@ -13,7 +13,7 @@
 }
 
 .item-count {
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .cart-item {
@@ -82,7 +82,7 @@
 }
 .cart-function-buttons-remove:hover {
     background-color: lightgray;
-    color: rgb(255, 140, 0);
+    color: #f1651f;
     font-weight: bold;
 }
 
@@ -105,5 +105,5 @@
     border-radius: 3px;
 }
 .submit-cart-button:hover {
-    background-color: rgb(255, 140, 0, .6);
+    background-color: rgb(241, 101, 31, .6);
 }
