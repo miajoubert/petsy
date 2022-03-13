@@ -26,23 +26,26 @@
   cursor: pointer;
   text-align: center;
   font-weight: bold;
+  margin-left: 100px;
 }
 
 .errors-list {
-  color: #A61A2E;
+  color: #a61a2e;
   font-weight: 400;
-  font-family: "Graphik Webfont",-apple-system,"Helvetica Neue","Droid Sans",Arial,sans-serif;
+  font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans",
+    Arial, sans-serif;
   transition: opacity 200ms ease-in;
 }
 
 .sign_in-container {
-  margin: 15px;
+  margin-bottom: 12px;
 }
 
 .sign_in-logo {
   font-size: 20px;
   font-weight: bold;
 }
+
 
 .demo-user-btn:hover {
   font-size: 13px;
@@ -62,7 +65,7 @@
   cursor: pointer;
   text-align: center;
   font-weight: bold;
-  cursor: pointer;
+  margin-left: 100px;
 }
 
 .sign_in-container {
@@ -70,7 +73,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* margin-bottom: 30px; */
 }
 
 #login-container {
@@ -114,41 +116,46 @@
 }
 
 .email_input-bar {
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  display: block;
+  outline: none;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: inherit;
   width: 320px;
   height: 40px;
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: 200;
 }
-
 
 .password_input-bar {
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  display: block;
+  outline: none;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: inherit;
   width: 320px;
   height: 40px;
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: 200;
 }
-
-/* .hr {
-  display: block;
-  unicode-bidi: isolate;
-  margin-block-start: 0.5em;
-  margin-block-end: 0.5em;
-  margin-inline-start: auto;
-  margin-inline-end: auto;
-  overflow: hidden;
-  border-style: inset;
-  border-width: 1px;
-}
-
-.petsy-signin-policy {
-  font-size: 13px;
-  line-height: 18px;
-  color: #595959;
-  max-width: 450px;
-} */
-
 
 /*** Signup Form ***/
 
@@ -164,7 +171,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 .sign-up-text {
   font-size: 20px;
@@ -206,6 +212,19 @@
 }
 
 .username_input-bar {
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  display: block;
+  outline: none;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: inherit;
   width: 320px;
   height: 40px;
   margin-bottom: 15px;
@@ -214,14 +233,19 @@
 }
 
 .email_input-bar {
-  width: 320px;
-  height: 40px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  font-weight: 200;
-}
-
-.password_input-bar {
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  display: block;
+  outline: none;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: inherit;
   width: 320px;
   height: 40px;
   margin-bottom: 15px;
@@ -230,6 +254,19 @@
 }
 
 .repeat_password_input-bar {
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  display: block;
+  outline: none;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: inherit;
   width: 320px;
   height: 40px;
   margin-bottom: 15px;
@@ -243,4 +280,3 @@
   color: #595959;
   max-width: 300px;
 }
-
