@@ -34,7 +34,7 @@ const Cart = ({ showCart }) => {
                     quantity: item.count
                 }
 
-                dispatch(submitOrder(payload))
+                return dispatch(submitOrder(payload))
             });
 
         dispatch(resetCart());

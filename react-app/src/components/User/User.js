@@ -18,6 +18,7 @@ function User() {
     } else if (orders[order?.order_number]) {
       orders[order?.order_number].push(order)
     }
+    return null;
   })
 
   let myOrders = Object.values(orders);
@@ -79,7 +80,7 @@ function User() {
                     </div>
                   </div>
                 )
-              }
+              } else return null;
             })}
           </div>
         </ul>
