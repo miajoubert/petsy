@@ -76,6 +76,10 @@ ul {
   font-weight: 200;
 }
 
+.edit-product {
+  margin-left: 18px;
+}
+
 .edit-product-button {
   background-color: rgb(0, 0, 0);
   box-sizing: border-box;
