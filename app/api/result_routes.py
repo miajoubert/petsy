@@ -1,5 +1,4 @@
-from flask import Blueprint, jsonify, request
-from flask_cors import cross_origin
+from flask import Blueprint, request
 
 from app.models.product import Product
 
