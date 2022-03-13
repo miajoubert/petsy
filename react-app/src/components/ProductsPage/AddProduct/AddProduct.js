@@ -23,10 +23,10 @@ const AddProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 8) errors.push("Category Id must be between 1 to 8");
-    setErrorValidator(errors)
+    if (category_id < 1 || category_id > 8)
+      errors.push("Category Id must be between 1 to 8");
+    setErrorValidator(errors);
   }, [name, image_url, description, price, category_id]);
-
 
   useEffect(() => {
     if (!user) {
@@ -35,42 +35,42 @@ const AddProduct = ({ onClose }) => {
   }, [user, history]);
 
   const newProductSubmit = async (e) => {
-
-      e.preventDefault();
-      const payload = {
-        userId: user.id,
-        name,
-        image_url,
-        description,
-        price,
-        category_id,
-      };
-      const newProduct = await dispatch(addAProduct(payload));
-      if (newProduct) {
-        history.push(`/products/${newProduct.id}`);
-      }
-
+    e.preventDefault();
+    const payload = {
+      userId: user.id,
+      name,
+      image_url,
+      description,
+      price,
+      category_id,
+    };
+    const newProduct = await dispatch(addAProduct(payload));
+    if (newProduct) {
+      history.push(`/products/${newProduct.id}`);
+    }
   };
 
   return (
-    <div>
-      <form className="new-product-form" onSubmit={newProductSubmit}>
+      <form className="new-product-container" onSubmit={newProductSubmit}>
         <h2>List Your Product</h2>
-        <ul>
-        {errorValidator.map((error) => (
-          <li className="error-list" key={error}>{error}</li>
-        ))}
+        <ul className="errors-list">
+          {errorValidator.map((error) => (
+            <li className="error-list" key={error}>
+              {error}
+            </li>
+          ))}
         </ul>
-        <div className="name-input">
+        <div>
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="image-input">
+        <div>
           <label> Image </label>
           <input
             id="form-label-image"
@@ -78,18 +78,20 @@ const AddProduct = ({ onClose }) => {
             placeholder="Image"
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="description-input">
+        <div>
           <label> Description </label>
           <textarea
             id="form-label-description"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="edit_product_description_input-bar"
           />
         </div>
-        <div className="price-input">
+        <div>
           <label> Price </label>
           <input
             id="form-label-price"
@@ -97,9 +99,10 @@ const AddProduct = ({ onClose }) => {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="price-input">
+        <div>
           <label> Category Id </label>
           <input
             id="form-label-price"
@@ -107,16 +110,22 @@ const AddProduct = ({ onClose }) => {
             placeholder="Category Id"
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <button className="add-product-button" type="submit" disabled={errorValidator.length > 0}>
-          Submit
-        </button>
-        <button className="cancel-add-button" type="true" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="add-product">
+          <button
+            className="add-product-button"
+            type="submit"
+            disabled={errorValidator.length > 0}
+          >
+            Submit
+          </button>
+          <button className="cancel-add-button" type="true" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </form>
-    </div>
   );
 };
 

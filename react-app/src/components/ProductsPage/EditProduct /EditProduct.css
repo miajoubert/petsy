@@ -26,7 +26,7 @@
   border-radius: 30px;
 }
 
-ul {
+.errors-list {
   color: #a61a2e;
   font-weight: 400;
   font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans",
