@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addAProduct } from "../../../store/products";
+import { getCategories } from '../../../store/category';
 
 const AddProduct = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const AddProduct = ({ onClose }) => {
     if (!price) errors.push("Please provide a price");
     if (!category_id) errors.push('Please provide a category');
     setErrorValidator(errors)
+    dispatch(getCategories());
   }, [name, image_url, description, price, category_id]);
 
   useEffect(() => {
@@ -52,79 +54,80 @@ const AddProduct = ({ onClose }) => {
   };
 
   return (
-      <form className="new-product-container" onSubmit={newProductSubmit}>
-        <h2>List Your Product</h2>
-        <ul>
-          {errorValidator.map((error) => (
-            <li className="error-list" key={error}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <label> Name </label>
-          <input
-            id="form-label-name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="edit_product_input-bar"
-          />
-        </div>
-        <div>
-          <label> Image </label>
-          <input
-            id="form-label-image"
-            type="text"
-            placeholder="Image"
-            value={image_url}
-            onChange={(e) => setImageUrl(e.target.value)}
-            className="edit_product_input-bar"
-          />
-        </div>
-        <div>
-          <label> Description </label>
-          <textarea
-            id="form-label-description"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="edit_product_description_input-bar"
-          />
-        </div>
-        <div>
-          <label> Price </label>
-          <input
-            id="form-label-price"
-            type="number"
-            placeholder="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="edit_product_input-bar"
-          />
-        </div>
-        <div className="category-input">
-          <label> Category </label>
-          <select
-            id="form-label-category"
-            value={category_id}
-            onChange={(e) => setCategoryId(e.target.value)}
-          >
-            <option value=''>Please choose an option</option>
-            {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
-          </select>
-        </div>
-        <div className="add-product">
-          <button
-            className="add-product-button"
-            type="submit"
-            disabled={errorValidator.length > 0}
-          >
-            Submit
-          </button>
-          <button className="cancel-add-button" type="true" onClick={onClose}>
-            Cancel
-          </button>
-        </div>
-      </form>
+    <form className="new-product-container" onSubmit={newProductSubmit}>
+      <h2>List Your Product</h2>
+      <ul>
+        {errorValidator.map((error) => (
+          <li className="error-list" key={error}>{error}</li>
+        ))}
+      </ul>
+      <div>
+        <label> Name </label>
+        <input
+          id="form-label-name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="edit_product_input-bar"
+        />
+      </div>
+      <div>
+        <label> Image </label>
+        <input
+          id="form-label-image"
+          type="text"
+          placeholder="Image"
+          value={image_url}
+          onChange={(e) => setImageUrl(e.target.value)}
+          className="edit_product_input-bar"
+        />
+      </div>
+      <div>
+        <label> Description </label>
+        <textarea
+          id="form-label-description"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="edit_product_description_input-bar"
+        />
+      </div>
+      <div>
+        <label> Price </label>
+        <input
+          id="form-label-price"
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="edit_product_input-bar"
+        />
+      </div>
+      <div className="category-input">
+        <label> Category </label>
+        <select
+          id="form-label-category"
+          value={category_id}
+          onChange={(e) => setCategoryId(e.target.value)}
+          className='edit_product_category_input_bar'
+        >
+          <option value=''>Please choose an option</option>
+          {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
+        </select>
+      </div>
+      <div className="add-product">
+        <button
+          className="add-product-button"
+          type="submit"
+          disabled={errorValidator.length > 0}
+        >
+          Submit
+        </button>
+        <button className="cancel-add-button" type="true" onClick={onClose}>
+          Cancel
+        </button>
+      </div>
+    </form>
   );
 };
 
