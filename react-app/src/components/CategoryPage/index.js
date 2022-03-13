@@ -8,6 +8,7 @@ import "./CategoryPage.css";
 const CategoryPage = () => {
   const { id } = useParams();
   const category = useSelector((state) => state.categories[id]);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const CategoryPage = () => {
   return (
     <main className="products-main">
       <h1>{category?.name}</h1>
-      <AddProductModal />
+      {user ? <AddProductModal /> : null}
       <div className='products-content'>
         {category?.products.map(product => (
           <Link to={`/products/${product?.id}`}>

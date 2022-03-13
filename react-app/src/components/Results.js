@@ -14,7 +14,6 @@ const Results = () => {
     } else if (results.length) {
         return (
             <main className="products-main">
-                {/* <h1>Results</h1> */}
                 <div className="products-content">
                     {results?.map((result) => (
                         <Link

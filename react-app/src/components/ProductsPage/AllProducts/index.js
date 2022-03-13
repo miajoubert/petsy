@@ -9,6 +9,7 @@ const AllProducts = () => {
   const [productList, setProductList] = useState([]);
   const dispatch = useDispatch();
   const products = useSelector(state => state.productsReducer);
+  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -23,7 +24,7 @@ const AllProducts = () => {
   return (
     <main className="products-main">
       <h1>All Products</h1>
-      <AddProductModal />
+      {user ? <AddProductModal /> : null}
       <div className="products-content">
         {productList.length &&
           productList.map((product) => (
