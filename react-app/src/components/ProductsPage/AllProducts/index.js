@@ -44,7 +44,7 @@ const AllProducts = () => {
                   />
                 </div>
                 <div className="product_name">{product?.name}</div>
-                <div className="product_price">${product?.price}</div>
+                <div className="product_price">${parseFloat(product.price).toFixed(2)}</div>
               </div>
             </Link>
           ))}
