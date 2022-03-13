@@ -24,8 +24,6 @@ const SingleProduct = () => {
   const productReviews = reviewsArr.filter(
     (review) => review.product_id === productId
   );
-  console.log("productReviews", productReviews);
-  console.log("reviewsArr", reviewsArr);
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -97,27 +95,29 @@ const SingleProduct = () => {
                 )
                 .map((star, idx) => <span key={idx}>{star}</span>)}
           </div>
-          <h3>{product.category_name}</h3>
+          <h3 className="product-name">{product.category_name}</h3>
 
           <div className="product-price">
             ${parseFloat(product.price).toFixed(2)}
           </div>
-          <label className="size-text">Size</label>
-          <select className="size-selector">
+          {userId !== product.seller_id &&<h3>{"✓ "} In Stock </h3>}
+
+          {/* <select className="size-selector">
             <option value="" selected="">
               Select an option
             </option>
             <option>Small</option>
             <option>Medium</option>
             <option>Large</option>
-          </select>
-          {userId && (
+          </select> */}
+          {userId && userId !== product.seller_id && (
             <button
               className="add-to-cart-btn"
               onClick={() => dispatch(populateCart(product))}
             >
               Add to Cart
             </button>
+            
           )}
           <div className="product-btn-container">
             {userId && userId === product.seller_id && <EditProductModal />}
@@ -128,10 +128,10 @@ const SingleProduct = () => {
             )}
           </div>
           <div className="bottom-right-container">
-            <h2>Description</h2>
-            <div className="product-description">{product.description}</div>
+            <h2 className="product-description">Description</h2>
+            <div>{product.description}</div>
 
-            <h2>Shipping and return policies</h2>
+            <h2 className="shipping-return">Shipping and return policies</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -141,7 +141,7 @@ const SingleProduct = () => {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <h2>FAQs</h2>
+            <h2 className="faqs">FAQs</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -151,7 +151,7 @@ const SingleProduct = () => {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <h2>Meet Your Seller</h2>
+            <h2 className="seller-name">Meet Your Seller</h2>
             <h3>{product.username}</h3>
           </div>
         </div>
