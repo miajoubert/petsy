@@ -11,8 +11,11 @@
 
 .product-image {
   border-radius: 3px;
-  object-fit: contain;
   margin: 20px 0px 0px 20%;
+}
+
+.product-image img {
+  object-fit: contain;
 }
 
 .product-price {
@@ -27,7 +30,7 @@
 }
 
 .product-info-container {
-  margin: 0px 25% 0px 200px;
+  margin: 0px 25% 0px 150px;
   font-size: .95rem;
 }
 .add-to-cart-btn {
