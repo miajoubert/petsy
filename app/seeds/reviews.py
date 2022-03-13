@@ -3,7 +3,7 @@ from datetime import datetime
 
 def seed_reviews():
     review1 = Review(
-        buyer_id=1,
+        buyer_id=2,
         product_id=1,
         review="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         rating=5,
@@ -12,7 +12,7 @@ def seed_reviews():
     )
 
     review2 = Review(
-        buyer_id=1,
+        buyer_id=3,
         product_id=1,
         review="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         rating=5,
@@ -21,7 +21,7 @@ def seed_reviews():
     )
 
     review3 = Review(
-        buyer_id=1,
+        buyer_id=2,
         product_id=1,
         review="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         rating=5,
@@ -30,7 +30,7 @@ def seed_reviews():
     )
 
     review4 = Review(
-        buyer_id=1,
+        buyer_id=3,
         product_id=1,
         review="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         rating=5,
@@ -39,7 +39,7 @@ def seed_reviews():
     )
 
     review5 = Review(
-        buyer_id=1,
+        buyer_id=2,
         product_id=1,
         review="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         rating=5,
@@ -58,4 +58,3 @@ def seed_reviews():
 def undo_reviews():
     db.session.execute('TRUNCATE products RESTART IDENTITY CASCADE;')
     db.session.commit()
-

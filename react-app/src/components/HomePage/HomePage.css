@@ -28,6 +28,11 @@
     text-decoration: none;
 }
 
+.category-container h2 {
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
 .category-container a:hover {
     text-decoration: underline;
 }

@@ -7,6 +7,8 @@ const AddProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const categoriesObj = useSelector(state => state.categories);
+  const categories = Object.values(categoriesObj);
 
   const [name, setName] = useState("");
   const [image_url, setImageUrl] = useState("");
@@ -23,9 +25,8 @@ const AddProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 8)
-      errors.push("Category Id must be between 1 to 8");
-    setErrorValidator(errors);
+    if (!category_id) errors.push('Please provide a category');
+    setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 
   useEffect(() => {
@@ -53,11 +54,9 @@ const AddProduct = ({ onClose }) => {
   return (
       <form className="new-product-container" onSubmit={newProductSubmit}>
         <h2>List Your Product</h2>
-        <ul className="errors-list">
+        <ul>
           {errorValidator.map((error) => (
-            <li className="error-list" key={error}>
-              {error}
-            </li>
+            <li className="error-list" key={error}>{error}</li>
           ))}
         </ul>
         <div>
@@ -102,16 +101,16 @@ const AddProduct = ({ onClose }) => {
             className="edit_product_input-bar"
           />
         </div>
-        <div>
-          <label> Category Id </label>
-          <input
-            id="form-label-price"
-            type="number"
-            placeholder="Category Id"
+        <div className="category-input">
+          <label> Category </label>
+          <select
+            id="form-label-category"
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
-            className="edit_product_input-bar"
-          />
+          >
+            <option value=''>Please choose an option</option>
+            {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
+          </select>
         </div>
         <div className="add-product">
           <button

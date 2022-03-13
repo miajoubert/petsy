@@ -27,8 +27,7 @@
 .all-products-container {
     border: 1px solid #e6e6e6;
     border-radius: 10px;
-    font-weight: bold;
-    height: 350px;
+    height: 370px;
     margin-top: 20px;
     padding: 8px;
     width: 250px;
@@ -45,4 +44,9 @@
 .product_images img {
     object-fit: contain;
     width: 100%;
+}
+
+.product_price {
+    font-weight: bold;
+    margin-top: 20px;
 }
