@@ -13,10 +13,10 @@ function User() {
 
   let orders = {}
   ordersArr.map(order => {
-    if (!orders[order.order_number]) {
-      orders[order.order_number] = [order]
-    } else if (orders[order.order_number]) {
-      orders[order.order_number].push(order)
+    if (!orders[order?.order_number]) {
+      orders[order?.order_number] = [order]
+    } else if (orders[order?.order_number]) {
+      orders[order?.order_number].push(order)
     }
   })
 
@@ -50,7 +50,7 @@ function User() {
         <ul className='order-history-all-container'>
           <div className='order-tiles-container'>
             {myOrders.map(orders => {
-              if (user.id === orders[0].buyer_id) {
+              if (user.id === orders[0]?.buyer_id) {
                 return (
                   <div key={orders[0]?.id}>
                     <div className='order-history-tile'>
@@ -67,9 +67,9 @@ function User() {
                         <div hidden={false} key={orders[0]?.id}>
                           <div hidden={true}>{subtotal = parseInt(0)}</div>
                           <div>{orders.map(order => (
-                            <div key={order.id}>
-                              <div className='product-in-list'>{products[order.product_id].name} -- <b>{order.quantity}</b></div>
-                              <div hidden={true}> {subtotal += parseFloat(products[order.product_id].price * order.quantity)} </div>
+                            <div key={order?.id}>
+                              <div className='product-in-list'>{products[order?.product_id].name} -- <b>{order?.quantity}</b></div>
+                              <div hidden={true}> {subtotal += parseFloat(products[order?.product_id].price * order?.quantity)} </div>
                             </div>
                           ))}
                             <div className='order-total'><b>Order Total: $ {parseFloat(subtotal * 1.055).toFixed(2)}</b></div>
