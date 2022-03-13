@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addAProduct } from "../../../store/products";
+import { getCategories } from "../../../store/category";
 
 const AddProduct = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const categoriesObj = useSelector(state => state.categories);
+  const categories = Object.values(categoriesObj);
 
   const [name, setName] = useState("");
   const [image_url, setImageUrl] = useState("");
@@ -23,10 +26,9 @@ const AddProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    if (!category_id) errors.push('Please provide a category');
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
-
 
   useEffect(() => {
     if (!user) {
@@ -35,21 +37,19 @@ const AddProduct = ({ onClose }) => {
   }, [user, history]);
 
   const newProductSubmit = async (e) => {
-
-      e.preventDefault();
-      const payload = {
-        userId: user.id,
-        name,
-        image_url,
-        description,
-        price,
-        category_id,
-      };
-      const newProduct = await dispatch(addAProduct(payload));
-      if (newProduct) {
-        history.push(`/products/${newProduct.id}`);
-      }
-
+    e.preventDefault();
+    const payload = {
+      userId: user.id,
+      name,
+      image_url,
+      description,
+      price,
+      category_id,
+    };
+    const newProduct = await dispatch(addAProduct(payload));
+    if (newProduct) {
+      history.push(`/products/${newProduct.id}`);
+    }
   };
 
   return (
@@ -57,9 +57,9 @@ const AddProduct = ({ onClose }) => {
       <form className="new-product-form" onSubmit={newProductSubmit}>
         <h2>List Your Product</h2>
         <ul>
-        {errorValidator.map((error) => (
-          <li className="error-list" key={error}>{error}</li>
-        ))}
+          {errorValidator.map((error) => (
+            <li className="error-list" key={error}>{error}</li>
+          ))}
         </ul>
         <div className="name-input">
           <label> Name </label>
@@ -99,15 +99,16 @@ const AddProduct = ({ onClose }) => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <div className="price-input">
-          <label> Category Id </label>
-          <input
-            id="form-label-price"
-            type="number"
-            placeholder="Category Id"
+        <div className="category-input">
+          <label> Category </label>
+          <select
+            id="form-label-category"
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
-          />
+          >
+            <option value=''>Please choose an option</option>
+            {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
+          </select>
         </div>
         <button className="add-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
