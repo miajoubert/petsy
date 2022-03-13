@@ -43,7 +43,6 @@ const EditProduct = ({ onClose }) => {
   }, [product]);
 
   const handleEditSubmit = async (e) => {
-
     e.preventDefault();
     const payload = {
       ...product,
@@ -127,11 +126,11 @@ const EditProduct = ({ onClose }) => {
         <button className="edit-product-button" type="submit" disabled={errorValidator.length > 0}>
           Submit
         </button>
-        <button className="cancel-edit-button" onClick={onClose} >
+        <button className="cancel-edit-button" onClick={onClose}>
           Cancel
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

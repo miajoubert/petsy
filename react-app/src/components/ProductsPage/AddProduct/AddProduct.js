@@ -52,24 +52,24 @@ const AddProduct = ({ onClose }) => {
   };
 
   return (
-    <div>
-      <form className="new-product-form" onSubmit={newProductSubmit}>
+      <form className="new-product-container" onSubmit={newProductSubmit}>
         <h2>List Your Product</h2>
         <ul>
           {errorValidator.map((error) => (
             <li className="error-list" key={error}>{error}</li>
           ))}
         </ul>
-        <div className="name-input">
+        <div>
           <label> Name </label>
           <input
             id="form-label-name"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="image-input">
+        <div>
           <label> Image </label>
           <input
             id="form-label-image"
@@ -77,18 +77,20 @@ const AddProduct = ({ onClose }) => {
             placeholder="Image"
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
-        <div className="description-input">
+        <div>
           <label> Description </label>
           <textarea
             id="form-label-description"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="edit_product_description_input-bar"
           />
         </div>
-        <div className="price-input">
+        <div>
           <label> Price </label>
           <input
             id="form-label-price"
@@ -96,6 +98,7 @@ const AddProduct = ({ onClose }) => {
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="edit_product_input-bar"
           />
         </div>
         <div className="category-input">
@@ -109,14 +112,19 @@ const AddProduct = ({ onClose }) => {
             {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
           </select>
         </div>
-        <button className="add-product-button" type="submit" disabled={errorValidator.length > 0}>
-          Submit
-        </button>
-        <button className="cancel-add-button" type="true" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="add-product">
+          <button
+            className="add-product-button"
+            type="submit"
+            disabled={errorValidator.length > 0}
+          >
+            Submit
+          </button>
+          <button className="cancel-add-button" type="true" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </form>
-    </div>
   );
 };
 

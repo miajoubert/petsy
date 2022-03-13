@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editAReview } from "../../../store/reviews";
-import "./EditReview.css"
+import "./EditReview.css";
 
 const EditReviewForm = ({ onClose, reviewId }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const EditReviewForm = ({ onClose, reviewId }) => {
     if (!rating) errors.push("Please provide a rating");
     if (rating < 1 || rating > 5)
       errors.push("Rating must been between 1 or 5");
-    setErrorValidator(errors)
+    setErrorValidator(errors);
   }, [review, rating]);
 
   const handleEditReview = async (e) => {
@@ -42,7 +42,7 @@ const EditReviewForm = ({ onClose, reviewId }) => {
 
   return (
     <div className="edit-review-container">
-      <ul>
+      <ul className="errors-list">
         {errorValidator.map((error) => (
           <li className="error-list" key={error}>
             {error}
@@ -58,6 +58,7 @@ const EditReviewForm = ({ onClose, reviewId }) => {
             // required
             value={review}
             onChange={(e) => setReview(e.target.value)}
+            className="edit_review_input-bar"
           />
         </div>
         <div className="rating">
@@ -71,17 +72,24 @@ const EditReviewForm = ({ onClose, reviewId }) => {
             placeholder="Rating"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
+            className="edit_rating_input-bar"
           />
         </div>
         <div className="created-at-input">
           <input type="hidden" value={created_at} />
         </div>
-        <button className="edit-review-button" type="submit" disabled={errorValidator.length > 0}>
-          Submit
-        </button>
-        <button className="cancel-edit-button" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="edit-review">
+          <button
+            className="edit-review-button"
+            type="submit"
+            disabled={errorValidator.length > 0}
+          >
+            Submit
+          </button>
+          <button className="cancel-edit-button" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
