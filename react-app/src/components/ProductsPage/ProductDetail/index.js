@@ -69,7 +69,7 @@ const SingleProduct = () => {
                 <Reviews />
               </div>
             )}
-            <h2>
+            <h3>
               {productReviews?.length} Reviews{" "}
               {rating > 0 &&
                 Array(rating)
@@ -79,14 +79,13 @@ const SingleProduct = () => {
                     </span>
                   )
                   .map((star, idx) => <span key={idx}>{star}</span>)}
-            </h2>
+            </h3>
             <AllReviews />
           </div>
         </div>
         <div className="product-info-container">
-          <h2>{product.name}</h2>
           <div>
-            {rating > 0 &&
+            {productReviews?.length} review(s) |  {rating > 0 &&
               Array(rating)
                 .fill(
                   <span>
@@ -95,12 +94,13 @@ const SingleProduct = () => {
                 )
                 .map((star, idx) => <span key={idx}>{star}</span>)}
           </div>
-          <h3 className="product-name">{product.category_name}</h3>
+          <h2 className="product-name">{product.name}</h2>
+          <h4 className="product-category">{product.category_name}</h4>
 
           <div className="product-price">
-            ${parseFloat(product.price).toFixed(2)}
+            $ {parseFloat(product.price).toFixed(2)}
           </div>
-          {userId !== product.seller_id &&<h3>{"✓ "} In Stock </h3>}
+          {userId !== product.seller_id && <h3>{"✓ "} In Stock </h3>}
 
           {/* <select className="size-selector">
             <option value="" selected="">
@@ -117,7 +117,7 @@ const SingleProduct = () => {
             >
               Add to Cart
             </button>
-            
+
           )}
           <div className="product-btn-container">
             {userId && userId === product.seller_id && <EditProductModal />}
@@ -133,23 +133,16 @@ const SingleProduct = () => {
 
             <h2 className="shipping-return">Shipping and return policies</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              If, for any reason, you are not completely satisfied with a purchase, we invite you to review our policy on refunds and returns.
             </p>
             <h2 className="faqs">FAQs</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <b>Can I use this if I have a cat?</b>
+              <p>
+                Chase ball of string eat plants, meow, and throw up because I ate plants going to catch the red dot today going to catch the red dot today. I could pee on this if I had the energy. Chew iPad power cord steal the warm chair right after you get up for purr for no reason leave hair everywhere, decide to want nothing to do with my owner today.
+              </p>
+              <b>Can I use this if I have a dog?</b>
+              <p>Doing me a frighten heck fluffer yapper what a nice floof, such treat very good spot doggo. Maximum borkdrive smol borking doge with a long snoot for pats shibe very good spot wow very biscit blep, blop yapper woofer waggy wags. Borking dog maximum borkdrive wow such tempt very hand that feed shibe, stop it cat. Woof you are doin me a concern, that tongue though. Much borkdrive.</p>
             </p>
             <h2 className="seller-name">Meet Your Seller</h2>
             <h3>{product.username}</h3>
