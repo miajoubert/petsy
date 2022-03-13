@@ -6,8 +6,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/user/UsersList'
-import User from './components/user/User';
+import UsersList from './components/User/UsersList';
+import User from './components/User/User';
 import Results from './components/Results';
 import AllProducts from './components/ProductsPage/AllProducts';
 import SingleProduct from './components/ProductsPage/ProductDetail';
