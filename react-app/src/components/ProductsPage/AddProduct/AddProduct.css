@@ -1,0 +1,14 @@
+.add-product-modal {
+    background-color: #222222;
+    border: 0;
+    border-radius: 24px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 18px;
+}
