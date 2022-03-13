@@ -82,6 +82,7 @@ export default function cartReducer(state = {}, action) {
         case UPDATE_COUNT:
             newState = { ...state }
             newState[action.product.id].count = action.count
+            localStorage.setItem('cart', JSON.stringify(newState));
             return newState;
         case REFRESH_CART:
             newState = { ...state, ...action.cart }

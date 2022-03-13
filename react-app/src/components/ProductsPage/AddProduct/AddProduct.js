@@ -29,7 +29,7 @@ const AddProduct = ({ onClose }) => {
     if (!category_id) errors.push('Please provide a category');
     setErrorValidator(errors)
     dispatch(getCategories());
-  }, [name, image_url, description, price, category_id]);
+  }, [name, image_url, description, price, category_id, dispatch]);
 
   useEffect(() => {
     if (!user) {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 
 const ProfileButton = () => {
