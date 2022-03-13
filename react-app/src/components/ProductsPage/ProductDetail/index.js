@@ -122,7 +122,7 @@ const SingleProduct = () => {
           <div className="product-btn-container">
             {userId && userId === product.seller_id && <EditProductModal />}
             {userId && userId === product.seller_id && (
-              <button className="delete-btn" onClick={handleDelete}>
+              <button className="delete-product-button" onClick={handleDelete}>
                 Delete Your Product
               </button>
             )}

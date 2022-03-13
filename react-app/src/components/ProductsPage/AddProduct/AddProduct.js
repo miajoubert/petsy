@@ -14,7 +14,7 @@ const AddProduct = ({ onClose }) => {
   const [name, setName] = useState("");
   const [image_url, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(1);
   const [category_id, setCategoryId] = useState("");
   const [errorValidator, setErrorValidator] = useState([]);
 
@@ -97,6 +97,7 @@ const AddProduct = ({ onClose }) => {
         <input
           id="form-label-price"
           type="number"
+          min="1"
           placeholder="Price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
