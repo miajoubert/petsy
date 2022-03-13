@@ -7,8 +7,8 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 - [Live Site](https://petsy-store.herokuapp.com/)
 - [Feature List](https://github.com/miajoubert/petsy/wiki/Feature-List)
 - [Database Schema](https://github.com/miajoubert/petsy/wiki/Database-Schema)
-- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Routes-Frontend)
-- [API Documentation](https://github.com/miajoubert/petsy/wiki/Routes----API)
+- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Frontend-Routes)
+- [API Documentation](https://github.com/miajoubert/petsy/wiki/API-Routes)
 - [User Stories](https://github.com/miajoubert/petsy/wiki/User-Stories)
 - [Redux State](https://github.com/miajoubert/petsy/wiki/Redux-State)
 
