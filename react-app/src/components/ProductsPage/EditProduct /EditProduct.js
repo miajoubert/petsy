@@ -129,8 +129,8 @@ const EditProduct = ({ onClose }) => {
         <button className="cancel-edit-button" onClick={onClose}>
           Cancel
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
