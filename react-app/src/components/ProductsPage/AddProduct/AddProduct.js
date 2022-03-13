@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addAProduct } from "../../../store/products";
-import { getCategories } from "../../../store/category";
 
 const AddProduct = ({ onClose }) => {
   const dispatch = useDispatch();

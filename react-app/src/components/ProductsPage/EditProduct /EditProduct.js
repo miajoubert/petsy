@@ -9,6 +9,8 @@ const EditProduct = ({ onClose }) => {
 
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer[id]);
+  const categoriesObj = useSelector(state => state.categories);
+  const categories = Object.values(categoriesObj);
 
   const [name, setName] = useState(product?.name || "");
   const [image_url, setImageUrl] = useState(product?.image_url || "");
@@ -26,7 +28,7 @@ const EditProduct = ({ onClose }) => {
       errors.push("Please provide a valid URL");
     if (!description) errors.push("Please provide a description");
     if (!price) errors.push("Please provide a price");
-    if (category_id < 1 || category_id > 10) errors.push("Category Id must be between 1 to 10");
+    if (!category_id) errors.push('Please provide a category');
     setErrorValidator(errors)
   }, [name, image_url, description, price, category_id]);
 
@@ -108,16 +110,16 @@ const EditProduct = ({ onClose }) => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <div className="price-input">
-          <label> Category Id </label>
-          <input
-            id="form-label-price"
-            type="number"
-            placeholder="Category Id"
-            // required
+        <div className="category-input">
+          <label> Category </label>
+          <select
+            id="form-label-category"
             value={category_id}
             onChange={(e) => setCategoryId(e.target.value)}
-          />
+          >
+            <option value=''>Please choose an option</option>
+            {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
+          </select>
         </div>
         <div className="created-at-input">
           <input type="hidden" value={created_at} />
