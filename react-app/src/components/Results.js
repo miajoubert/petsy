@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './Results.css';
 
 const Results = () => {
     let rslts = useSelector(state => state.results)
@@ -8,7 +9,7 @@ const Results = () => {
 
     if (!results.length) {
         return (
-            <div> No results found!</div>
+            <div className='no-results'>No results found!</div>
         )
     } else if (results.length) {
         return (
