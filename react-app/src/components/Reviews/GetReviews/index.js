@@ -10,7 +10,6 @@ import "./Reviews.css";
 const AllReviews = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const reviews = useSelector((state) => state.reviewsReducer);
   const product = useSelector((state) => state.productsReducer[id]);

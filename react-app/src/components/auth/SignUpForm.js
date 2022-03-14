@@ -15,11 +15,9 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data);
-      }
+    const data = await dispatch(signUp(username, email, password, repeatPassword));
+    if (data) {
+      setErrors(data);
     }
   };
 
@@ -110,12 +108,12 @@ const SignUpForm = () => {
             className="repeat_password_input-bar"
           ></input>
         </div>
-          <button type="submit" className="sign_up-btn">
-            Sign Up
-          </button>
-          <p className="petsy-policy"> By clicking Sign in, you agree to Petsy's Terms of Use and Privacy
-            Policy, which does not exist. Petsy will not send you
-            communications and post without your permission.</p>
+        <button type="submit" className="sign_up-btn">
+          Sign Up
+        </button>
+        <p className="petsy-policy"> By clicking Sign in, you agree to Petsy's Terms of Use and Privacy
+          Policy, which does not exist. Petsy will not send you
+          communications and post without your permission.</p>
       </div>
     </form>
   );

@@ -74,9 +74,6 @@ function App() {
         <Route path="/results" exact={true}>
           <Results />
         </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute> */}
         <Route>
           <MissingPage />
         </Route>

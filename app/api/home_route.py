@@ -1,5 +1,4 @@
-import imp
-from flask import Blueprint, jsonify, request
+from flask import Blueprint
 from app.models import Product, Category
 
 home_route = Blueprint("home", __name__)
