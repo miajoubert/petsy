@@ -1,8 +1,7 @@
-from flask import Blueprint, jsonify, request
-from flask_cors import cross_origin
-from app.models.category import Category
+from flask import Blueprint, request
 
 from app.models.product import Product
+from app.models.category import Category
 
 
 result_routes = Blueprint("results", __name__)

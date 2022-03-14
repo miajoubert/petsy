@@ -1,5 +1,4 @@
-from unicodedata import category
-from flask import Blueprint, jsonify, request
+from flask import Blueprint
 from app.models import Category, Product
 
 category_routes = Blueprint("categories", __name__)
