@@ -35,6 +35,7 @@
   font-family: "Graphik Webfont", -apple-system, "Helvetica Neue", "Droid Sans",
     Arial, sans-serif;
   transition: opacity 200ms ease-in;
+  text-align: center;
 }
 
 .sign_in-container {

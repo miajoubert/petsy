@@ -96,6 +96,7 @@
 .user-cart-container {
     display: flex;
     flex-direction: row;
+    width: 124px;
 }
 
 .user-icon-button, .shopping-cart-btn {
@@ -126,6 +127,7 @@ span.badge {
     height: 10px;
     border-radius: 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .profile-dropdown {
