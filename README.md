@@ -56,21 +56,28 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 # Features
 
 ## Splash Page 
-![Splash-Page](https://user-images.githubusercontent.com/87781597/158024746-4325799d-e31a-4530-934e-f42154416e54.png)
-
+![Splash Page](https://user-images.githubusercontent.com/92398763/158102304-8f352a22-ad0c-439c-adb9-76e5443c0bc1.png)
 
 
 ## Login Page
-![Login-Page](https://user-images.githubusercontent.com/87781597/158024845-76569883-5566-4e39-bd5f-c2a08af283b7.png)
+![Login Page](https://user-images.githubusercontent.com/92398763/158102327-367a82cc-3970-4b1d-9a95-72e5861d6534.png)
 
 
+## All Products Page
+![All Products](https://user-images.githubusercontent.com/92398763/158102344-6089a025-b8af-485d-a335-5d18d43efcfe.png)
 
-## Shopping Cart 
 
-```Shopping Cart Image To Be Updated```
+## Product Detail Page
+![Product Detail Page](https://user-images.githubusercontent.com/92398763/158102357-e3531954-058f-4b94-b98a-d28d37d8b659.png)
+![Product Detail Page2](https://user-images.githubusercontent.com/92398763/158102372-0fb90c0f-4e37-48cc-a088-6f3e1953faeb.png)
 
-## Product Detail Page 
-![Product-Detail](https://user-images.githubusercontent.com/87781597/158024972-b931a0ca-da1c-467d-b656-6a47cb82e585.png)
+
+## Shopping Cart
+![Shopping Cart](https://user-images.githubusercontent.com/92398763/158102398-57e590a3-dac1-4fd8-a7a3-f6efe05e6243.png)
+
+
+## Order History
+![Order History](https://user-images.githubusercontent.com/92398763/158102410-bbbff3f9-5a3f-47f9-8951-043dea0b9ac7.png)
 
 
 ## 404 Page Not Found 
