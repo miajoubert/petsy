@@ -69,7 +69,7 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 
 ## Product Detail Page
 ![Product Detail Page](https://user-images.githubusercontent.com/92398763/158102357-e3531954-058f-4b94-b98a-d28d37d8b659.png)
-![Product Detail Page2](https://user-images.githubusercontent.com/92398763/158102372-0fb90c0f-4e37-48cc-a088-6f3e1953faeb.png)
+![Product Detail Page2](https://user-images.githubusercontent.com/92398763/158102611-e5468205-6834-44b9-bfeb-69813fbc3f9a.png)
 
 
 ## Shopping Cart
