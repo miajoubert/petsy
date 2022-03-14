@@ -39,7 +39,7 @@ def seed_reviews():
     )
 
     review5 = Review(
-        buyer_id=6,
+        buyer_id=4,
         product_id=1,
         review="Most angery pup jealous pupper puggo ruff, good boys he made many woofs, woof blep bork. Maximum borkdrive shooberino blep; bark house woof adorable doggo doge what a nice floof snoot most pupper, you pupper snoot. Pupper fluffer many pats big or small, good boy pup good boy. The neighborhood pupper snoot clouds noodle horse, extremely cute most angry pupper I have ever seen. Slobber tongue shoob fluffer, woof. Borkdrive blop doggy dog, you are doing me a frighten borkdrive.",
         rating=5,
