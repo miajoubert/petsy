@@ -21,8 +21,14 @@
 
 .edit-product-container {
   max-width: 500px;
+  padding: 0px;
+  margin: 0px;
   background: transparent;
   border-radius: 30px;
+  overflow-y: scroll;
+}
+.edit-product-container::-webkit-scrollbar {
+  display: none;
 }
 
 .errors-list {
