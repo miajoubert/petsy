@@ -16,8 +16,6 @@ const SingleProduct = () => {
 
   const product = useSelector((state) => state.productsReducer[id]);
   const userId = useSelector((state) => state.session.user?.id);
-  // const user = useSelector((state) => state.session.user);
-  // const category = useSelector((state) => state.categories[id]);
   const reviews = useSelector((state) => state.reviewsReducer);
   const reviewsArr = Object.values(reviews);
   const productReviews = reviewsArr.filter(

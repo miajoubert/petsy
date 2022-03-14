@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint
 from flask_login import login_required
-from app.models import Shopping_Cart, db
+from app.models import Shopping_Cart
 
 cart_routes = Blueprint('shopping_cart', __name__)
 
