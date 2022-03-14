@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 
 from app.models.product import Product
+from app.models.category import Category
 
 
 result_routes = Blueprint("results", __name__)
