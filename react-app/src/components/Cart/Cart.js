@@ -33,7 +33,6 @@ const Cart = ({ showCart }) => {
                     product_id: item.id,
                     quantity: item.count
                 }
-
                 return dispatch(submitOrder(payload))
             });
 

@@ -35,6 +35,14 @@ const SingleProduct = () => {
     await dispatch(deleteSingleProduct(id));
     history.push("/products");
   }
+
+  async function handleAddToCart(e, product) {
+    e.preventDefault()
+    await dispatch(populateCart(product))
+    // window.alert(`${product?.name} added to your cart!`)
+  }
+
+
   const overallRating = (productReviews) => {
     return productReviews?.reduce(function (prevValue, review) {
       return prevValue + review.rating;
@@ -110,7 +118,7 @@ const SingleProduct = () => {
           {userId && userId !== product.seller_id && (
             <button
               className="add-to-cart-btn"
-              onClick={() => dispatch(populateCart(product))}
+              onClick={(e) => handleAddToCart(e, product)}
             >
               Add to Cart
             </button>

@@ -7,8 +7,8 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 - [Live Site](https://petsy-store.herokuapp.com/)
 - [Feature List](https://github.com/miajoubert/petsy/wiki/Feature-List)
 - [Database Schema](https://github.com/miajoubert/petsy/wiki/Database-Schema)
-- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Routes-Frontend)
-- [API Documentation](https://github.com/miajoubert/petsy/wiki/Routes----API)
+- [Frontend Routes](https://github.com/miajoubert/petsy/wiki/Frontend-Routes)
+- [API Documentation](https://github.com/miajoubert/petsy/wiki/API-Routes)
 - [User Stories](https://github.com/miajoubert/petsy/wiki/User-Stories)
 - [Redux State](https://github.com/miajoubert/petsy/wiki/Redux-State)
 
@@ -30,13 +30,13 @@ Inspired by Etsy, Petsy is an e-commerce platform for pet enthusiasts where user
 
     ```npm install```
 
-4.  Create a .env file based on the .env.example given (An AWS S3 account is required for adding/editing user profile pictures!)
+4.  Create a .env file based on the .env.example given
 
 5.  Create a user in psql based on your .env DATABASE_URL app_name
 
     ```psql -c "CREATE USER <username> PASSWORD '<password>' CREATEDB"```
 
-6.  Create a databse in psql based on your.env DATABASE_URL app_db_name
+6.  Create a database in psql based on your.env DATABASE_URL app_db_name
 
 7. Start your shell, migrate your database, seed your database, and run the flask app
 

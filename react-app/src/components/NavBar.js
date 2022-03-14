@@ -25,11 +25,17 @@ const NavBar = () => {
   if (sessionUser) {
     sessionLinks = (
       <li className='nav-session-links'>
-        <div>
+        <div className='user-cart-container'>
           <ProfileButton user={sessionUser} />
           <button className='shopping-cart-btn' type="button" onClick={() => setShowCart(!showCart)}>
             <i className="fas fa-shopping-cart"></i>
           </button>
+          <span
+            className='badge'
+            hidden={(cartCount === 0)}
+          >
+            {cartCount}
+          </span>
           <div style={showCart ? { transform: 'translateX(-100%)' } : {}} className="sidebar">
             <div className='sidebar-header'>
               <button className="arrow-button" onClick={() => setShowCart(false)}>
@@ -55,7 +61,7 @@ const NavBar = () => {
             <Cart showCart={() => setShowCart()} />
           </div>
         </div>
-      </li>
+      </li >
     )
   } else {
     sessionLinks = (
