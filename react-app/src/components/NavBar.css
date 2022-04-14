@@ -99,7 +99,8 @@
     width: 124px;
 }
 
-.user-icon-button, .shopping-cart-btn {
+.user-icon-button,
+.shopping-cart-btn {
     color: black;
     background-color: white;
     border: 0;
@@ -247,11 +248,40 @@ span.badge {
 .sidebar::-webkit-scrollbar {
     width: 20px;
 }
+
 .sidebar::-webkit-scrollbar-track {
     background: lightgray;
     border-radius: 3px;
 }
+
 .sidebar::-webkit-scrollbar-thumb {
     background: rgba(255, 140, 0, 0.5);
+    border-radius: 3px;
+}
+
+.search-bar-results-div {
+    position: absolute;
+    z-index: 2;
+    width: 46.5rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 darkgray;
+    margin: 5px 0px 0px 10px;
+    padding: 10px;
+    color: black;
+}
+
+.search-bar-results-div li {
+    margin: 3px;
+    padding: 5px 5px;
+}
+
+.search-bar-results-div li a {
+    color: black;
+
+}
+
+.search-bar-results-div li:hover {
+    background-color: lightgray;
     border-radius: 3px;
 }
