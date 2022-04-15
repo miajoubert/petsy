@@ -124,7 +124,7 @@ span.badge {
     font-weight: bold;
     font-size: 10px;
     padding: 2px;
-    width: 14px;
+    width: auto;
     height: 10px;
     border-radius: 20px;
     text-align: center;
@@ -231,7 +231,7 @@ span.badge {
 
 .arrow-button {
     color: black;
-    background-color: whitesmoke;
+    background-color: lightgray;
     border: 0;
     border-radius: 24px;
     font-size: 20px;
@@ -239,10 +239,14 @@ span.badge {
     min-height: 36px;
     min-width: 53px;
     padding: 4px 15px;
+    margin-right: 10px;
+    box-shadow: 0 0 5px 0 black;
 }
 
 .arrow-button:hover {
-    background-color: lightgrey;
+    transition: all .3s;
+    background-color: black;
+    color: white;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -286,6 +290,6 @@ span.badge {
 }
 
 .search-bar-results-div li:hover {
-    background-color: lightgray;
+    background-color: rgba(211, 211, 211, 0.6);
     border-radius: 3px;
 }
