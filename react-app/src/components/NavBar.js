@@ -31,7 +31,7 @@ const NavBar = () => {
             <i className="fas fa-shopping-cart"></i>
           </button>
           <span
-            className='badge'
+            className={cartCount > 10 ? 'badge' : 'small-badge'}
             hidden={(cartCount === 0)}
           >
             {cartCount}

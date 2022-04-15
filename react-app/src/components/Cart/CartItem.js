@@ -22,14 +22,19 @@ const CartItem = ({ item }) => {
           className="cart-function-buttons"
           onClick={() => dispatch(subtractFromCart(item))}
         > - </button>
-        <input
-          className="cart-number-input"
-          type="number"
-          value={count}
-          onChange={(e) => setCount(e.target.value)}
-          onBlur={() => dispatch(updateCount(item, Number(count)))}
-          min={1}
-        />
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          dispatch(updateCount(item, Number(count)))
+        }}>
+          <input
+            className="cart-number-input"
+            type="number"
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
+            onBlur={() => dispatch(updateCount(item, Number(count)))}
+            min={1}
+          />
+        </form>
         <button
           className="cart-function-buttons"
           onClick={() => dispatch(populateCart(item))}
