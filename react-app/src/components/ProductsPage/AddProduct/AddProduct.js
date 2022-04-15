@@ -126,7 +126,7 @@ const AddProduct = ({ onClose }) => {
         <button
           className="add-product-button"
           type="submit"
-          disabled={errors.length > 0}
+          disabled={errors.length > 0 || !name || !image_url || !description || !category_id}
         >
           Submit
         </button>
