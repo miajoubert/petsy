@@ -271,14 +271,18 @@ span.badge {
     color: black;
 }
 
+.search-bar-results-div ul {
+    padding: 0;
+}
+
 .search-bar-results-div li {
+    list-style: none;
     margin: 3px;
     padding: 5px 5px;
 }
 
 .search-bar-results-div li a {
     color: black;
-
 }
 
 .search-bar-results-div li:hover {
