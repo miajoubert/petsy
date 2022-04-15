@@ -2,7 +2,7 @@
 
 .login-form-container {
   max-width: 500px;
-  height: 420px;
+  height: 440px;
   background: transparent;
   border-radius: 30px;
 }
@@ -29,6 +29,8 @@
   margin-left: 100px;
 }
 
+
+
 .errors-list {
   color: #a61a2e;
   font-weight: 400;
@@ -36,6 +38,7 @@
     Arial, sans-serif;
   transition: opacity 200ms ease-in;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .sign_in-container {
@@ -167,7 +170,7 @@
 
 .signup-form-container {
   max-width: 520px;
-  height: 550px;
+  height: 640px;
   background: transparent;
   border-radius: 30px;
 }
@@ -176,12 +179,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -80px;
 }
+
 
 .sign-up-text {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: -130px;
 }
+
+.demo-user-btn-signup {
+  font-size: 13px;
+  line-height: 1.4;
+  min-height: 36px;
+  min-width: 36px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 24px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #222222;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 233px;
+  margin-top: 100px;
+}
+
+.demo-user-btn-signup:hover {
+  font-size: 13px;
+  line-height: 1.4;
+  min-height: 36px;
+  min-width: 36px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 24px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #222222;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 233px;
+  margin-top: 100px;
+}
+
+
+#create_account-container {
+  margin-bottom: 120px;
+}
+
 
 .sign_up-btn {
   cursor: pointer;

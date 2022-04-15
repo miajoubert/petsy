@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { login } from "../../store/session";
 import "./auth.css";
 
 const SignUpForm = () => {
@@ -15,8 +16,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    
-    const data = await dispatch(signUp(username, email, password, repeat_password));
+
+    const data = await dispatch(
+      signUp(username, email, password, repeat_password)
+    );
     if (data) {
       setErrors(data);
     }
@@ -38,6 +41,15 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const demoUserLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   if (user) {
     return <Redirect to="/" />;
   }
@@ -49,8 +61,17 @@ const SignUpForm = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div id="create_account-logo">
-        <p className="sign-up-text">Create your account</p>
+      <div id="create_account-container">
+        <div className="sign-up-text">Create your account</div>
+        <div className="demo-user-btn-container">
+          <button
+            type="button"
+            className="demo-user-btn-signup"
+            onClick={demoUserLogin}
+          >
+            Try Demo
+          </button>
+        </div>
       </div>
       <div id="signup-container">
         <div className="signup-text-container">
@@ -112,9 +133,12 @@ const SignUpForm = () => {
         <button type="submit" className="sign_up-btn">
           Sign Up
         </button>
-        <p className="petsy-policy"> By clicking Sign in, you agree to Petsy's Terms of Use and Privacy
-          Policy, which does not exist. Petsy will not send you
-          communications and post without your permission.</p>
+        <p className="petsy-policy">
+          {" "}
+          By clicking Sign in, you agree to Petsy's Terms of Use and Privacy
+          Policy, which does not exist. Petsy will not send you communications
+          and post without your permission.
+        </p>
       </div>
     </form>
   );
