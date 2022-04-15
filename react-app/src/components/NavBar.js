@@ -13,8 +13,8 @@ const NavBar = () => {
   const cart = useSelector(state => state.cart)
 
   const [showCart, setShowCart] = useState(false);
+  let [cartCount, setCartCount] = useState(0)
 
-  let cartCount = 0;
   Object.values(cart)
     .map(product => (
       cartCount += product.count
