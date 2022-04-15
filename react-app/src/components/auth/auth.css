@@ -2,7 +2,7 @@
 
 .login-form-container {
   max-width: 500px;
-  height: 420px;
+  height: 440px;
   background: transparent;
   border-radius: 30px;
 }
@@ -38,6 +38,7 @@
     Arial, sans-serif;
   transition: opacity 200ms ease-in;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .sign_in-container {
@@ -169,7 +170,7 @@
 
 .signup-form-container {
   max-width: 520px;
-  height: 610px;
+  height: 640px;
   background: transparent;
   border-radius: 30px;
 }
@@ -185,7 +186,7 @@
 .sign-up-text {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: -120px;
+  margin-bottom: -130px;
 }
 
 .demo-user-btn-signup {
@@ -208,7 +209,7 @@
   text-align: center;
   font-weight: bold;
   margin-left: 233px;
-  margin-top: 90px;
+  margin-top: 100px;
 }
 
 .demo-user-btn-signup:hover {
