@@ -16,20 +16,11 @@ const AddProduct = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
   const [category_id, setCategoryId] = useState("");
-  const [errorValidator, setErrorValidator] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    const errors = [];
-    if (!name) errors.push("Please provide a name");
-    if (!image_url.length) errors.push("Please provide a valid URL");
-    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
-      errors.push("Please provide a valid URL");
-    if (!description) errors.push("Please provide a description");
-    if (!price) errors.push("Please provide a price");
-    if (!category_id) errors.push('Please provide a category');
-    setErrorValidator(errors)
     dispatch(getCategories());
-  }, [name, image_url, description, price, category_id, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!user) {
@@ -37,8 +28,18 @@ const AddProduct = ({ onClose }) => {
     }
   }, [user, history]);
 
+  useEffect(() => {
+    const validationErrors = [];
+
+    if (image_url.length > 0 && !image_url.match(/^https?:\/\/.+\/.+$/))
+    validationErrors.push("Please provide a valid URL");
+
+    setErrors(validationErrors);
+  }, [image_url, price]);
+
   const newProductSubmit = async (e) => {
     e.preventDefault();
+
     const payload = {
       userId: user.id,
       name,
@@ -57,8 +58,8 @@ const AddProduct = ({ onClose }) => {
     <form className="new-product-container" onSubmit={newProductSubmit}>
       <h2>List Your Product</h2>
       <ul>
-        {errorValidator.map((error) => (
-          <li className="error-list" key={error}>{error}</li>
+        {errors.map((error, ind) => (
+          <li className="error-list" key={ind}>{error}</li>
         ))}
       </ul>
       <div>
@@ -69,6 +70,7 @@ const AddProduct = ({ onClose }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="edit_product_input-bar"
+          required
         />
       </div>
       <div>
@@ -80,6 +82,7 @@ const AddProduct = ({ onClose }) => {
           value={image_url}
           onChange={(e) => setImageUrl(e.target.value)}
           className="edit_product_input-bar"
+          required
         />
       </div>
       <div>
@@ -90,6 +93,7 @@ const AddProduct = ({ onClose }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="edit_product_description_input-bar"
+          required
         />
       </div>
       <div>
@@ -102,6 +106,7 @@ const AddProduct = ({ onClose }) => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           className="edit_product_input-bar"
+          required
         />
       </div>
       <div className="category-input">
@@ -111,6 +116,7 @@ const AddProduct = ({ onClose }) => {
           value={category_id}
           onChange={(e) => setCategoryId(e.target.value)}
           className='edit_product_category_input_bar'
+          required
         >
           <option value=''>Please choose an option</option>
           {categories?.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
@@ -120,7 +126,7 @@ const AddProduct = ({ onClose }) => {
         <button
           className="add-product-button"
           type="submit"
-          disabled={errorValidator.length > 0}
+          disabled={errors.length > 0 || !name || !image_url || !description || !category_id}
         >
           Submit
         </button>

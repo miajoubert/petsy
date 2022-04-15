@@ -12,14 +12,14 @@ const CreateReview = ({ onClose }) => {
   const history = useHistory();
 
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {
     const errors = [];
-    if (!review) errors.push("Please provide a review");
-    if (!rating) errors.push("Please provide a rating");
+
     if (rating < 1 || rating > 5) errors.push("Rating must be between 1 or 5");
+
     setErrorValidator(errors);
   }, [review, rating]);
 
@@ -57,6 +57,7 @@ const CreateReview = ({ onClose }) => {
             value={review}
             onChange={(e) => setReview(e.target.value)}
             className="add_review_input-bar"
+            required
           />
         </div>
         <div className="rating">
@@ -66,17 +67,17 @@ const CreateReview = ({ onClose }) => {
             min="1"
             max="5"
             step="1"
-            placeholder="Rating"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
             className="add_rating_input-bar"
+            required
           />
         </div>
         <div className="add-review">
           <button
             className="add-product-button"
             type="submit"
-            disabled={errorValidator.length > 0}
+            disabled={errorValidator.length > 0 || !review || !rating}
           >
             Submit
           </button>
