@@ -4,7 +4,6 @@ import CartItem from "./CartItem";
 import { submitOrder } from "../../store/orders";
 import { resetCart } from "../../store/cart";
 import './Cart.css'
-import { useState } from "react";
 
 const Cart = ({ showCart }) => {
     let cart = useSelector(state => state.cart);
